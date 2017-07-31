@@ -399,12 +399,9 @@
 			y = 0;
 
 			function keydownHandler(e) {
-				console.log('keydownHandler start');
 				var key = 'which' in e ? e.which : e.keyCode;
-				console.log('key ' + key);
-				console.log('testing');
 				var letter = String.fromCharCode(key);
-				console.log('letter ' + letter);
+				console.log('key ' + key + ', letter ' + letter);
 				
 				// if (pressed[key] == true) { return; }
 
@@ -439,6 +436,7 @@
 				}
 
 				if (start == 0 && count != 0) {
+					console.log('here');
 					start = Date.now();
 					timeout = window.setTimeout(timeoutHandler, 1000);
 					timer.innerHTML = '0';
