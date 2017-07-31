@@ -390,6 +390,7 @@
 
 			document.body.addEventListener("keydown", keydownHandler);
 			document.body.addEventListener("keyup", keyupHandler);
+
 			var speed = document.getElementById("speed");
 			var timer = document.getElementById("timer");
 			var timeout;
@@ -463,12 +464,15 @@
 			function keyupHandler(e) {
 				console.log('keyupHandler started');
 				var key = 'which' in e ? e.which : e.keyCode;
+				console.log('here1');
 				var letter = String.fromCharCode(key);
+				console.log('here2');
 
 				if (pressed[key] == true) { 
 					pressed[key] = false;
 					count--;
 				}
+				console.log('here3');
 
 				//special case for caps lock being turned off
 				if (key == 20) {
@@ -478,6 +482,7 @@
 					output += cursor;
 					practice.innerHTML = output;
 				}
+				console.log('here4');
 
 				if (count == 0) {
 					if(chords[raw]) {
@@ -496,6 +501,7 @@
 						
 					}
 					raw = "";
+					console.log('here5');
 
 					if(start != 0 && writing == test) {
 						window.clearTimeout(timeout);
