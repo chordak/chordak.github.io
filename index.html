@@ -405,14 +405,14 @@
 				
 				// if (pressed[key] == true) { return; }
 
-				// for (i = 0; i < 5; i++) {
-				// 	if (letter == home[i]) {
-				// 		pressed[key] = true;
-				// 		count++;
-				// 		raw += (i+1);
-				// 		//x.innerHTML = raw;
-				// 	}
-				// }
+				for (i = 0; i < 5; i++) {
+					if (letter == home[i]) {
+						pressed[key] = true;
+						count++;
+						raw += (i+1);
+						//x.innerHTML = raw;
+					}
+				}
 
 				// //prevents scrolling when pressing spacebar
 				// if (key == 32) {
@@ -435,6 +435,7 @@
 
 				}
 
+				console.log('here');
 				if (start == 0 && count != 0) {
 					console.log('here');
 					start = Date.now();
