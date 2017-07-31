@@ -394,8 +394,9 @@
 			y = 0;
 
 			function keydownHandler(e) {
-				console.log()
+				console.log('keydownHandler start');
 				var key = 'which' in e ? e.which : e.keyCode;
+				console.log('key ' + key);
 				var letter = String.fromCharCode(key);
 				
 				if (pressed[key] == true) { return; }
