@@ -479,8 +479,9 @@
 					practice.innerHTML = output;
 				}
 
+				console.log('count ' + count);
 				if (count == 0) {
-					console.log('here1');
+					console.log('MADE IT INSIDE');
 					if(chords[raw]) {
 						//x.innerHTML = raw;
 						//x2.innerHTML = chords[raw];
@@ -497,7 +498,6 @@
 						
 					}
 					raw = "";
-					console.log('here5');
 
 					if(start != 0 && writing == test) {
 						window.clearTimeout(timeout);
@@ -512,9 +512,8 @@
 						start = 0;
 						writing = "";
 					}
-					console.log('keyupHandler finished');
 				}
-				console.log('here6');
+				console.log('keyupHandler finished');
 			}
 		</script>
 	</body>
