@@ -437,12 +437,13 @@
 
 				console.log('start ' + start + ', count ' + count);
 				if (start == 0 && count != 0) {
-					console.log('here');
+					console.log('setting timeout');
 					start = Date.now();
 					timeout = window.setTimeout(timeoutHandler, 1000);
 					timer.innerHTML = '0';
 					speed.innerHTML = '-';
 				}
+				console.log('keydownHandler finished');
 			}
 
 			function timeoutHandler() {
@@ -460,6 +461,7 @@
 			}
 
 			function keyupHandler(e) {
+				console.log('keyupHandler started');
 				var key = 'which' in e ? e.which : e.keyCode;
 				var letter = String.fromCharCode(key);
 
@@ -508,6 +510,7 @@
 						start = 0;
 						writing = "";
 					}
+					console.log('keyupHandler finished');
 				}
 			}
 		</script>
