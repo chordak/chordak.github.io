@@ -394,7 +394,8 @@
 			y = 0;
 
 			function keydownHandler(e) {
-				var key = e.which;
+				console.log()
+				var key = 'which' in e ? e.which : e.keyCode;
 				var letter = String.fromCharCode(key);
 				
 				if (pressed[key] == true) { return; }
@@ -448,7 +449,7 @@
 			}
 
 			function keyupHandler(e) {
-				var key = e.which;
+				var key = 'which' in e ? e.which : e.keyCode;
 				var letter = String.fromCharCode(key);
 
 				if (pressed[key] == true) { 
