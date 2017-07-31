@@ -464,15 +464,11 @@
 			function keyupHandler(e) {
 				console.log('keyupHandler started');
 				var key = 'which' in e ? e.which : e.keyCode;
-				console.log('here1');
 				var letter = String.fromCharCode(key);
-				console.log('here2');
-
 				if (pressed[key] == true) { 
 					pressed[key] = false;
 					count--;
 				}
-				console.log('here3');
 
 				//special case for caps lock being turned off
 				if (key == 20) {
@@ -482,9 +478,9 @@
 					output += cursor;
 					practice.innerHTML = output;
 				}
-				console.log('here4');
 
 				if (count == 0) {
+					console.log('here1');
 					if(chords[raw]) {
 						//x.innerHTML = raw;
 						//x2.innerHTML = chords[raw];
@@ -518,6 +514,7 @@
 					}
 					console.log('keyupHandler finished');
 				}
+				console.log('here6');
 			}
 		</script>
 	</body>
