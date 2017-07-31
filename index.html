@@ -2,6 +2,11 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="0"/>
+
 		<title>chordak demo</title>
 		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
 
@@ -398,6 +403,7 @@
 				var key = 'which' in e ? e.which : e.keyCode;
 				console.log('key ' + key);
 				var letter = String.fromCharCode(key);
+				console.log('letter ' + letter);
 				
 				// if (pressed[key] == true) { return; }
 
