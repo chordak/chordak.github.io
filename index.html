@@ -402,13 +402,11 @@
 			function keydownHandler(e) {
 				var key = 'which' in e ? e.which : e.keyCode;
 				var letter = String.fromCharCode(key);
-				console.log('key ' + key + ', letter ' + letter);
-				
 				// if (pressed[key] == true) { return; }
 
 				for (i = 0; i < 5; i++) {
 					if (letter == home[i]) {
-						pressed[key] = true;
+						//pressed[key] = true;
 						count++;
 						raw += (i+1);
 						//x.innerHTML = raw;
@@ -425,18 +423,12 @@
 
 				if (key == 8 || key == 20) {
 					e.preventDefault();
-					console.log('writing before slice ' + writing);
 					writing = writing.slice(0, writing.length-1);
-					console.log('writing after slice ' + writing);
 					var output = writing.replace(" ", "&nbsp;");
-					console.log('writing output ' + output);
 					output += cursor;
-					console.log('output+cursor ' + output);
 					practice.innerHTML = output;
-
 				}
 
-				console.log('start ' + start + ', count ' + count);
 				if (start == 0 && count != 0) {
 					console.log('setting timeout');
 					start = Date.now();
@@ -462,14 +454,12 @@
 			}
 
 			function keyupHandler(e) {
-				console.log('keyupHandler started');
 				var key = 'which' in e ? e.which : e.keyCode;
 				var letter = String.fromCharCode(key);
-				if (pressed[key] == true) { 
-					pressed[key] = false;
+				// if (pressed[key] == true) { 
+					// pressed[key] = false;
 					count--;
-				}
-				console.log('key ' + key + ', letter ' + letter);
+				// }
 
 				//special case for caps lock being turned off
 				if (key == 20) {
