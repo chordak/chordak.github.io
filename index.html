@@ -2,309 +2,834 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-
-		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-		<meta http-equiv="Pragma" content="no-cache"/>
-		<meta http-equiv="Expires" content="0"/>
-
-		<title>chordak demo</title>
-		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<title>chordak demo v2</title>
 
 		<style>
-			input {
-				font-family: monospace;
-				text-align: center;
-				text-transform: uppercase;
-				font-size: 12pt;
-				width: 4em;
-				padding: 0;
-				margin: 0;
+			html {
+				font-size:62.5%;  /* 10px = 1 rem */
+				background: #111;
 			}
 
+			@import url(https://fonts.googleapis.com/css?family=Average+Sans);
 			body {
-				font-size: 16px;
-				background-color: #EAEAEA;
-				width: 38em;
+			  font-family: "Open Sans", sans-serif;
+			  margin: 0;
+			  
+			  background: #111;
+			  background: -webkit-linear-gradient(top, 
+					rgba(30,30,30,1) 0%,
+					rgba(17,17,17,1) 20%,
+					rgba(17,17,17,1) 70%,
+					rgba(17,17,17,1) 100%);
+			  	background-attachment: fixed;
+
+				display: flex;
+  				height: 100vh;
+  				flex-direction: column;
+  				justify-content: space-between;
+  				overflow: hidden;
 			}
 
-			.flex-container {
-			    display: flex;
-			    flex-direction: column;
-			    flex-wrap: nowrap;
-			    justify-content: flex-start;
-			    align-content: flex-start;
-			    align-items: center;
+			
+			main {
+				/*border: 1px solid blue;*/
+				/*background-color: green;*/
+				display: flex;
+			  	justify-content:center;
+			  	width: 100vw;
+			  	height: 100vh;
 			}
 
-			.flex-item {
-				width: 100%;
-			    order: 0;
-			    flex: 0 1 auto;
-			    align-self: auto;
-			    margin-bottom: 1.5em;
+			.sidebar {
+				/*flex: 0 0 20%;*/
+				/*min-width: 20%;*/
+				/*min-width: 25rem;*/
+				/*border:1px solid #222;*/
 			}
 
-			#chords {
-				background-color: #FFF;
-				border-radius: 1.25em;
-				padding: 1em 0 1em 0;
+			.sidebar.left {
+				flex: 1 0 15rem;
+				min-width: 15rem;
 			}
 
-			.chord-column {
-				font-family: 'PT Mono', monospace;
-				font-size: 0.7em;
-				width: 5em;
-				padding-left: 0em;
-				margin-left: 3.5em;
-				float:left;
+			.sidebar.right {
+				flex: 1 0 15rem;
+				min-width: 15rem;
+				align-items: center;
+
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+
+				min-width: 15rem;
+				min-height: 45rem;
+				height: 100%;
+				overflow: scroll;
+				z-index: 1;
 			}
 
-			h3 {
-				font-size: 1.4em;
-				margin:0;
-				padding:0;
-			}
-
-			.settings {
-				font-family: monospace;
-				padding-left: 2em;
-				float:left;
-			}
-
-			.practice {
-				font-family: 'PT Mono', monospace;
-			    float:left;
-			    width: 100%;
-			    font-size: 1em;
-				border-radius: 1.25em;
+			.content {
+				flex: 1 1 60vw;
+				/*min-width: 60vw;*/
 				overflow: hidden;
 			}
 
-			.flex-container-practice {
-			    display: flex;
-			    flex-direction: column;
-			    flex-wrap: nowrap;
-			    justify-content: left;
-			    align-content: left;
-			    align-items: flex-start;
+
+
+			footer {
+				/*position: fixed;*/
+				justify-content: space-between;
+				margin-bottom: 2.5rem;
+				border-top: 1px solid #222;
+				border-bottom: 1px solid #222;
+				width: 100%;
+				min-height: 6rem;
+				flex: 0 0 6rem;
+				display: flex;
+			}
+			
+			.keyboard {
+				margin-top: 25rem;
+				position: relative;
+				display: flex;
+					display: -webkit-flex;
+				flex-direction: column;
+				
+				min-width:50rem; /* 84 rough guess!!! */
+				height: 24.5rem;
+				border-radius: 1rem;
+				padding: 0.2rem;
+				overflow: hidden;
+				color: #555;
+				/*border: 0.2rem solid #333;*/
 			}
 
-			.flex-item-practice {
-			    order: 0;
-			    flex: 0 1 auto;
-			    align-self: auto;
-			    padding:0.75em 0em 0.75em 1em;
-			    width:100%;
-			    height:1.2em;
-			    margin:1px;
-			    background-color: #FFF;
+			.keyboard .overlay {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				/*z-index: 1;*/
+				overflow: hidden;
+
+				background: -webkit-linear-gradient(left, 
+					rgba(17,17,17,0) 0%,
+					rgba(17,17,17,0) 70%,
+					rgba(17,17,17,1) 86%,
+					rgba(17,17,17,1) 100%);
+    			
 			}
 
-			.indicator {
-				 float:right;
-				 font-family: 'PT Mono', monospace;
-				 text-align: right;
-				 margin-right:1em;
+			.keyboard .row {
+				display: flex;
+					display: -webkit-flex;
 			}
+
+			.key {
+				flex: 0 0 4.8rem;
+				height: 4.8rem;
+				font-size: 1.8rem;
+				
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-style: solid;
+				border-width: .2rem;
+				border-radius: 2.6rem;
+				border-color: #555;
+				color: #bbb;
+				margin: 0.4rem;
+			}
+
+			.key.text {
+				font-size: 0.9rem;
+			}
+
+			.key.pressed {
+	 		    -webkit-transform: scale(0.95, 0.95);
+			    -moz-transform: scale(0.95, 0.95);
+			    -ms-transform: scale(0.95, 0.95);
+			    -o-transform: scale(0.95, 0.95);
+				transform: scale(0.95, 0.95);
+				color:#FFF;
+				border-color: #fff;
+				box-shadow: 0rem 0rem 1.8rem #bbb;
+			}
+
+			/*AACFD8*/
+			/*
+			yellow F4C437
+			*/
+			.key.pressed-wrong {
+				/*DB7D9E*/
+				/*DF8F8C*/
+	 		    -webkit-transform: scale(0.95, 0.95);
+			    -moz-transform: scale(0.95, 0.95);
+			    -ms-transform: scale(0.95, 0.95);
+			    -o-transform: scale(0.95, 0.95);
+				transform: scale(0.95, 0.95);
+				color:#E4648A;
+				border-color: #E4648A;
+				box-shadow: 0rem 0rem 1.8rem #E4648A;
+			}
+
+			.key.pressed-correct {
+				/*C2DAB1*/
+				/*D0E1A7*/
+				/*55D9C0*/
+				/*B4C76D*/
+				/*77ACA1*/
+				/*77EAAC*/
+				/*7FFCD1****/
+				/*5BE4A7****/
+				/*8EEEF6*/
+	 		    -webkit-transform: scale(0.95, 0.95);
+			    -moz-transform: scale(0.95, 0.95);
+			    -ms-transform: scale(0.95, 0.95);
+			    -o-transform: scale(0.95, 0.95);
+				transform: scale(0.95, 0.95);
+				color:#8EEEF6;
+				border-color: #8EEEF6;
+				box-shadow: 0rem 0rem 1.8rem #8EEEF6;
+			}
+
+
+			.key.caps {
+				margin-left: 2.5rem;
+			}
+			.key.shift {
+				margin-left: 5.4rem;
+			}
+			.key.command {
+				margin-left: 17.4rem;
+			}
+			.key.space {
+				flex: 0 0 28.8rem;
+				border-radius: 2.5rem;
+			}
+
+			.key.stack {
+				font-size: 1.6rem;
+				line-height: 1.8rem;
+				align-content: center;
+			}
+
+			.itsy {
+				line-height: 50%;
+				font-size: 150%;
+			}
+
+			.legend {
+				position: absolute;
+				width:10rem;
+				height: 12rem;
+
+				left:-10.2rem;
+				bottom: 0;
+				
+				color:#eee;
+				font-family: 'PT mono';
+				border: 0.1rem solid #222;
+			}
+
+			img {
+				width: 100%;
+				height: 100%;
+				opacity: 1.0;
+			}
+
+			.legend div {
+				position: absolute;
+				font-size: 1.3rem;
+				font-style: italic;
+				color: #ccc;
+			}
+
+			.legend .thumb {
+				top:4.4rem;
+				left: 7.6rem;
+			}
+
+			.legend .index {
+				top:0.4rem;
+				left: 5.1rem;
+			}
+
+			.legend .middle {
+				top:0rem;
+				left: 3.7rem;
+			}
+
+			.legend .ring {
+				top:0.6rem;
+				left: 2.1rem;
+			}
+
+			.legend .pinkie {
+				top:2.0rem;
+				left: 0.8rem;
+			}
+
+			.chord {
+				display: flex;
+				flex-direction: row;
+				font-size: 1.2rem;
+				/*width: 100%;*/
+				/*line-height: 2rem;*/
+				/*min-height: 1.2rem;*/
+			}
+
+			.chord div {
+				text-align: center;
+				color: #bbb;
+				font-family: Helvetica;
+				min-width: 2.2rem;
+				border-top: 1px solid #1e1e1e;
+				border-right: 1px solid #1e1e1e;
+			}
+
+			.chord .c {
+				font-style: italic;
+				font-size: 1.3rem;
+				/*line-height: 1.8rem;*/
+				font-family: 'PT mono';
+				min-width: 4.8rem;
+				order: 1;
+			}
+
+			.chord .l {
+				color: #fff;
+				order: 2;
+			}
+			.chord .s {
+				order: 5;
+			}
+			.chord .b {
+				order: 4;
+			}
+			.chord .n {
+				order: 3;
+			}
+
+			.chord.header div {
+				font-style: normal;
+				text-align: center;
+				text-transform: uppercase;
+				font-family: Helvetica;
+				font-size: 0.9rem;
+				color:#bbb;
+				font-family: "Average Sans", sans-serif;
+			}
+
+			/*.chord.header .c {
+				font-style: normal;
+				background: red;
+				min-width: 4.5rem;
+			}*/
+
+/*			.chord.header { order:1; }
+			.chord.r { order:2; }
+			.chord.pr { order:3; }
+			.chord.pt { order:4; }*/
+
+
+			footer .mast {
+				position: relative;
+				background: rgba(255,255,255,0.06);
+				flex: 0 0 14rem;
+				text-align: right;
+			}
+
+			footer .mast span {
+				font-size: 1.5rem;
+				font-weight: bold;
+				position: absolute;
+				bottom: 0.7rem;
+				right: 1rem;
+				font-family: "Open Sans";
+				color:#ddd;
+			}
+
+			footer .menu {
+				font-family: "Open Sans";
+				font-size: 1rem;
+				line-height: 1.3rem;
+				flex: 1 1;
+				text-transform: uppercase;
+				padding-left: 1rem;
+				color:#aaa;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			@media screen and (max-width: 45rem) {
+			    .sidebar.right {
+			        display: none;
+			    }
+			}
+
+			@media screen and (max-width: 37rem) {
+			    .sidebar.left {
+			        display: none;
+			    }
+			}
+
 		</style>
 	</head>
 
-	<div class="flex-item" style="margin-bottom: 0.5em">	
-		<div class="indicator" style="width:5em">
-			<span id="speed">-</span> wpm
-		</div>
-		<div class="indicator" style="width:6em">
-			<span id="timer">0</span> sec
-		</div>
-	</div>
+	<body>
+		<header>HEADER</header>
 
-	<body class="flex-container" style="padding-top: 0">
-		<div class="flex-item">
-			<div class="practice">
-				<div class="flex-container-practice">
-					<!-- <div class="flex-item-practice">
-					</div> -->
-					<div id="test" class="flex-item-practice"></div>
-					<div id="practice" class="flex-item-practice"></div>
+		<main>
+			<div class="sidebar left">
+			test
+			</div>
+
+			<div class="content">
+				<div class="keyboard">
+					<div class="row">
+			  			<div class="key text">ESC</div>
+			  			<div class="key text">HYPER</div>
+			  			<div class="key text">BRACES</div>
+			  			<div class="key text">MOVE</div>
+			  			<div class="key text">MARKS</div>
+			  			<div class="key text">TAB</div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+					</div>
+					
+					<div class="row">
+			  			<div class="key caps text">DELETE</div>
+			  			<div class="key pressed-wrong"></div>
+			  			<div class="key pressed-wrong"></div>
+			  			<div class="key pressed-correct"></div>
+			  			<div class="key pressed"></div>
+			  			<div class="key">&crarr;</div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key return"></div>
+					</div>
+
+					<div class="row">
+			  			<div class="key shift">&#x21E7;</div>
+			  			<div class="key text">FN</div>
+			  			<div class="key text">CTRL</div>
+			  			<div class="key ">&#8997;</div>
+			  			<div class="key">&#x2318;</div>
+			  			<div class="key">&#x21E7;</div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+			  			<div class="key"></div>
+					</div>
+
+					<div class="row">
+			  			<div class="key command">#...</div>
+			  			<div class="key pressed space"></div>
+			  			<div class="key">&#x2318;</div>
+					</div>
+
+					<div class="overlay">
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<input id="input" type="textfield" autocorrect="off" autocapitalize="off">
+				<!-- <div class="legend">
+					<div class="legend-inner">
+						<img src="temp-hand.png"/>
+						<div class="thumb">t</div>
+						<div class="index">i</div>
+						<div class="middle">m</div>
+						<div class="ring">r</div>
+						<div class="pinkie">p</div>
+					</div>
+				</div> -->
 
-		<script>
-			var chords = {};			
+				<div class="sidebar right">
+					<div class="chords">
+						<div class="chord header">
+							<div class="c">chord</div>
+							<div class="l"></div>
+							<div class="s">sym</div>
+							<div class="b">bkt</div>
+							<div class="n">num</div>
+						</div>
 
-			//LETTERS
-			chords['1'] = ' ';
-			chords['432'] = ',';
-			chords['543'] = '.';
-			chords['5432'] = '.'; //duplicate for convenience
+						<div class="chord r">
+							<div class="c">r</div>
+							<div class="l">A</div>
+							<div class="s">;</div>
+							<div class="b">/</div>
+							<div class="n">2</div>
+						</div>
 
-			chords['2'] = 'E';
-			chords['3'] = 'T';
-			chords['4'] = 'A';
-			chords['5'] = 'O';
-			chords['32'] = 'I';
-			chords['43'] = 'N';
-			chords['42'] = 'S';
-			chords['41'] = 'H';
-			chords['31'] = 'R';
-			chords['21'] = 'D';
-			chords['23'] = 'L';
-			chords['51'] = 'C';
-			chords['52'] = 'U';
-			chords['53'] = 'M';
-			chords['24'] = 'F';
-			chords['34'] = 'P';
-			chords['13'] = 'G';
-			chords['12'] = 'W';
-			chords['14'] = 'Y';
-			chords['54'] = 'B';
-			chords['15'] = 'V';
-			chords['25'] = 'K';
-			chords['431'] = 'X';
-			chords['321'] = 'J';
-			chords['35'] = 'Q';
-			chords['45'] = 'Z';
+						<div class="chord pr">
+							<div class="c">p&#x00B7;r</div>
+							<div class="l">B</div>
+							<div class="s">@</div>
+							<div class="b">|</div>
+							<div class="n">4</div>
+						</div>
 
-			var home = [' ', 'F', 'D', 'S', 'A']; //qwerty
-			
-			var raw = "";
-			var pressed = [];
-			var count = 0;
-			var writing = ""
+						<div class="chord pt">
+							<div class="c">p&#x00B7;t</div>
+							<div class="l">C</div>
+							<div class="s">_</div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
 
-			var test = "the quick brown fox jumps over the lazy dog"
-			var start = 0;
-			var cursor = '<span style="background-color:#D6D6D6;">&nbsp;</span>'
+						<div class="chord it">
+							<div class="c">i&#x00B7;t</div>
+							<div class="l">D</div>
+							<div class="s">=</div>
+							<div class="b">{</div>
+							<div class="n"></div>
+						</div>
 
-			document.body.addEventListener("keydown", keydownHandler);
-			document.body.addEventListener("keyup", keyupHandler);
+						<div class="chord i">
+							<div class="c">i</div>
+							<div class="l">E</div>
+							<div class="s">!</div>
+							<div class="b">)</div>
+							<div class="n">0</div>
+						</div>
 
-			var speed = document.getElementById("speed");
-			var timer = document.getElementById("timer");
-			var timeout;
+						<div class="chord ir">
+							<div class="c">i&#x00B7;r</div>
+							<div class="l">F</div>
+							<div class="s">$</div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
 
-			document.getElementById("test").innerHTML = test;
-			var practice = document.getElementById("practice");
-			y = 0;
+						<div class="chord tm">
+							<div class="c">t&#x00B7;m</div>
+							<div class="l">G</div>
+							<div class="s"></div>
+							<div class="b">&gt;</div>
+							<div class="n"></div>
+						</div>
 
-			function keydownHandler(e) {
-				var key = 'which' in e ? e.which : e.keyCode;
-				var letter = String.fromCharCode(key);
-				console.log('key ' + key + ', letter ' + letter);
+						<div class="chord rt">
+							<div class="c">r&#x00B7;t</div>
+							<div class="l">H</div>
+							<div class="s">-</div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord mi">
+							<div class="c">m&#x00B7;i</div>
+							<div class="l">I</div>
+							<div class="s">*</div>
+							<div class="b">[</div>
+							<div class="n">6</div>
+						</div>
+
+						<div class="chord mit">
+							<div class="c">m&#x00B7;i&#x00B7;t</div>
+							<div class="l">J</div>
+							<div class="s"></div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord ip">
+							<div class="c">i&#x00B7;p</div>
+							<div class="l">K</div>
+							<div class="s">~</div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord im">
+							<div class="c">i&#x00B7;m</div>
+							<div class="l">L</div>
+							<div class="s">^</div>
+							<div class="b">]</div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord pm">
+							<div class="c">p&#x00B7;m</div>
+							<div class="l">M</div>
+							<div class="s">&amp;</div>
+							<div class="b"></div>
+							<div class="n">7</div>
+						</div>
+
+						<div class="chord rm">
+							<div class="c">r&#x00B7;m</div>
+							<div class="l">N</div>
+							<div class="s">:</div>
+							<div class="b"></div>
+							<div class="n">5</div>
+						</div>
+
+						<div class="chord p">
+							<div class="c">p</div>
+							<div class="l">O</div>
+							<div class="s">"</div>
+							<div class="b">/</div>
+							<div class="n">3</div>
+						</div>
+
+						<div class="chord mr">
+							<div class="c">m&#x00B7;r</div>
+							<div class="l">P</div>
+							<div class="s">%</div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord mp">
+							<div class="c">m&#x00B7;p</div>
+							<div class="l">Q</div>
+							<div class="s">`</div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord mt">
+							<div class="c">m&#x00B7;t</div>
+							<div class="l">R</div>
+							<div class="s">+</div>
+							<div class="b">&lt;</div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord ri">
+							<div class="c">r&#x00B7;i</div>
+							<div class="l">S</div>
+							<div class="s"></div>
+							<div class="b"></div>
+							<div class="n">8</div>
+						</div>
+
+						<div class="chord m">
+							<div class="c">m</div>
+							<div class="l">T</div>
+							<div class="s">?</div>
+							<div class="b">(</div>
+							<div class="n">1</div>
+						</div>
+
+						<div class="chord pi">
+							<div class="c">p&#x00B7;i</div>
+							<div class="l">U</div>
+							<div class="s">#</div>
+							<div class="b"></div>
+							<div class="n">9</div>
+						</div>
+
+						<div class="chord tp">
+							<div class="c">t&#x00B7;p</div>
+							<div class="l">V</div>
+							<div class="s"></div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord ti">
+							<div class="c">t&#x00B7;i</div>
+							<div class="l">W</div>
+							<div class="s"></div>
+							<div class="b">}</div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord rmt">
+							<div class="c">r&#x00B7;m&#x00B7;t</div>
+							<div class="l">X</div>
+							<div class="s"></div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord tr">
+							<div class="c">t&#x00B7;r</div>
+							<div class="l">Y</div>
+							<div class="s"></div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
+						
+						<div class="chord rp">
+							<div class="c">r&#x00B7;p</div>
+							<div class="l">Z</div>
+							<div class="s"></div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord t">
+							<div class="c">t</div>
+							<div class="l">&#x2423;</div>
+							<div class="s">'</div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord prm">
+							<div class="c">p&#x00B7;r&#x00B7;m</div>
+							<div class="l">.</div>
+							<div class="s"></div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
+
+						<div class="chord rmi">
+							<div class="c">r&#x00B7;m&#x00B7;i</div>
+							<div class="l">,</div>
+							<div class="s"></div>
+							<div class="b"></div>
+							<div class="n"></div>
+						</div>
+					</div>
+				</div>
+
+	<!-- 	<div class="keyboard">
+				<div class="row">
+		  			<div class="key">&#8677;</div>
+		  			<div class="key">Q</div>
+		  			<div class="key">W</div>
+		  			<div class="key">F</div>
+		  			<div class="key">P</div>
+		  			<div class="key">G</div>
+		  			<div class="key">J</div>
+		  			<div class="key">L</div>
+		  			<div class="key">U</div>
+		  			<div class="key">Y</div>
+		  			<div class="key"></div>
+		  			<div class="key stack">{<br>[</div>
+		  			<div class="key stack">}<br>]</div>
+		  			<div class="key stack">|<br>\</div>
+				</div>
 				
-				if (pressed[key] == true) { return; }
+				<div class="row">
+		  			<div class="key caps">&#x21ea;</div>
+		  			<div class="key pressed-wrong">A</div>
+		  			<div class="key pressed-wrong">R</div>
+		  			<div class="key pressed-correct">S</div>
+		  			<div class="key pressed">T</div>
+		  			<div class="key">D</div>
+		  			<div class="key">H</div>
+		  			<div class="key">N</div>
+		  			<div class="key">E</div>
+		  			<div class="key">I</div>
+		  			<div class="key stack">:<br>;</div>
+		  			<div class="key stack">"<br>'</div>
+		  			<div class="key return">&#x23ce;</div>
+				</div>
 
-				for (i = 0; i < 5; i++) {
-					if (letter == home[i]) {
-						pressed[key] = true;
-						count++;
-						raw += (i+1);
-						//x.innerHTML = raw;
-					}
-				}
+				<div class="row">
+		  			<div class="key shift">&#x21E7;</div>
+		  			<div class="key">Z</div>
+		  			<div class="key">X</div>
+		  			<div class="key">C</div>
+		  			<div class="key">V</div>
+		  			<div class="key">B</div>
+		  			<div class="key">K</div>
+		  			<div class="key">M</div>
+		  			<div class="key stack">&lt;<br>,</div>
+		  			<div class="key stack">&gt;<br>.</div>
+		  			<div class="key stack">?<br>/</div>
+		  			<div class="key">&#x21E7;</div>
+				</div>
 
-				// //prevents scrolling when pressing spacebar
-				// if (key == 32) {
-				// 	e.preventDefault();
-				// }
-				// //if (key == 9) {
-				// //	e.preventDefault();
-				// //}
+				<div class="row">
+		  			<div class="key command">&#x2318;</div>
+		  			<div class="key pressed space"></div>
+		  			<div class="key">&#x2318;</div>
+				</div>
 
-				if (key == 8 || key == 20) {
-					e.preventDefault();
-					console.log('writing before slice ' + writing);
-					writing = writing.slice(0, writing.length-1);
-					console.log('writing after slice ' + writing);
-					var output = writing.replace(" ", "&nbsp;");
-					console.log('writing output ' + output);
-					output += cursor;
-					console.log('output+cursor ' + output);
-					practice.innerHTML = output;
+				<div class="overlay">
+				</div>
+			</div> -->
 
-				}
+			<!-- <div class="chords-container" style="display: flex;justify-content: flex-end;flex-direction: column;">
+				<div class="chords">
+					<div></div><span>BKT+</span><br>
 
-				console.log('start ' + start + ', count ' + count);
-				if (start == 0 && count != 0) {
-					console.log('setting timeout');
-					start = Date.now();
-					timeout = window.setTimeout(timeoutHandler, 1000);
-					timer.innerHTML = '0';
-					speed.innerHTML = '-';
-				}
-				console.log('keydownHandler finished');
-			}
+					<div>/</div><span>p</span><br>
+					<div>\</div><span>r</span><br>
+					<div>|</div><span>p&#x00B7;r</span><br>
+					<div>(</div><span>m</span><br>
+					<div>)</div><span>i</span><br>
+					<div>[</div><span>m&#x00B7;i</span><br>
+					<div>]</div><span>i&#x00B7;m</span><br>
+					<div>{</div><span>i&#x00B7;t</span><br>
+					<div>}</div><span>t&#x00B7;i</span><br>
+				 <div>&lt;</div><span>m&#x00B7;t</span><br>
+				 <div>&gt;</div><span>t&#x00B7;m</span><br>
+				</div>
+			</div>
 
-			function timeoutHandler() {
-				var elapsed = (Date.now() - start) / 1000;
-				var error = elapsed - Math.floor(elapsed);
-				error = Math.floor(error * 1000);
-				timer.innerHTML = Math.floor(elapsed);
-				if (elapsed < 60) {
-					timeout = window.setTimeout(timeoutHandler, 1000-error);
-				}
-			}
+			<div class="chords-container" style="display: flex;justify-content: flex-end;flex-direction: column;">
+				<div class="chords">
+					<div></div><span>NUM+</span><br>
 
-			function pad(s){
-				return s;
-			}
+					<div>0</div><span>i</span><br>
+					<div>1</div><span>m</span><br>
+					<div>2</div><span>r</span><br>
+					<div>3</div><span>p</span><br>
+					<div>4</div><span>p&#x00B7;r</span><br>
+					<div>5</div><span>r&#x00B7;m</span><br>
+					<div>6</div><span>m&#x00B7;i</span><br>
+					<div>7</div><span>p&#x00B7;m</span><br>
+					<div>8</div><span>r&#x00B7;i</span><br>
+					<div>9</div><span>p&#x00B7;i</span><br>
+					<br>
 
-			function keyupHandler(e) {
-				count--;
-				e.preventDefault();
+					<div></div><span>SYM+</span><br>
 
-				// //special case for caps lock being turned off
-				// if (key == 20) {
-				// 	e.preventDefault();
-				// 	writing = writing.slice(0, writing.length-1);
-				// 	var output = writing.replace(" ", "&nbsp;");
-				// 	output += cursor;
-				// 	practice.innerHTML = output;
-				// }
-				document.getElementById("test").innerHTML = 
-				e.key + " " + 
-				e.which + " " + 
-				e.keyCode + " " + 
-				e.location + " " + 
-				e.char + " " + 
-				e.ctrlKey + " " + 
-				e.shiftKey + " " + 
-				e.altKey + " " + 
-				e.metaKey + " " + 
-				e.charCode;
+					<div>'</div><span>t</span><br>
+					<div>"</div><span>p</span><br>
+					<div>;</div><span>r</span><br>
+					<div>?</div><span>m</span><br>
+					<div>!</div><span>i</span><br>
+					<div>_</div><span>p&#x00B7;t</span><br>
+					<div>:</div><span>r&#x00B7;m</span><br>
+					<div>+</div><span>m&#x00B7;t</span><br>
+					<div>-</div><span>r&#x00B7;t</span><br>
+					<div>=</div><span>i&#x00B7;t</span><br>
+					<div>@</div><span>p&#x00B7;r</span><br>
+					<div>&amp;</div><span>p&#x00B7;m</span><br>
+					<div>*</div><span>m&#x00B7;i</span><br>
+					<div>%</div><span>m&#x00B7;r</span><br>
+					<div>#</div><span>p&#x00B7;i</span><br>
+					<div>$</div><span>i&#x00B7;r</span><br>
+					<div>^</div><span>i&#x00B7;m</span><br>
+					<div>~</div><span>i&#x00B7;p</span><br>
+					<div>`</div><span>m&#x00B7;p</span><br>
+				</div> -->
+			</div>
+		</main>
 
-				if (count == 0) {
-					//pressed = [];
-
-
-
-					if(chords[raw]) {
-						writing += chords[raw].toLowerCase();
-
-						var output = writing.replace(" ", "&nbsp;");
-						output += cursor;
-						practice.innerHTML = output;
-					}
-					raw = "";
-
-					if(start != 0 && writing == test) {
-						window.clearTimeout(timeout);
-						var elapsed = Date.now() - start; //ms
-						var seconds = Math.round(elapsed / 100) / 10;
-						var wpm = (test.length / 5) / (elapsed / 1000 / 60);
-						wpm = Math.round(wpm * 10) / 10;
-
-						speed.innerHTML = pad(wpm);
-						timer.innerHTML = pad(seconds);
-
-						start = 0;
-						writing = "";
-					}
-				}
-			}
-		</script>
+		<!-- <div>site design &copy;2017</div> -->
+		<footer>
+			<div class="mast">
+				<span>CHORDAK</span>
+			</div>
+			<div class="menu">
+				<div>info</div>
+				<div>design</div>
+				<div>forum</div>
+				<div>pre-order</div>
+			</div>
+		</footer>
 	</body>
 </html>
