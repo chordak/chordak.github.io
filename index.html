@@ -2,25 +2,26 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="Content-Language" content="en">
 		<title>chordak demo v2</title>
 
 		<style>
 			html {
 				font-size:62.5%;  /* 10px = 1 rem */
-				background: #111;
 			}
 
 			@import url(https://fonts.googleapis.com/css?family=Average+Sans);
 			body {
 			  font-family: "Open Sans", sans-serif;
-			  margin: 0;
+			  margin:0;
+			  padding:0;
 			  
 			  background: #111;
-			  background: -webkit-linear-gradient(top, 
+/*			  background: -webkit-linear-gradient(top, 
 					rgba(30,30,30,1) 0%,
 					rgba(17,17,17,1) 20%,
 					rgba(17,17,17,1) 70%,
-					rgba(17,17,17,1) 100%);
+					rgba(17,17,17,1) 100%);*/
 			  	background-attachment: fixed;
 
 	    			display: -webkit-flex;
@@ -32,50 +33,144 @@
 			}
 
 			
-			main {
-				/*border: 1px solid blue;*/
-				/*background-color: green;*/
-					display: -webkit-flex;
+			.main {
+				display: -webkit-flex;
 				display: flex;
-			  	justify-content:center;
-			  	width: 100vw;
-			  	height: 100vh;
+			  	justify-content:flex-start;
+			  	width: 100%;
+			  	height: calc(100vh - 6rem);
+
+			  	border: 1px solid blue;
 			}
 
 			.sidebar {
-				/*flex: 0 0 20%;*/
-				/*min-width: 20%;*/
-				/*min-width: 25rem;*/
-				/*border:1px solid #222;*/
+				/*background: green;*/
 			}
 
 			.sidebar.left {
+				/*padding-right: 10rem;*/
+				padding-right: 2.5rem;
+				/*flex: 1 0 15rem;*/
 				flex: 1 0 15rem;
-				min-width: 15rem;
+				flex-shrink: 0;
+
+				min-width: 2.5rem;
+				max-width: 2.5rem;
+				/*width:20rem;*/
+				position: relative;
+				/*left:0;
+				top: 5rem;
+				bottom: 14rem;*/
+				padding-bottom: -10rem;
+
+				height: calc(100vh - 12rem);
+				
+  				transition: max-width 0.3s ease,min-width 0.3s ease,margin-right 0.3s ease;
+
+  				color: #ddd;
+  				
+  				z-index: 1;
+  				font-family: monospace;
+  				font-size: 1.6rem;
+  				/*overflow: hidden;*/
+  				overflow: auto;
+
+  				/*border: 1px solid red;*/
+			}
+
+			.sidebar.left .inner {
+				position: absolute;
+				top:0;
+				right: 2.5rem;
+				width: 15rem;
+				height: 100%;
+
+				padding-left: 2.5rem;
+				padding-right: 2.5rem;
+				/*height: 100%;*/
+				-webkit-box-shadow: 10px 0 5px -2px #888;
+          		box-shadow: 5px 0 5px -2px #000;
+          		background-color: #222;
+
+				/*border: 1px solid yellow;*/ 
+				overflow: scroll;   		
+			}
+
+			.sidebar.left .inner form .{
+				background: green;
+			}
+
+			.sidebar.left:hover {
+				min-width: 20rem;
+				max-width: 20rem;
+				margin-right: -17.5rem;
+			}
+
+			.sidebar.left:hover form {
+				/*display: inline-block;*/
+			}
+
+			/*.sidebar.left span {
+				position: absolute;
+				bottom: 0.2rem;
+				right: 2.8rem;
+				color:#aaa;
+				font-size: 1.4rem;
+				font-family: sans-serif;
+				text-align: center;
+			}*/
+
+			.sidebar.left img {
+				position: absolute;
+				bottom: 0.6rem;
+				right: 3rem;
+				width:1.5rem;
+				height:1.5rem;
+				opacity: 0.9;
 			}
 
 			.sidebar.right {
 				flex: 1 0 15rem;
+				flex-shrink: 0;
 				min-width: 15rem;
-				align-items: center;
+				max-width: 15rem;
 
-					display: -webkit-flex;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
+				margin-top: 2.5rem;
 
-				min-width: 15rem;
-				min-height: 45rem;
-				height: 100%;
-				overflow: scroll;
-				z-index: 1;
+				
+				-webkit-box-shadow: 10px 0 5px -2px #888;
+          		box-shadow: -5px 5px 5px -2px #000;
+          		background-color: #191919;
+          		height: 100%;
+
+  				transition: max-width 0.3s ease,min-width 0.3s ease;
+
+  				color: #ddd;
+  				
+  				z-index: 1;
+  				overflow: scroll;
 			}
 
 			.content {
-				flex: 1 1 60vw;
+				/*flex: 1 1 55vw;*/
+				flex: 1 1 auto;
+				/*min-width: 40rem;*/
 				/*min-width: 60vw;*/
 				overflow: hidden;
+
+				display: -webkit-flex;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
 			}
+
+			.trainer {
+				border: 1px solid red;
+				flex: 1 0;
+				min-height: 10rem;
+				color:#fff;
+			}
+
 
 
 
@@ -83,7 +178,7 @@
 				display: -webkit-flex;
 				display: flex;
 
-				justify-content: space-between;
+				justify-content: flex-start;
 				margin-bottom: 2.5rem;
 				border-top: 1px solid #222;
 				border-bottom: 1px solid #222;
@@ -92,39 +187,69 @@
 				flex: 0 0 6rem;
 
 			}
-			
+
 			.keyboard {
-				margin-top: 25rem;
-				position: relative;
-					display: -webkit-flex;
-				display: flex;
-				flex-direction: column;
-				
-				min-width:50rem; /* 84 rough guess!!! */
-				height: 24.5rem;
-				border-radius: 1rem;
-				padding: 0.2rem;
+				margin:0 auto 0 auto;
+				width: 84rem;
+				min-height: 28rem;
 				overflow: hidden;
-				color: #555;
-				/*border: 0.2rem solid #333;*/
+				border: 0.1rem solid green;
+			}
+			
+			.keyboard .inner {
+				display: -webkit-flex;
+				display: flex;
+
+				position: relative;				
+				width: 100%;
+				height:100%;
+				margin: auto;
+					
+				flex-direction: column;
+				justify-content: center;
+				overflow: hidden;
+				/*border: 0.1rem solid red;*/
 			}
 
-			.keyboard .overlay {
+			.keyboard.left {
+				width: 50rem;
+			}
+			.keyboard.right {
+				width: 50rem;
+			}
+
+			.keyboard.left .inner {
+				width: 50rem;
+				margin: auto;
+			}
+			.keyboard.right .inner {
+				width: 50rem;
+				margin-left: -35rem;
+				padding-right: 35rem;
+				overflow: hidden;
+			}
+
+			.keyboard .inner .overlay {
 				position: absolute;
 				width: 100%;
 				height: 100%;
-				/*z-index: 1;*/
-				overflow: hidden;
-
-				background: -webkit-linear-gradient(left, 
-					rgba(17,17,17,0) 0%,
-					rgba(17,17,17,0) 70%,
-					rgba(17,17,17,1) 86%,
-					rgba(17,17,17,1) 100%);
-    			
+				z-index: 1;
+				/*border: 0.1rem solid yellow;*/
 			}
 
-			.keyboard .row {
+			.keyboard.left .inner .overlay {
+				background: -webkit-linear-gradient(22deg, 
+					rgba(17,17,17,0) 60%,
+					rgba(17,17,17,1) 82%);
+			}
+			.keyboard.right .inner .overlay {
+				margin-left: 35rem;
+				background: -webkit-linear-gradient(-158deg, 
+					rgba(17,17,17,0) 81%,
+					rgba(17,17,17,1) 93%);
+			}
+
+			.keyboard .inner .row {
 					display: -webkit-flex;
 				display: flex;
 				
@@ -372,7 +497,24 @@
 				justify-content: center;
 			}
 
-			@media screen and (max-width: 45rem) {
+			a {
+				text-decoration: none;
+				color:blue;
+			}
+
+			input[name="other"] {
+				width: 2rem;
+				height: 2rem;
+				font-size: 1rem;
+				font-family: monospace;
+				border-radius: 1.2rem;
+				border:0.2rem solid green;
+				text-align: center;
+				padding: 0;
+				margin:0;
+			}
+
+	/*		@media screen and (max-width: 45rem) {
 			    .sidebar.right {
 			        display: none;
 			    }
@@ -395,76 +537,123 @@
 			    	font-size: 8px;
 				}
 
-			}
+			}*/
+
 
 		</style>
 	</head>
 
 	<body>
-		<header>HEADER</header>
-
-		<main>
+		<div class="main">
 			<div class="sidebar left">
-			test
+				<div class="inner">
+					<!-- <div style="width: 100%;background: red;height: 100%">
+					</div> -->
+					<form name="settings">
+					SETTINGS<br>
+					<br>
+					Typing Hand<br>
+					---------------<br>		
+					<input type="radio" name="hand" value="left">LEFT&nbsp;
+					<input type="radio" name="hand" value="right">RIGHT<br>
+					<br>
+					Current<br>
+					Keyboard Layout<br>
+					---------------<br>
+					<input type="radio" name="layout" value="qwerty" checked>QWERTY<br>
+					<input type="radio" name="layout" value="azerty">AZERTY<br>
+					<input type="radio" name="layout" value="Dvorak">Dvorak<br>
+					<input type="radio" name="layout" value="colemak">Colemak<br>
+					<input type="radio" name="layout" value="workmak">Workman<br>
+					
+					<input type="radio" name="layout" value="chordak">Chordak<br>
+					<input type="radio" name="layout" value="other">Other<br>
+					(Click on each onscreen key and then press the keyboard key you want to assign it to.)<br>
+					<br>
+
+					Key Arrangement<br>
+					---------------<br>
+					<input type="radio" name="arrangement" value="staggered" checked>Staggered<br>
+					<input type="radio" name="arrangement" value="grid">Grid<br>
+					<br>
+
+				
+					Other<br>
+					---------------<br>
+					<input type="checkbox" name="preview" checked>Highlight Keys<br>
+					<input type="checkbox" name="sound" checked>Error Sound<br>
+					<input type="checkbox" name="sound">Show Full Board<br>
+					<br>
+					<input type="button" name="reset" value="Reset All"><br>
+					</form>
+				</div>
+				<img src="flower-icon.png"/>
+				<!-- <span>&#9835;</span> -->
 			</div>
 
 			<div class="content">
+				<div class="trainer">
+					this is a test of output
+				</div>
+
 				<div class="keyboard">
-					<div class="row">
-			  			<div class="key text">ESC</div>
-			  			<div class="key text">HYPER</div>
-			  			<div class="key text">BRACES</div>
-			  			<div class="key text">MOVE</div>
-			  			<div class="key text">MARKS</div>
-			  			<div class="key text">TAB</div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-					</div>
-					
-					<div class="row">
-			  			<div class="key caps text">DELETE</div>
-			  			<div class="key pressed-wrong"></div>
-			  			<div class="key pressed-wrong"></div>
-			  			<div class="key pressed-correct"></div>
-			  			<div class="key pressed"></div>
-			  			<div class="key">&crarr;</div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key return"></div>
-					</div>
+					<div class="inner">
+						<div class="row">
+				  			<div class="key text">ESC</div>
+				  			<div class="key text">HYPER</div>
+				  			<div class="key text">BRACES</div>
+				  			<div class="key text">MOVE</div>
+				  			<div class="key text">MARKS</div>
+				  			<div class="key text">TAB</div>
+				  			<div class="key text">TAB</div>
+				  			<div class="key text">MARKS</div>
+				  			<div class="key text">MOVE</div>
+				  			<div class="key text">BRACES</div>
+				  			<div class="key text">HYPER</div>
+				  			<div class="key text">ESC</div>
+				  			<div class="key"></div>
+				  			<div class="key"></div>
+						</div>
+						
+						<div class="row">
+				  			<div class="key caps text">DELETE</div>
+				  			<div class="key pressed-wrong"></div>
+				  			<div class="key pressed-wrong"></div>
+				  			<div class="key pressed-correct"></div>
+				  			<div class="key pressed"></div>
+				  			<div class="key">&crarr;</div>
+				  			<div class="key text">RETURN</div>
+				  			<div class="key pressed-wrong"></div>
+				  			<div class="key pressed"></div>
+				  			<div class="key"></div>
+				  			<div class="key pressed-correct"></div>
+				  			<div class="key text">DELETE</div>
+				  			<div class="key return text"></div>
+						</div>
 
-					<div class="row">
-			  			<div class="key shift">&#x21E7;</div>
-			  			<div class="key text">FN</div>
-			  			<div class="key text">CTRL</div>
-			  			<div class="key ">&#8997;</div>
-			  			<div class="key">&#x2318;</div>
-			  			<div class="key">&#x21E7;</div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-			  			<div class="key"></div>
-					</div>
+						<div class="row">
+				  			<div class="key shift">&#x21E7;</div>
+				  			<div class="key text">FN</div>
+				  			<div class="key text">CTRL</div>
+				  			<div class="key ">&#8997;</div>
+				  			<div class="key">&#x2318;</div>
+				  			<div class="key">&#x21E7;</div>
+				  			<div class="key">&#x2318;</div>
+				  			<div class="key">&#8997;</div>
+				  			<div class="key text">CTRL</div>
+				  			<div class="key text">FN</div>
+				  			<div class="key">&#x21E7;</div>
+				  			<div class="key"></div>
+						</div>
 
-					<div class="row">
-			  			<div class="key command">#...</div>
-			  			<div class="key pressed space"></div>
-			  			<div class="key">&#x2318;</div>
-					</div>
+						<div class="row">
+				  			<div class="key command">#...</div>
+				  			<div class="key pressed space"></div>
+				  			<div class="key">#...</div>
+						</div>
 
-					<div class="overlay">
+						<div class="overlay">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -722,6 +911,9 @@
 							<div class="n"></div>
 						</div>
 					</div>
+					<span style="color:#fff">
+						keep visible
+					</span>
 				</div>
 
 	<!-- 	<div class="keyboard">
@@ -840,7 +1032,7 @@
 					<div>`</div><span>m&#x00B7;p</span><br>
 				</div> -->
 			</div>
-		</main>
+		</div>
 
 		<!-- <div>site design &copy;2017</div> -->
 		<footer>
@@ -848,11 +1040,37 @@
 				<span>CHORDAK</span>
 			</div>
 			<div class="menu">
-				<div>info</div>
-				<div>design</div>
-				<div>forum</div>
-				<div>pre-order</div>
+				<div><a href="">info</a></div>
+				<div><a href="">design</a></div>
+				<div><a href="">forum</a></div>
+				<div><a href="">pre-order</a></div>
 			</div>
 		</footer>
+
+		<script>
+		    var radios = document.settings.hand;
+		    for(var i = 0; i < radios.length; i++) {
+		    	radios[i].addEventListener("change", changeHandler);
+		    }
+
+		    function changeHandler(event) {
+		    	var keyboard = 
+		    	document.getElementsByClassName('keyboard')[0];
+			var ovelay = 
+				document.getElementsByClassName('keyboard-overlay')[0];
+
+
+		    	var hand = event.target.value;
+		    	var to = (hand == 'left') ? 'left' : 'right';
+		    	var from = (hand == 'left') ? 'right' : 'left';
+
+		    	keyboard.classList.remove(from);
+		    	keyboard.classList.add(to);
+
+		    	overlay.classList.remove(from);
+		    	overlay.classList.add(to);
+		    }
+		    
+		</script>
 	</body>
 </html>
