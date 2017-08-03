@@ -38,9 +38,9 @@
 				display: flex;
 			  	justify-content:flex-start;
 			  	width: 100%;
-			  	height: calc(100vh - 6rem);
+			  	height: calc(100% - 6rem);
 
-			  	border: 1px solid blue;
+			  	/*border: 1px solid blue;*/
 			}
 
 			.sidebar {
@@ -55,7 +55,7 @@
   				z-index: 2;
   				overflow: hidden;
 
-				border: 1px solid white;
+				/*border: 1px solid white;*/
 			}
 
 			.sidebar.left {
@@ -97,7 +97,7 @@
 			}
 
 			.sidebar.left .inner form {
-				border: 1px solid green;
+				/*border: 1px solid green;*/
 			}
 
 			.sidebar.left:hover {
@@ -112,7 +112,7 @@
 				margin-left: -17.5rem;
 			}
 			.sidebar.right .inner .chords {
-				border: 1px solid green;
+				/*border: 1px solid green;*/
 				height: 100%;
 
 			}
@@ -164,14 +164,16 @@
 			}
 
 			.trainer {
-				border: 1px solid red;
-				flex: 1 0;
-				min-height: 10rem;
-				color:#fff;
+				/*border: 1px solid red;*/
+				flex: 1 1 auto;
+				min-height: 15rem;
+				max-height: 30rem;
+				color:#eee;
+				/*width: 50rem;*/
+				font-size: 1.4em;
+				max-width: 60rem;
+				width: calc(100% - 10rem);
 			}
-
-
-
 
 			footer {
 				display: -webkit-flex;
@@ -186,13 +188,12 @@
 				flex: 0 0 6rem;
 
 			}
-
 			.keyboard {
-				flex: 1 0 auto;
-				width: 84rem;
+				flex: 1 1 auto;
+				max-width: 84rem;
 				min-height: 26rem;
 				overflow: hidden;
-				border: 0.1rem solid green;
+				/*border: 0.1rem solid green;*/
 				font-size: 1rem;
 			}
 			
@@ -200,10 +201,13 @@
 				display: -webkit-flex;
 				display: flex;
 
+				min-width: 50rem;
+				max-width: 84rem;
+
 				position: relative;				
-				width: 100%;
+				width: calc(100vw - 10.5rem);
 				height:100%;
-				margin: auto;
+				/*margin: auto;*/
 					
 				flex-direction: column;
 				justify-content: center;
@@ -221,6 +225,9 @@
 			}
 
 			.keyboard.left .inner {
+				flex: 1 0 84rem;
+				min-width: 50rem;
+				max-width: 84rem;
 				width: 50rem;
 				margin: auto;
 			}
@@ -494,7 +501,7 @@
 
 			a {
 				text-decoration: none;
-				color:blue;
+				color:#ddd;
 			}
 
 			input[name="other"] {
