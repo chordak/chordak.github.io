@@ -44,67 +44,60 @@
 			}
 
 			.sidebar {
-				/*background: green;*/
+				position: relative;
+				flex: 1 0 15rem;
+				flex-shrink: 0;
+				min-width: 2.5rem;
+				max-width: 2.5rem;
+				height: calc(100% - 6rem);
+				padding-bottom: -10rem;
+  				color: #ddd;
+  				z-index: 2;
+  				overflow: hidden;
+
+				border: 1px solid white;
 			}
 
 			.sidebar.left {
-				/*padding-right: 10rem;*/
 				padding-right: 2.5rem;
-				/*flex: 1 0 15rem;*/
-				flex: 1 0 15rem;
-				flex-shrink: 0;
-
-				min-width: 2.5rem;
-				max-width: 2.5rem;
-				/*width:20rem;*/
-				position: relative;
-				/*left:0;
-				top: 5rem;
-				bottom: 14rem;*/
-				padding-bottom: -10rem;
-
-				height: calc(100vh - 12rem);
-				
-  				transition: max-width 0.3s ease,min-width 0.3s ease,margin-right 0.3s ease;
-
-  				/* Enable hardware accel. to fix laggy transitions */
-				/*-webkit-transform: translateZ(0);
-				-moz-transform: translateZ(0);
-				-ms-transform: translateZ(0);
-				-o-transform: translateZ(0);
-				transform: translateZ(0);*/
-
-  				color: #ddd;
-  				
-  				z-index: 1;
   				font-family: monospace;
   				font-size: 1.6rem;
-  				/*overflow: hidden;*/
-  				overflow: auto;
+  				transition: max-width 0.3s ease,min-width 0.3s ease,margin-right 0.3s ease;
+			}
 
-  				/*border: 1px solid red;*/
+			.sidebar.right {
+				/*padding-left: 2.5rem;*/
+				padding-left: 2.5rem;
+				/*margin-left: -5rem;*/
+				transition: max-width 0.3s ease,min-width 0.3s ease,margin-left 0.3s ease;
+			}
+
+			.sidebar .inner {
+				position: absolute;
+				top:0;
+				width: 15rem;
+				height: 100%;
+				padding-left: 2.5rem;
+				padding-right: 2.5rem;
+          		background-color: #222;
+				overflow: scroll;
+				/*border: 1px solid yellow;*/ 
 			}
 
 			.sidebar.left .inner {
-				position: absolute;
-				top:0;
 				right: 2.5rem;
-				width: 15rem;
-				height: 100%;
-
-				padding-left: 2.5rem;
-				padding-right: 2.5rem;
-				/*height: 100%;*/
-				-webkit-box-shadow: 10px 0 5px -2px #888;
+				-webkit-box-shadow: 5px 0 5px -2px #888;
           		box-shadow: 5px 0 5px -2px #000;
-          		background-color: #222;
-
-				/*border: 1px solid yellow;*/ 
-				overflow: scroll;   		
 			}
 
-			.sidebar.left .inner form .{
-				background: green;
+			.sidebar.right .inner {
+				left: 2.5rem;
+				-webkit-box-shadow: -5px 0 5px -2px #888;
+          		box-shadow: -5px 0 5px -2px #000;
+			}
+
+			.sidebar.left .inner form {
+				border: 1px solid green;
 			}
 
 			.sidebar.left:hover {
@@ -113,8 +106,15 @@
 				margin-right: -17.5rem;
 			}
 
-			.sidebar.left:hover form {
-				/*display: inline-block;*/
+			.sidebar.right:hover {
+				min-width: 20rem;
+				max-width: 20rem;
+				margin-left: -17.5rem;
+			}
+			.sidebar.right .inner .chords {
+				border: 1px solid green;
+				height: 100%;
+
 			}
 
 			/*.sidebar.left span {
@@ -127,48 +127,40 @@
 				text-align: center;
 			}*/
 
-			.sidebar.left img {
+			.sidebar .icon {
 				position: absolute;
-				bottom: 0.6rem;
-				right: 3rem;
+				
 				width:1.5rem;
 				height:1.5rem;
 				opacity: 0.9;
 			}
 
-			.sidebar.right {
-				flex: 1 0 15rem;
-				flex-shrink: 0;
-				min-width: 15rem;
-				max-width: 15rem;
-
-				margin-top: 2.5rem;
-
-				
-				-webkit-box-shadow: 10px 0 5px -2px #888;
-          		box-shadow: -5px 5px 5px -2px #000;
-          		background-color: #191919;
-          		height: 100%;
-
-  				transition: max-width 0.3s ease,min-width 0.3s ease;
-
-  				color: #ddd;
-  				
-  				z-index: 1;
-  				overflow: scroll;
+			.sidebar.left .icon {
+				right: 3rem;
+				bottom: 0.6rem;
 			}
+
+			.sidebar.right .icon {
+				left: 0.3rem;
+				font-size: 1.6rem;
+				bottom: 1rem;
+			}
+
 
 			.content {
 				/*flex: 1 1 55vw;*/
-				flex: 1 1 auto;
+				/*flex: 1 1 auto;*/
 				/*min-width: 40rem;*/
 				/*min-width: 60vw;*/
 				overflow: hidden;
+				width: 100%;
+				margin: 0 -5rem 0 -5rem;
 
 				display: -webkit-flex;
 				display: flex;
 				flex-direction: column;
 				justify-content: flex-start;
+				align-items: center;
 			}
 
 			.trainer {
@@ -190,17 +182,18 @@
 				border-top: 1px solid #222;
 				border-bottom: 1px solid #222;
 				width: 100%;
-				min-height: 6rem;
+				/*min-height: 6rem;*/
 				flex: 0 0 6rem;
 
 			}
 
 			.keyboard {
-				margin:0 auto 0 auto;
+				flex: 1 0 auto;
 				width: 84rem;
-				min-height: 28rem;
+				min-height: 26rem;
 				overflow: hidden;
 				border: 0.1rem solid green;
+				font-size: 1rem;
 			}
 			
 			.keyboard .inner {
@@ -220,9 +213,11 @@
 
 			.keyboard.left {
 				width: 50rem;
+				font-size: 1rem;
 			}
 			.keyboard.right {
 				width: 50rem;
+				font-size: 1rem;
 			}
 
 			.keyboard.left .inner {
@@ -233,7 +228,6 @@
 				width: 50rem;
 				margin-left: -35rem;
 				padding-right: 35rem;
-				overflow: hidden;
 			}
 
 			.keyboard .inner .overlay {
@@ -368,12 +362,6 @@
 				color:#eee;
 				font-family: 'PT mono';
 				border: 0.1rem solid #222;
-			}
-
-			img {
-				width: 100%;
-				height: 100%;
-				opacity: 1.0;
 			}
 
 			.legend div {
@@ -546,6 +534,42 @@
 
 			}*/
 
+			.practice {
+				font-family: 'PT Mono', monospace;
+			    float:left;
+			    width: 100%;
+			    font-size: 1em;
+				border-radius: 1.25em;
+				overflow: hidden;
+			}
+
+			.flex-container-practice {
+			    display: flex;
+			    flex-direction: column;
+			    flex-wrap: nowrap;
+			    justify-content: left;
+			    align-content: left;
+			    align-items: flex-start;
+			}
+
+			.flex-item-practice {
+			    order: 0;
+			    flex: 0 1 auto;
+			    align-self: auto;
+			    padding:0.75em 0em 0.75em 1em;
+			    width:100%;
+			    height:1.2em;
+			    margin:1px;
+			    background-color: #333;
+			}
+
+			.indicator {
+				 float:right;
+				 font-family: 'PT Mono', monospace;
+				 text-align: right;
+				 margin-right:1em;
+			}
+
 
 		</style>
 	</head>
@@ -594,13 +618,29 @@
 					<input type="button" name="reset" value="Reset All"><br>
 					</form>
 				</div>
-				<img src="flower-icon.png"/>
+				<img class="icon" src="flower-icon.png"/>
 				<!-- <span>&#9835;</span> -->
 			</div>
 
 			<div class="content">
 				<div class="trainer">
-					this is a test of output
+					<div class="flex-item" style="margin-bottom: 0.5em">	
+						<div class="indicator" style="width:5em">
+							<span id="speed">-</span> wpm
+						</div>
+						<div class="indicator" style="width:6em">
+							<span id="timer">0</span> sec
+						</div>
+					</div>
+
+					<div class="flex-item">
+						<div class="practice">
+							<div class="flex-container-practice">
+								<div id="test" class="flex-item-practice"></div>
+								<div id="practice" class="flex-item-practice"></div>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<div class="keyboard">
@@ -677,246 +717,251 @@
 				</div> -->
 
 				<div class="sidebar right">
-					<div class="chords">
-						<div class="chord header">
-							<div class="c">chord</div>
-							<div class="l"></div>
-							<div class="s">sym</div>
-							<div class="b">bkt</div>
-							<div class="n">num</div>
+					<div class="inner">
+						<div class="chords">
+							<div class="chord header">
+								<div class="c">chord</div>
+								<div class="l"></div>
+								<div class="s">sym</div>
+								<div class="b">bkt</div>
+								<div class="n">num</div>
+							</div>
+
+							<div class="chord r">
+								<div class="c">r</div>
+								<div class="l">A</div>
+								<div class="s">;</div>
+								<div class="b">/</div>
+								<div class="n">2</div>
+							</div>
+
+							<div class="chord pr">
+								<div class="c">p&#x00B7;r</div>
+								<div class="l">B</div>
+								<div class="s">@</div>
+								<div class="b">|</div>
+								<div class="n">4</div>
+							</div>
+
+							<div class="chord pt">
+								<div class="c">p&#x00B7;t</div>
+								<div class="l">C</div>
+								<div class="s">_</div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord it">
+								<div class="c">i&#x00B7;t</div>
+								<div class="l">D</div>
+								<div class="s">=</div>
+								<div class="b">{</div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord i">
+								<div class="c">i</div>
+								<div class="l">E</div>
+								<div class="s">!</div>
+								<div class="b">)</div>
+								<div class="n">0</div>
+							</div>
+
+							<div class="chord ir">
+								<div class="c">i&#x00B7;r</div>
+								<div class="l">F</div>
+								<div class="s">$</div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord tm">
+								<div class="c">t&#x00B7;m</div>
+								<div class="l">G</div>
+								<div class="s"></div>
+								<div class="b">&gt;</div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord rt">
+								<div class="c">r&#x00B7;t</div>
+								<div class="l">H</div>
+								<div class="s">-</div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord mi">
+								<div class="c">m&#x00B7;i</div>
+								<div class="l">I</div>
+								<div class="s">*</div>
+								<div class="b">[</div>
+								<div class="n">6</div>
+							</div>
+
+							<div class="chord mit">
+								<div class="c">m&#x00B7;i&#x00B7;t</div>
+								<div class="l">J</div>
+								<div class="s"></div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord ip">
+								<div class="c">i&#x00B7;p</div>
+								<div class="l">K</div>
+								<div class="s">~</div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord im">
+								<div class="c">i&#x00B7;m</div>
+								<div class="l">L</div>
+								<div class="s">^</div>
+								<div class="b">]</div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord pm">
+								<div class="c">p&#x00B7;m</div>
+								<div class="l">M</div>
+								<div class="s">&amp;</div>
+								<div class="b"></div>
+								<div class="n">7</div>
+							</div>
+
+							<div class="chord rm">
+								<div class="c">r&#x00B7;m</div>
+								<div class="l">N</div>
+								<div class="s">:</div>
+								<div class="b"></div>
+								<div class="n">5</div>
+							</div>
+
+							<div class="chord p">
+								<div class="c">p</div>
+								<div class="l">O</div>
+								<div class="s">"</div>
+								<div class="b">/</div>
+								<div class="n">3</div>
+							</div>
+
+							<div class="chord mr">
+								<div class="c">m&#x00B7;r</div>
+								<div class="l">P</div>
+								<div class="s">%</div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord mp">
+								<div class="c">m&#x00B7;p</div>
+								<div class="l">Q</div>
+								<div class="s">`</div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord mt">
+								<div class="c">m&#x00B7;t</div>
+								<div class="l">R</div>
+								<div class="s">+</div>
+								<div class="b">&lt;</div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord ri">
+								<div class="c">r&#x00B7;i</div>
+								<div class="l">S</div>
+								<div class="s"></div>
+								<div class="b"></div>
+								<div class="n">8</div>
+							</div>
+
+							<div class="chord m">
+								<div class="c">m</div>
+								<div class="l">T</div>
+								<div class="s">?</div>
+								<div class="b">(</div>
+								<div class="n">1</div>
+							</div>
+
+							<div class="chord pi">
+								<div class="c">p&#x00B7;i</div>
+								<div class="l">U</div>
+								<div class="s">#</div>
+								<div class="b"></div>
+								<div class="n">9</div>
+							</div>
+
+							<div class="chord tp">
+								<div class="c">t&#x00B7;p</div>
+								<div class="l">V</div>
+								<div class="s"></div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord ti">
+								<div class="c">t&#x00B7;i</div>
+								<div class="l">W</div>
+								<div class="s"></div>
+								<div class="b">}</div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord rmt">
+								<div class="c">r&#x00B7;m&#x00B7;t</div>
+								<div class="l">X</div>
+								<div class="s"></div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord tr">
+								<div class="c">t&#x00B7;r</div>
+								<div class="l">Y</div>
+								<div class="s"></div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+							
+							<div class="chord rp">
+								<div class="c">r&#x00B7;p</div>
+								<div class="l">Z</div>
+								<div class="s"></div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord t">
+								<div class="c">t</div>
+								<div class="l">&#x2423;</div>
+								<div class="s">'</div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord prm">
+								<div class="c">p&#x00B7;r&#x00B7;m</div>
+								<div class="l">.</div>
+								<div class="s"></div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
+
+							<div class="chord rmi">
+								<div class="c">r&#x00B7;m&#x00B7;i</div>
+								<div class="l">,</div>
+								<div class="s"></div>
+								<div class="b"></div>
+								<div class="n"></div>
+							</div>
 						</div>
 
-						<div class="chord r">
-							<div class="c">r</div>
-							<div class="l">A</div>
-							<div class="s">;</div>
-							<div class="b">/</div>
-							<div class="n">2</div>
-						</div>
-
-						<div class="chord pr">
-							<div class="c">p&#x00B7;r</div>
-							<div class="l">B</div>
-							<div class="s">@</div>
-							<div class="b">|</div>
-							<div class="n">4</div>
-						</div>
-
-						<div class="chord pt">
-							<div class="c">p&#x00B7;t</div>
-							<div class="l">C</div>
-							<div class="s">_</div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord it">
-							<div class="c">i&#x00B7;t</div>
-							<div class="l">D</div>
-							<div class="s">=</div>
-							<div class="b">{</div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord i">
-							<div class="c">i</div>
-							<div class="l">E</div>
-							<div class="s">!</div>
-							<div class="b">)</div>
-							<div class="n">0</div>
-						</div>
-
-						<div class="chord ir">
-							<div class="c">i&#x00B7;r</div>
-							<div class="l">F</div>
-							<div class="s">$</div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord tm">
-							<div class="c">t&#x00B7;m</div>
-							<div class="l">G</div>
-							<div class="s"></div>
-							<div class="b">&gt;</div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord rt">
-							<div class="c">r&#x00B7;t</div>
-							<div class="l">H</div>
-							<div class="s">-</div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord mi">
-							<div class="c">m&#x00B7;i</div>
-							<div class="l">I</div>
-							<div class="s">*</div>
-							<div class="b">[</div>
-							<div class="n">6</div>
-						</div>
-
-						<div class="chord mit">
-							<div class="c">m&#x00B7;i&#x00B7;t</div>
-							<div class="l">J</div>
-							<div class="s"></div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord ip">
-							<div class="c">i&#x00B7;p</div>
-							<div class="l">K</div>
-							<div class="s">~</div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord im">
-							<div class="c">i&#x00B7;m</div>
-							<div class="l">L</div>
-							<div class="s">^</div>
-							<div class="b">]</div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord pm">
-							<div class="c">p&#x00B7;m</div>
-							<div class="l">M</div>
-							<div class="s">&amp;</div>
-							<div class="b"></div>
-							<div class="n">7</div>
-						</div>
-
-						<div class="chord rm">
-							<div class="c">r&#x00B7;m</div>
-							<div class="l">N</div>
-							<div class="s">:</div>
-							<div class="b"></div>
-							<div class="n">5</div>
-						</div>
-
-						<div class="chord p">
-							<div class="c">p</div>
-							<div class="l">O</div>
-							<div class="s">"</div>
-							<div class="b">/</div>
-							<div class="n">3</div>
-						</div>
-
-						<div class="chord mr">
-							<div class="c">m&#x00B7;r</div>
-							<div class="l">P</div>
-							<div class="s">%</div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord mp">
-							<div class="c">m&#x00B7;p</div>
-							<div class="l">Q</div>
-							<div class="s">`</div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord mt">
-							<div class="c">m&#x00B7;t</div>
-							<div class="l">R</div>
-							<div class="s">+</div>
-							<div class="b">&lt;</div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord ri">
-							<div class="c">r&#x00B7;i</div>
-							<div class="l">S</div>
-							<div class="s"></div>
-							<div class="b"></div>
-							<div class="n">8</div>
-						</div>
-
-						<div class="chord m">
-							<div class="c">m</div>
-							<div class="l">T</div>
-							<div class="s">?</div>
-							<div class="b">(</div>
-							<div class="n">1</div>
-						</div>
-
-						<div class="chord pi">
-							<div class="c">p&#x00B7;i</div>
-							<div class="l">U</div>
-							<div class="s">#</div>
-							<div class="b"></div>
-							<div class="n">9</div>
-						</div>
-
-						<div class="chord tp">
-							<div class="c">t&#x00B7;p</div>
-							<div class="l">V</div>
-							<div class="s"></div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord ti">
-							<div class="c">t&#x00B7;i</div>
-							<div class="l">W</div>
-							<div class="s"></div>
-							<div class="b">}</div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord rmt">
-							<div class="c">r&#x00B7;m&#x00B7;t</div>
-							<div class="l">X</div>
-							<div class="s"></div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord tr">
-							<div class="c">t&#x00B7;r</div>
-							<div class="l">Y</div>
-							<div class="s"></div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-						
-						<div class="chord rp">
-							<div class="c">r&#x00B7;p</div>
-							<div class="l">Z</div>
-							<div class="s"></div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord t">
-							<div class="c">t</div>
-							<div class="l">&#x2423;</div>
-							<div class="s">'</div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord prm">
-							<div class="c">p&#x00B7;r&#x00B7;m</div>
-							<div class="l">.</div>
-							<div class="s"></div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
-
-						<div class="chord rmi">
-							<div class="c">r&#x00B7;m&#x00B7;i</div>
-							<div class="l">,</div>
-							<div class="s"></div>
-							<div class="b"></div>
-							<div class="n"></div>
-						</div>
+						<span class="icon">&#9835;</span>
+						<!-- <img class="icon" src="flower-icon.png"/> -->
 					</div>
 					<span style="color:#fff">
 						keep visible
@@ -1078,6 +1123,240 @@
 		    	overlay.classList.add(to);
 		    }
 		    
+			//macbook pro: 68 cN is enough to activate any key; some are softer because of wear from frequent use ('A', 54 cN) or replacement ('D', 48 cN)
+				// 'A' 53.9 cN
+				// 'S' 62.5 cN
+				// 'D' 47.8 cN
+				// 'F' 68.6 cN
+				// ' ' 68.6 cN (near left edge)
+
+			//cherry brown and clear switches look best so far because the reset point is so close to the activation point, provide tactile feedback, and are not too loud
+
+			var chords = {};			
+
+			//LETTERS
+			chords['1'] = ' ';
+			chords['432'] = ',';
+			chords['543'] = '.';
+			chords['5432'] = '.'; //duplicate for convenience
+
+			chords['2'] = 'E';
+			chords['3'] = 'T';
+			chords['4'] = 'A';
+			chords['5'] = 'O';
+			chords['32'] = 'I';
+			chords['43'] = 'N';
+			chords['42'] = 'S';
+			chords['41'] = 'H';
+			chords['31'] = 'R';
+			chords['21'] = 'D';
+			chords['23'] = 'L';
+			chords['51'] = 'C';
+			chords['52'] = 'U';
+			chords['53'] = 'M';
+			chords['24'] = 'F';
+			chords['34'] = 'P';
+			chords['13'] = 'G';
+			chords['12'] = 'W';
+			chords['14'] = 'Y';
+			chords['54'] = 'B';
+			chords['15'] = 'V';
+			chords['25'] = 'K';
+			chords['431'] = 'X';
+			chords['321'] = 'J';
+			chords['35'] = 'Q';
+			chords['45'] = 'Z';
+
+			//BIGRAMS & TRIGRAMS
+			// chords['341'] = '<u>TH</u>';
+			// chords['412'] = '<u>HE</u>';
+			// chords['3412'] = '<u>THE</u>';
+			// chords['423'] = '<u>ST</u>';
+
+			//NUMERALS
+			// chords['1'] = ' ';
+			// chords['432'] = ',';
+			// chords['543'] = '.';
+			// chords['5432'] = '.';
+
+			// chords['2'] = '0';
+			// chords['3'] = '1';
+			// chords['4'] = '2';
+			// chords['5'] = '3';
+			// chords['54'] = '4';
+			// chords['43'] = '5';
+			// chords['32'] = '6';
+			// chords['53'] = '7';
+			// chords['42'] = '8';
+			// chords['52'] = '9';
+
+
+			//BARS & BRACKETS
+			// chords['5'] = '/';
+			// chords['4'] = '\\'; //escaped with extra backslash
+			// chords['54'] = '|';
+			// chords['3'] = '(';
+			// chords['2'] = ')';
+			// chords['32'] = '[';
+			// chords['23'] = ']';
+			// chords['21'] = '{';
+			// chords['12'] = '}';
+			// chords['31'] = '<';
+			// chords['13'] = '>';
+
+			//SYMBOLS & PUNCTUATION
+			// chords['1'] = "'";
+			// chords['5'] = '"';
+			// chords['4'] = ';';
+			// chords['3'] = '?';
+			// chords['2'] = '!';
+			// chords['51'] = '_';
+			// chords['41'] = '-';
+			// chords['31'] = '+';
+			// chords['21'] = '=';
+			// chords['43'] = ':';
+			// chords['54'] = '@';
+			// chords['53'] = '&';
+			// chords['52'] = '#';
+			// chords['32'] = '*';
+			// chords['34'] = '%';
+			// chords['24'] = '$';
+			// chords['23'] = '^';
+			// chords['25'] = '~';
+			// chords['35'] = '`';
+
+			//var home = [' ', 'F', 'D', 'S', 'A']; //qwerty
+			var home = [' ', 'T', 'S', 'R', 'A']; //colemak left
+			//var home = [' ', 'N', 'E', 'I', 'O']; //colemak right
+			
+			var raw = "";
+			var pressed = [];
+			var count = 0;
+			var writing = ""
+
+			
+			//var test = "you might be one of those people that perform"
+			var test = "the quick brown fox jumps over the lazy dog"
+			var start = 0;
+
+			document.body.addEventListener("keydown", keydownHandler);
+			document.body.addEventListener("keyup", keyupHandler);
+			// var x = document.getElementById("demo");
+			// var x2 = document.getElementById("demo2");
+			var speed = document.getElementById("speed");
+			var timer = document.getElementById("timer");
+			var timeout;
+
+			document.getElementById("test").innerHTML = test;
+			var practice = document.getElementById("practice");
+			y = 0;
+
+			practice.innerHTML = "TEST";
+
+			function keydownHandler(e) {
+				var key = e.which;
+				var letter = String.fromCharCode(key);
+				//alert("down " + key);
+				
+				if (pressed[key] == true) { return; }
+
+				for (i = 0; i < 5; i++) {
+					if (letter == home[i]) {
+						pressed[key] = true;
+						count++;
+						raw += (i+1);
+						// x.innerHTML = raw;
+					}
+				}
+
+				//prevents scrolling when pressing spacebar
+				if (key == 32) {
+					e.preventDefault();
+				}
+				//if (key == 9) {
+				//	e.preventDefault();
+				//}
+
+				
+				if (key == 8 || key == 20) {
+					e.preventDefault();
+					writing = writing.slice(0, writing.length-1);
+					practice.innerHTML = writing;
+					// x.innerHTML = "<small>&#9003;</small>";
+					// x2.innerHTML = "backspace";
+				}
+
+				if (start == 0 && count != 0) {
+					start = Date.now();
+					timeout = window.setTimeout(timeoutHandler, 1000);
+					timer.innerHTML = '0';
+					speed.innerHTML = '-';
+				}
+			}
+
+			function timeoutHandler() {
+				var elapsed = (Date.now() - start) / 1000;
+				var error = elapsed - Math.floor(elapsed);
+				error = Math.floor(error * 1000);
+				timer.innerHTML = Math.floor(elapsed);
+				if (elapsed < 60) {
+					timeout = window.setTimeout(timeoutHandler, 1000-error);
+				}
+			}
+
+			function pad(s){
+				return s;
+			}
+
+			function keyupHandler(e) {
+				var key = e.which;
+				var letter = String.fromCharCode(key);
+				//alert("up " + key);
+
+				if (pressed[key] == true) { 
+					pressed[key] = false;
+					count--;
+				}
+
+				//special case for caps lock being turned off
+				if (key == 20) {
+					e.preventDefault();
+					writing = writing.slice(0, writing.length-1);
+					practice.innerHTML = writing;
+					// x.innerHTML = "<small>&#9003;</small>";
+					// x2.innerHTML = "backspace";
+				}
+
+				if (count == 0) {
+					if(chords[raw]) {
+						// x.innerHTML = raw;
+						// x2.innerHTML = chords[raw];
+						//writing += raw + "_"; //use for getting raw output
+						writing += chords[raw].toLowerCase();
+						practice.innerHTML = writing;
+					} else {
+						if (key != 8 || key != 20) {
+							// x2.innerHTML = "unassigned";
+						}
+						
+					}
+					raw = "";
+
+					if(start != 0 && writing == test) {
+						window.clearTimeout(timeout);
+						var elapsed = Date.now() - start; //ms
+						var seconds = Math.round(elapsed / 100) / 10;
+						var wpm = (test.length / 5) / (elapsed / 1000 / 60);
+						wpm = Math.round(wpm * 10) / 10;
+
+						speed.innerHTML = pad(wpm);
+						timer.innerHTML = pad(seconds);
+
+						start = 0;
+						writing = "";
+					}
+				}
+			}
 		</script>
 	</body>
 </html>
