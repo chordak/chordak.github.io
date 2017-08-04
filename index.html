@@ -1179,6 +1179,10 @@
 			//var test = "the quick brown fox jumps over the lazy dog";
 			var start = 0;
 
+
+			document.addEventListener("touchmove", function(event){
+    			event.preventDefault();
+			});
 			
 			window.addEventListener("resize", debounceReflow);
 			var textarea = document.getElementById("text");
