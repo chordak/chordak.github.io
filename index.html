@@ -173,7 +173,7 @@
 				font-size: 1.4em;
 				/*max-width: 60rem;*/
 				width: calc(100% - 10rem);
-				border:1px solid green;
+				/*border:1px solid green;*/
 				text-align: center;
 			}
 
@@ -262,7 +262,6 @@
 			.keyboard .inner .row {
 					display: -webkit-flex;
 				display: flex;
-				
 			}
 
 			.key {
@@ -579,31 +578,50 @@
 				 margin-right:1em;
 			}
 
-			textarea {
+			#pre {
+				transform: scale(0.95, 0.95);
+				opacity: 0.9;
+
+				-webkit-transform: rotateX(60deg); /* Safari */
+ 				transform: rotateX(60deg) scale(0.95, 0.95);
+ 				display: none;
+			}
+
+			#post {
+				transform: scale(0.95, 0.95);
+				opacity: 0.4;
+				display: none;
+			}
+
+			.text2 {
 				resize: none;
 				/*width: 100%;*/
 				font-family: courier;
 				font-size: 1.8rem;
-				line-height: 2rem;
-				height: 6rem;
+				line-height: 3rem;
+				height: 9rem;
 				overflow: hidden;
 				border: none;
 				/*padding: 0 1rem 0 1rem;*/
 
 				max-width: 80.0rem;
 				width: 100%;
-				font-size: 16px;
+				text-align: left;
+				margin: 8rem auto 0;
 
+				/*background: white;
+				color: black;*/
+
+				/*background: #191919;*/
+				color: #ccc;
+				font-family: "PT mono";
 				/*courier font at 1.5rem: */
 				/*width: 72.01rem;*/ /*minimum size for 80 chars*/
 				/*width: 72.91rem;*/ /*maximum size for 80 chars*/
 				/*padding left & right does not effect width calc*/
 				/*padding top & bottom DOES effect height calc*/
 
-
 			}
-
-
 		</style>
 	</head>
 
@@ -656,8 +674,8 @@
 			</div>
 
 			<div class="content">
-				<div class="trainer">
-					<div class="flex-item" style="margin-bottom: 0.5em">	
+				<div id="trainer" class="trainer">
+	<!-- 				<div class="flex-item" style="margin-bottom: 0.5em">	
 						<div class="indicator" style="width:5em">
 							<span id="speed">-</span> wpm
 						</div>
@@ -673,8 +691,13 @@
 								<div id="practice" class="flex-item-practice"></div>
 							</div>
 						</div>
-					</div>
-					<textarea>123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-X</textarea>
+					</div> -->
+					<div id="pre" class="text2">this is the line that was just finished</div>
+					<div id="text" class="text2">this is the line that was just finished<br>
+					123456789-123456789-123456789-123456789-123456789-123456789-123456789-X<br>
+					this is the next line up to be typed after the current one</div>
+					<div id="post" class="text2">this is the upcoming line</div>
+
 				</div>
 
 				<div class="keyboard">
@@ -1152,10 +1175,43 @@
 
 			// var textRaw =
 			
-			var test = "you might be one of those people that perform"
-			//var test = "the quick brown fox jumps over the lazy dog"
+			var test = "you might be one of those people that perform";
+			//var test = "the quick brown fox jumps over the lazy dog";
 			var start = 0;
 
+			
+			window.addEventListener("resize", debounceReflow);
+			var textarea = document.getElementById("text");
+			var w0 = textarea.clientWidth; //no counting border
+			var out;
+			function debounceReflow(event) {
+				var w = textarea.clientWidth;
+				// textarea.innerHTML = w;
+				if (w != w0) {
+					//only fires if width of writing area changed
+					textarea.style.opacity = 0;
+					window.clearTimeout(out);
+					out = window.setTimeout(reflow, 100);
+				}
+			}
+
+			function reflow() {
+				var w = textarea.clientWidth;
+				textarea.innerHTML = "reflow... " + w + "px... " + (w/10) + "rem";
+				w0 = w;
+				textarea.style.opacity = 1;
+			}
+
+			function zzz(event) {
+				var tar = event.target;
+			    var w = window.outerWidth;
+			    var h = window.outerHeight;
+			    var txt = "Window size: width=" + w + ", height=" + h;
+			    document.getElementById("trainer").innerHTML = txt;
+			    //document.getElementById("demo").innerHTML = txt;
+			}
+
+			
 			document.body.addEventListener("keydown", keydownHandler);
 			document.body.addEventListener("keyup", keyupHandler);
 			var speed = document.getElementById("speed");
