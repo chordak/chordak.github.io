@@ -3,11 +3,13 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="Content-Language" content="en">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>chordak demo v2</title>
 
 		<style>
 			html {
-				font-size:62.5%;  /* 10px = 1 rem */
+				font-size:62.5%;
+				/* this rescales the site down so that 10px = 1 rem */
 			}
 
 			@import url(https://fonts.googleapis.com/css?family=Average+Sans);
@@ -1179,10 +1181,6 @@
 			//var test = "the quick brown fox jumps over the lazy dog";
 			var start = 0;
 
-
-			document.addEventListener("touchmove", function(event){
-    			event.preventDefault();
-			});
 			
 			window.addEventListener("resize", debounceReflow);
 			var textarea = document.getElementById("text");
