@@ -26,22 +26,78 @@
 					rgba(17,17,17,1) 100%);*/
 			  	background-attachment: fixed;
 
-	    			display: -webkit-flex;
+				/*height: 100vh;*/
+	    		/*display: -webkit-flex;
 				display: flex;
-  				height: 100vh;
-  				flex-direction: column;
-  				justify-content: space-between;
+  				flex-direction: column;*/
+  				/*justify-content: space-between;*/
+  				border:1px solid deepPink;
+  				/*position: absolute;*/
+  				height: 100%;
 			}
 
 			
 			.main {
+				position: absolute;
 				display: -webkit-flex;
 				display: flex;
 			  	justify-content:flex-start;
 			  	width: 100%;
-			  	height: calc(100% - 6rem);
+			  	/*min-height: calc(100% - 6rem);*/
+			  	height: calc(100% - 9rem);
 
-			  	/*border: 1px solid blue;*/
+			  	flex:1 1;
+
+			  	border: 1px solid blue;
+			}
+
+			footer {
+				position: absolute;
+				bottom:0;
+				display: -webkit-flex;
+				display: flex;
+
+				justify-content: flex-start;
+				margin-bottom: 2.5rem;
+				border-top: 1px solid #222;
+				border-bottom: 1px solid #222;
+				width: 100%;
+				/*min-height: 6rem;*/
+				/*flex: 0 0 6rem;*/
+				height: 6rem;
+
+			}
+
+			footer .mast {
+				position: relative;
+				background: rgba(255,255,255,0.06);
+				flex: 0 0 14rem;
+				text-align: right;
+			}
+
+			footer .mast span {
+				font-size: 1.5rem;
+				font-weight: bold;
+				position: absolute;
+				bottom: 0.7rem;
+				right: 1rem;
+				font-family: "Open Sans";
+				color:#ddd;
+			}
+
+			footer .menu {
+				font-family: "Open Sans";
+				font-size: 1rem;
+				line-height: 1.3rem;
+				flex: 1 1;
+				text-transform: uppercase;
+				padding-left: 1rem;
+				color:#aaa;
+
+					display: -webkit-flex;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
 			}
 
 			.sidebar {
@@ -178,19 +234,7 @@
 				text-align: center;
 			}
 
-			footer {
-				display: -webkit-flex;
-				display: flex;
-
-				justify-content: flex-start;
-				margin-bottom: 2.5rem;
-				border-top: 1px solid #222;
-				border-bottom: 1px solid #222;
-				width: 100%;
-				/*min-height: 6rem;*/
-				flex: 0 0 6rem;
-
-			}
+			
 			.keyboard {
 				flex: 1 1 auto;
 				max-width: 84rem;
@@ -468,38 +512,7 @@
 			.chord.pr { order:3; }
 			.chord.pt { order:4; }*/
 
-
-			footer .mast {
-				position: relative;
-				background: rgba(255,255,255,0.06);
-				flex: 0 0 14rem;
-				text-align: right;
-			}
-
-			footer .mast span {
-				font-size: 1.5rem;
-				font-weight: bold;
-				position: absolute;
-				bottom: 0.7rem;
-				right: 1rem;
-				font-family: "Open Sans";
-				color:#ddd;
-			}
-
-			footer .menu {
-				font-family: "Open Sans";
-				font-size: 1rem;
-				line-height: 1.3rem;
-				flex: 1 1;
-				text-transform: uppercase;
-				padding-left: 1rem;
-				color:#aaa;
-
-					display: -webkit-flex;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-			}
+			
 
 			a {
 				text-decoration: none;
