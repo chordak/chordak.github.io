@@ -35,7 +35,6 @@
   				/*position: absolute;*/
   				height: 100%;
 			}
-
 			
 			.main {
 				position: absolute;
@@ -132,7 +131,7 @@
 			.sidebar .inner {
 				position: absolute;
 				top:0;
-				width: 15rem;
+				width: 20rem;
 				height: 100%;
 				padding-left: 2.5rem;
 				padding-right: 2.5rem;
@@ -157,17 +156,17 @@
 				/*border: 1px solid green;*/
 			}
 
-			.sidebar.left:hover {
-				min-width: 20rem;
-				max-width: 20rem;
-				margin-right: -17.5rem;
+			.sidebar.left.open {
+				min-width: 25rem;
+				max-width: 25rem;
+				margin-right: -22.5rem;
 			}
 
-			.sidebar.right:hover {
+			/*.sidebar.right:hover {
 				min-width: 20rem;
 				max-width: 20rem;
 				margin-left: -17.5rem;
-			}
+			}*/
 			.sidebar.right .inner .chords {
 				/*border: 1px solid green;*/
 				height: 100%;
@@ -634,53 +633,356 @@
 				/*width: 72.91rem;*/ /*maximum size for 80 chars*/
 				/*padding left & right does not effect width calc*/
 				/*padding top & bottom DOES effect height calc*/
+			}
 
+			/*$background-color: #fff;
+			$footer-color: #fff;
+			$details-color: #fff;
+			$font-color: #fff;*/
+ 			
+ 			/*form {
+				line-height: 3rem;
+			}*/
+
+			.input-group {
+						display: -webkit-flex;
+					display: flex;
+			    width: 100%;
+			    height: 6rem;
+			}
+
+			.input-group label {
+					display: -webkit-flex;
+				display: flex;
+
+				/*font-size: 2rem;*/
+				width:50%;
+				height:100%;
+				border: none;
+				padding: 0.2rem;
+
+				text-align: center;
+				align-items: center;
+				justify-content: center;
+
+				/*transition: border 0.2s ease, padding 0.2s ease;*/
+			}
+
+			.input-group label span {
+				color: #666;
+				font-size: 3rem
+			}
+
+ 			.input-group input[type="radio"] {
+ 				display: none;
+ 			}
+/* 			label + input[type="radio"] {
+ 			 	color: #666;
+			}*/
+
+			.input-group input[type="radio"]:checked + label {
+				padding: 0rem;
+ 			 	border: 0.1rem solid #ccc;
+
+ 			 	box-shadow: 0 0 1.2rem #bbb;
+			}
+
+ 			.input-group input[type="radio"]:checked + label span {
+ 			 	color: #ccc;
+ 			}
+
+			/*-----------------------------------------------*/
+			
+			/*cursor: pointer;*/
+			.toggle {
+				display:none;
+			}
+
+			.toggle+label {
+				height: 3rem;
+				width: 100%;
+					display: -webkit-flex;
+				display: flex;
+				justify-content: space-between;
+
+				margin: auto 0 auto 0;
+				margin-bottom: 1rem;
+				position: relative;
+				/*background: red;*/
+			}
+
+			.toggle+label .description {
+				margin: auto 0;
+				/*background: deepPink;*/
+			}
+
+			.toggle+label .slider {
+				height: 2.6rem;
+				min-width: 5rem;
+				max-width: 5rem;
+				position: relative;
+			  border-radius: 1.5rem;
+			  transition: border-color 0.2s ease;
+			  border:0.2rem solid #eee;
+			  overflow: hidden;
+			}
+
+			.toggle+label .slider .round {
+			  position: absolute;
+			  height: 1.8rem;
+			  width: 1.8rem;
+			  margin: 0.2rem 0.3rem;
+			  border-radius: 50%;
+			  right: 2.1rem;
+			  
+			  border:0.2rem solid #E4648A;
+			  box-shadow: 0 0 0.9rem #E4648A;
+
+			  transition: right 0.3s ease;
+			}
+
+			.toggle:checked+label .slider {
+				/*background-color: #000;*/
+				/*border-color:#8EEEF6;*/
+			}
+
+			.toggle:checked+label .slider .round {
+				right: 0;
+				border-color:#8EEEF6;
+				box-shadow: 0 0 0.9rem #8EEEF6;
+			}
+
+			.toggle+label .slider.neutral {
+				height: 2.6rem;
+				min-width: 5rem;
+				max-width: 5rem;
+				position: relative;
+			  border-radius: 1.5rem;
+			  border:0.2rem solid #eee;
+			  overflow: hidden;
+			}
+
+			.toggle+label .slider.neutral .round {
+			  position: absolute;
+			  height: 1.8rem;
+			  width: 1.8rem;
+			  margin: 0.2rem 0.3rem;
+			  border-radius: 50%;
+			  right: 2.1rem;
+			  text-align: center;
+			  font-family: sans-serif;
+			  font-size:1rem;
+			  line-height: 1.8rem;
+			  
+			  border:0.2rem solid #fff;
+			  box-shadow: 0 0 0.9rem #bbb;
+			}
+
+			.toggle:checked+label .slider.neutral .round {
+				right: 0;
+			}
+
+			.form-container {
+					display: -webkit-flex;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				width: 100%;
+				height: 3rem;
+				position: relative;
+				
+				padding: 0.5rem 0;
+				/*background: red;*/
+			}
+
+			.form-container select {
+				  -webkit-appearance: none;
+				appearance: none;
+				outline:none;
+				background: none;
+
+				width: 7rem;
+				height: 3rem;
+
+				border:2px solid white;
+				border-radius: 1.5rem;
+
+				color: #eee;
+				text-align: center;
+				text-align-last:center;
+				font-family: sans-serif;
+			}
+
+			.form-spacer-1 {
+				height:0.5rem;
+				width:100%;
+			}
+
+			.form-spacer-2 {
+				height:1.5rem;
+				width:100%;
+			}
+
+			.form-container .button-holder {
+				width:5.5rem;
+			}
+
+			.form-container .button-holder input {
+				-webkit-appearance: none;
+				appearance: none;
+				outline:none;
+				background: none;
+				/*border:none;*/
+
+				border:0.2rem solid #fff;
+				width: 50%;
+				height: 3rem;
+				color:#eee;
+				font-size: 1.2rem;
+			}
+
+			.form-container .button-holder input:active {
+				box-shadow: 0 0 0.9rem #ccc;
+			}
+
+
+			#minus-button {
+				width: 2.75rem;
+				border-radius: 1.5rem 0 0 1.5rem;
+				float: left;
+			}
+
+			#plus-button {
+				width: 2.75rem;
+				border-left: none;
+				border-radius: 0 1.5rem 1.5rem 0;
+				float: left;
+			}
+
+			#reset-button {
+				  -webkit-appearance: none;
+				appearance: none;
+				outline:none;
+				background: none;
+
+				width: 100%;
+				height: 3rem;
+				margin-bottom: 4rem;
+
+				border:0.2rem solid #E4648A;
+				border-radius: 1.5rem;
+				
+				color: #E4648A;
+				opacity: 0.9;
+				font-size: 0.9rem;
+				font-family: sans-serif;
+				text-transform: uppercase;
+			}
+
+			#reset-button:active {
+				box-shadow: 0rem 0rem 0.9rem #E4648A;
 			}
 		</style>
 	</head>
 
 	<body>
 		<div class="main">
-			<div class="sidebar left">
+			<div id="sidebar-left" class="sidebar left">
 				<div class="inner">
-					<!-- <div style="width: 100%;background: red;height: 100%">
+				  <!-- <div style="width: 100%;background: red;height: 100%">
 					</div> -->
+					Lessons / Settings
 					<form name="settings">
-					SETTINGS<br>
+					<div class="input-group">
+						<input id="hand-left" name="hand" type="radio" value="left"> 
+						<label class="item" for="hand-left"><span>L</span></label>
+
+						<input id="hand-right" name="hand" type="radio" value="right"> 
+						<label class="item" for="hand-right"><span>R</span></label>
+					</div>
+
+					<br><br>
+					<HR>
 					<br>
-					Typing Hand<br>
-					---------------<br>		
-					<input type="radio" name="hand" value="left">LEFT&nbsp;
-					<input type="radio" name="hand" value="right">RIGHT<br>
-					<br>
-					Current<br>
-					Keyboard Layout<br>
-					---------------<br>
-					<input type="radio" name="layout" value="qwerty" checked>QWERTY<br>
-					<input type="radio" name="layout" value="azerty">AZERTY<br>
-					<input type="radio" name="layout" value="Dvorak">Dvorak<br>
-					<input type="radio" name="layout" value="colemak">Colemak<br>
-					<input type="radio" name="layout" value="workmak">Workman<br>
+
 					
-					<input type="radio" name="layout" value="chordak">Chordak<br>
-					<input type="radio" name="layout" value="other">Other<br>
-					(Click on each onscreen key and then press the keyboard key you want to assign it to.)<br>
+						<!-- <input class="toggle" id="sample" name="sample" type="checkbox">
+						<label for="sample">
+							<div class="description">Sample Label</div>
+							<div class="slider"><div class="round"></div></div>
+						</label> -->
+
+					<input class="toggle" id="typing-hand" name="typing-hand" type="checkbox">
+					<label for="typing-hand">
+						<div class="description">Typing Hand</div>
+						<div class="slider neutral"><div class="round text">L</div></div>
+					</label>
+
+					<div class="form-spacer-1"></div>
+
+					<label for="current-layout" class="form-container">
+						<div>Current Layout</div>
+						<select id="current-layout" name="current-layout">
+						  <option value="qwerty">QWERTY</option>
+						  <option value="colemak">Colemak</option>
+						  <option value="dvorak">Dvorak</option>
+						  <option value="workman">Workman</option>
+					  	<option value="chordak">Chordak</option>
+					  	<option value="other">Other</option>
+						</select>
+					</label>
+					
+					<label for="simulate-layout" class="form-container">
+						<div>Simulate Layout</div>
+						<select id="simulate-layout" name="simulate-layout">
+							<option value="none">None</option>
+							<option value="chordak" selected>Chordak</option>
+							<option disabled></option>
+							<option value="colemak">Colemak</option>
+							<option value="workman">Workman</option>
+						  <option value="dvorak">Dvorak</option>
+						</select>
+					</label>
+
+					<div class="form-spacer-2"></div>
+					
+					<input class="toggle" id="show-keyboard" name="show-keyboard" type="checkbox" checked>
+					<label for="show-keyboard">
+						<div class="description">Show Keyboard</div>
+						<div class="slider"><div class="round"></div></div>
+					</label>
+
+					<input class="toggle" id="show-hints" name="show-hints" type="checkbox" checked>
+					<label for="show-hints">
+						<div class="description">Show Chord Hints</div>
+						<div class="slider"><div class="round"></div></div>
+					</label>
+
+					<input class="toggle" id="stagger" name="stagger" type="checkbox" checked>
+					<label for="stagger">
+						<div class="description">Stagger Keys</div>
+						<div class="slider"><div class="round"></div></div>
+					</label>
+
+					<input class="toggle" id="sound" name="sound" type="checkbox">
+					<label for="sound">
+						<div class="description">Error Sounds</div>
+						<div class="slider"><div class="round"></div></div>
+					</label>
+
+					<div class="form-container">
+						<div>Font Size</div>
+						<div class="button-holder">
+							<input id="minus-button" type="button" value="-">
+							<input id="plus-button" type="button" value="+">	
+						</div>
+					</div>
+										
 					<br>
 
-					Key Arrangement<br>
-					---------------<br>
-					<input type="radio" name="arrangement" value="staggered" checked>Staggered<br>
-					<input type="radio" name="arrangement" value="grid">Grid<br>
-					<br>
+					<input id="reset-button" name="reset-button" value="Reset &amp; Clear Stored Data" type="button">
 
-				
-					Other<br>
-					---------------<br>
-					<input type="checkbox" name="preview" checked>Highlight Keys<br>
-					<input type="checkbox" name="sound" checked>Error Sound<br>
-					<input type="checkbox" name="sound">Show Full Board<br>
-					<br>
-					<input type="button" name="reset" value="Reset All"><br>
 					</form>
 				</div>
 				<img class="icon" src="flower-icon.png"/>
@@ -1055,6 +1357,15 @@
 		</footer>
 
 		<script>
+			var sidebarLeft = document.getElementById("sidebar-left");
+			sidebarLeft.addEventListener("touch", openSidebar);
+			sidebarLeft.addEventListener("click", openSidebar);
+
+				function openSidebar() {
+					sidebarLeft.classList.add('open');
+					sidebarLeft.addEventListener("touch", touchFunc);
+				}
+
 		    var radios = document.settings.hand;
 		    for(var i = 0; i < radios.length; i++) {
 		    	radios[i].addEventListener("change", changeHandler);
@@ -1225,7 +1536,6 @@
 			    //document.getElementById("demo").innerHTML = txt;
 			}
 
-			
 			document.body.addEventListener("keydown", keydownHandler);
 			document.body.addEventListener("keyup", keyupHandler);
 			var speed = document.getElementById("speed");
