@@ -7,118 +7,121 @@
 		<title>chordak demo v2</title>
 
 		<style>
-			html {
-				font-size:62.5%;
-				/* this rescales the site down so that 10px = 1 rem */
+			:root {
+				--color-neutral: #fff;
+				--color-neutral-glow: #bbb;
+				--color-correct: #8eeef6;
+				--color-correct-glow: #8eeef6;
+				--color-error: #e4648a;
+				--color-error-glow: #e4648a;
+				--font-mono: "Courier Prime Sans", courier, monospace;
+				--font-sans: "Open Sans", courier;
+				--font-block: "Open Sans", courier;
+				--font-brand: "Open Sans", courier;
+				/* alt correct C2DAB1, D0E1A7, 55D9C0, B4C76D, 77ACA1, 77EAAC, 7FFCD1, 5BE4A7, 8EEEF6 */
+				/* alt error DB7D9E,DF8F8C */
+				/* misc colors AACFD8, F4C437 */
+				--color-debug-1: deepPink;
+				--color-debug-2: Aquamarine;
+				--color-debug-3: Coral;
+				--color-debug-4: Gold;
+				--color-debug-5: YellowGreen;
+				/*background: var(--color-debug-1);*/
+				/*border: 1px solid var(--color-debug-1);*/
 			}
 
-			@import url(https://fonts.googleapis.com/css?family=Average+Sans);
-			body {
-			  font-family: "Open Sans", sans-serif;
-			  margin:0;
-			  padding:0;
-			  
-			  background: #111;
-/*			  background: -webkit-linear-gradient(top, 
-					rgba(30,30,30,1) 0%,
-					rgba(17,17,17,1) 20%,
-					rgba(17,17,17,1) 70%,
-					rgba(17,17,17,1) 100%);*/
-			  	background-attachment: fixed;
+			html {
+				font-size:62.5%; /* 1rem = 10 css pixels */
+			}
 
-				/*height: 100vh;*/
-	    		/*display: -webkit-flex;
-				display: flex;
-  				flex-direction: column;*/
-  				/*justify-content: space-between;*/
-  				border:1px solid deepPink;
-  				/*position: absolute;*/
-  				height: 100%;
+			body {
+				width: 100%;
+				height: 100%;
+				margin:0;
+			  padding:0;
+			  background: #111;
+			  font-family: times;
+  			/*border: 1px solid var(--color-debug-1);*/
 			}
 			
 			.main {
-				position: absolute;
-				display: -webkit-flex;
+				width: 100%;
+			  height: calc(100% - 9rem);
+					display: -webkit-flex;
 				display: flex;
-			  	justify-content:flex-start;
-			  	width: 100%;
-			  	/*min-height: calc(100% - 6rem);*/
-			  	height: calc(100% - 9rem);
-
-			  	flex:1 1;
-
-			  	border: 1px solid blue;
+			  justify-content:flex-start;
+			  position: absolute;			  	
+			  
+			  flex:1 1;
+			  /*border: 1px solid var(--color-debug-1);*/
 			}
 
 			footer {
+				width: 100%;
+				height: 6rem;
+					display: -webkit-flex;
+				display: flex;
+				justify-content: flex-start;
 				position: absolute;
 				bottom:0;
-				display: -webkit-flex;
-				display: flex;
-
-				justify-content: flex-start;
 				margin-bottom: 2.5rem;
-				border-top: 1px solid #222;
-				border-bottom: 1px solid #222;
-				width: 100%;
-				/*min-height: 6rem;*/
-				/*flex: 0 0 6rem;*/
-				height: 6rem;
-
+				border-width: 0.1rem 0;
+				border-style: solid;
+				border-color: #222
 			}
 
 			footer .mast {
-				position: relative;
-				background: rgba(255,255,255,0.06);
 				flex: 0 0 14rem;
+				position: relative;
 				text-align: right;
+				background: #1f1f1f;
 			}
 
 			footer .mast span {
-				font-size: 1.5rem;
-				font-weight: bold;
 				position: absolute;
 				bottom: 0.7rem;
 				right: 1rem;
-				font-family: "Open Sans";
+				font-family: var(--font-brand);
+				font-size: 1.5rem;
+				font-weight: bold;
 				color:#ddd;
 			}
 
 			footer .menu {
-				font-family: "Open Sans";
-				font-size: 1rem;
-				line-height: 1.3rem;
-				flex: 1 1;
-				text-transform: uppercase;
-				padding-left: 1rem;
-				color:#aaa;
-
 					display: -webkit-flex;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
+
+				flex: 1 1;
+				padding-left: 1rem;
+				font-family: var(--font-block);
+				font-size: 1rem;
+				line-height: 1.3rem;
+				text-transform: uppercase;
+				color:#aaa;
 			}
 
+			/* sidebars ------------------------------------------------------------ */
+
 			.sidebar {
-				position: relative;
-				flex: 1 0 15rem;
-				flex-shrink: 0;
 				min-width: 2.5rem;
 				max-width: 2.5rem;
 				height: calc(100% - 6rem);
+				flex: 1 0 15rem;
+				position: relative;
 				padding-bottom: -10rem;
-  				color: #ddd;
-  				z-index: 2;
-  				overflow: hidden;
-
-				/*border: 1px solid white;*/
+  			color: #ddd;
+  			overflow: hidden;
+  			z-index: 2;
+				/*border: 1px solid var(--color-debug-4);*/
 			}
 
 			.sidebar.left {
 				padding-right: 2.5rem;
-  				font-family: monospace;
-  				font-size: 1.6rem;
-  				transition: max-width 0.3s ease,min-width 0.3s ease,margin-right 0.3s ease;
+  			font-family: var(--font-sans);
+  			font-size: 1.2rem;
+  			transition: max-width 0.3s ease,min-width 0.3s ease,margin-right 0.3s ease;
 			}
 
 			.sidebar.right {
@@ -162,46 +165,34 @@
 				margin-right: -22.5rem;
 			}
 
-			/*.sidebar.right:hover {
+			.sidebar.right.open {
 				min-width: 20rem;
 				max-width: 20rem;
 				margin-left: -17.5rem;
-			}*/
+			}
 			.sidebar.right .inner .chords {
 				/*border: 1px solid green;*/
 				height: 100%;
 
 			}
 
-			/*.sidebar.left span {
-				position: absolute;
-				bottom: 0.2rem;
-				right: 2.8rem;
-				color:#aaa;
-				font-size: 1.4rem;
-				font-family: sans-serif;
-				text-align: center;
-			}*/
-
 			.sidebar .icon {
 				position: absolute;
-				
 				width:1.5rem;
 				height:1.5rem;
 				opacity: 0.9;
 			}
-
 			.sidebar.left .icon {
 				right: 3rem;
 				bottom: 0.6rem;
 			}
-
 			.sidebar.right .icon {
 				left: 0.3rem;
 				font-size: 1.6rem;
 				bottom: 1rem;
 			}
 
+			/* main content ------------------------------------------------------------ */
 
 			.content {
 				/*flex: 1 1 55vw;*/
@@ -233,7 +224,87 @@
 				text-align: center;
 			}
 
+			.practice {
+				font-family: 'PT Mono', monospace;
+			    float:left;
+			    width: 100%;
+			    font-size: 1em;
+				border-radius: 1.25em;
+				overflow: hidden;
+			}
+
+			.flex-container-practice {
+			    display: flex;
+			    flex-direction: column;
+			    flex-wrap: nowrap;
+			    justify-content: left;
+			    align-content: left;
+			    align-items: flex-start;
+			}
+
+			.flex-item-practice {
+			    order: 0;
+			    flex: 0 1 auto;
+			    align-self: auto;
+			    padding:0.75em 0em 0.75em 1em;
+			    width:100%;
+			    height:1.2em;
+			    margin:1px;
+			    background-color: #333;
+			}
+
+			.indicator {
+				 float:right;
+				 font-family: 'PT Mono', monospace;
+				 text-align: right;
+				 margin-right:1em;
+			}
+
+			#pre {
+				transform: scale(0.95, 0.95);
+				opacity: 0.9;
+
+				-webkit-transform: rotateX(60deg); /* Safari */
+ 				transform: rotateX(60deg) scale(0.95, 0.95);
+ 				display: none;
+			}
+
+			#post {
+				transform: scale(0.95, 0.95);
+				opacity: 0.4;
+				display: none;
+			}
+
+			.text2 {
+				resize: none;
+				/*width: 100%;*/
+				font-family: var(--font-mono);
+				font-size: 1.4rem;
+				line-height: 3rem;
+				height: 9rem;
+				overflow: hidden;
+				border: none;
+				/*padding: 0 1rem 0 1rem;
+
+				max-width: 80.0rem;
+				width: 100%;
+				text-align: left;
+				margin: 8rem auto 0;
+
+				/*background: white;
+				color: black;*/
+
+				/*background: #191919;*/
+				color: #ddd;
+				/*courier font at 1.5rem: */
+				/*width: 72.01rem;*/ /*minimum size for 80 chars*/
+				/*width: 72.91rem;*/ /*maximum size for 80 chars*/
+				/*padding left & right does not effect width calc*/
+				/*padding top & bottom DOES effect height calc*/
+			}
 			
+			/* keyboard ------------------------------------------------------------ */
+
 			.keyboard {
 				flex: 1 1 auto;
 				max-width: 84rem;
@@ -340,13 +411,7 @@
 				box-shadow: 0rem 0rem 1.8rem #bbb;
 			}
 
-			/*AACFD8*/
-			/*
-			yellow F4C437
-			*/
 			.key.pressed-wrong {
-				/*DB7D9E*/
-				/*DF8F8C*/
 	 		    -webkit-transform: scale(0.95, 0.95);
 			    -moz-transform: scale(0.95, 0.95);
 			    -ms-transform: scale(0.95, 0.95);
@@ -358,15 +423,6 @@
 			}
 
 			.key.pressed-correct {
-				/*C2DAB1*/
-				/*D0E1A7*/
-				/*55D9C0*/
-				/*B4C76D*/
-				/*77ACA1*/
-				/*77EAAC*/
-				/*7FFCD1****/
-				/*5BE4A7****/
-				/*8EEEF6*/
 	 		    -webkit-transform: scale(0.95, 0.95);
 			    -moz-transform: scale(0.95, 0.95);
 			    -ms-transform: scale(0.95, 0.95);
@@ -376,7 +432,6 @@
 				border-color: #8EEEF6;
 				box-shadow: 0rem 0rem 1.8rem #8EEEF6;
 			}
-
 
 			.key.caps {
 				margin-left: 2.5rem;
@@ -403,6 +458,8 @@
 				font-size: 150%;
 			}
 
+			/* chords legend ------------------------------------------------------------ */
+
 			.legend {
 				position: absolute;
 				width:10rem;
@@ -412,7 +469,7 @@
 				bottom: 0;
 				
 				color:#eee;
-				font-family: 'PT mono';
+				/*font-family: ;*/
 				border: 0.1rem solid #222;
 			}
 
@@ -447,6 +504,8 @@
 				top:2.0rem;
 				left: 0.8rem;
 			}
+
+			/* chords ------------------------------------------------------------ */
 
 			.chord {
 					display: -webkit-flex;
@@ -497,7 +556,7 @@
 				font-family: Helvetica;
 				font-size: 0.9rem;
 				color:#bbb;
-				font-family: "Average Sans", sans-serif;
+				font-family: ERROR
 			}
 
 			/*.chord.header .c {
@@ -518,131 +577,7 @@
 				color:#ddd;
 			}
 
-			input[name="other"] {
-				width: 2rem;
-				height: 2rem;
-				font-size: 1rem;
-				font-family: monospace;
-				border-radius: 1.2rem;
-				border:0.2rem solid green;
-				text-align: center;
-				padding: 0;
-				margin:0;
-			}
-
-	/*		@media screen and (max-width: 45rem) {
-			    .sidebar.right {
-			        display: none;
-			    }
-			    .sidebar.left {
-			        display: none;
-			    }
-			}
-
-			@media screen and (max-width: 30rem) {
-			    html {
-			    	font-size: 9px;
-				}
-								footer {
-					transform: scale(1.3, 1.3);
-				}
-			}
-
-			@media screen and (max-width: 23rem) {
-			    html {
-			    	font-size: 8px;
-				}
-
-			}*/
-
-			.practice {
-				font-family: 'PT Mono', monospace;
-			    float:left;
-			    width: 100%;
-			    font-size: 1em;
-				border-radius: 1.25em;
-				overflow: hidden;
-			}
-
-			.flex-container-practice {
-			    display: flex;
-			    flex-direction: column;
-			    flex-wrap: nowrap;
-			    justify-content: left;
-			    align-content: left;
-			    align-items: flex-start;
-			}
-
-			.flex-item-practice {
-			    order: 0;
-			    flex: 0 1 auto;
-			    align-self: auto;
-			    padding:0.75em 0em 0.75em 1em;
-			    width:100%;
-			    height:1.2em;
-			    margin:1px;
-			    background-color: #333;
-			}
-
-			.indicator {
-				 float:right;
-				 font-family: 'PT Mono', monospace;
-				 text-align: right;
-				 margin-right:1em;
-			}
-
-			#pre {
-				transform: scale(0.95, 0.95);
-				opacity: 0.9;
-
-				-webkit-transform: rotateX(60deg); /* Safari */
- 				transform: rotateX(60deg) scale(0.95, 0.95);
- 				display: none;
-			}
-
-			#post {
-				transform: scale(0.95, 0.95);
-				opacity: 0.4;
-				display: none;
-			}
-
-			.text2 {
-				resize: none;
-				/*width: 100%;*/
-				font-family: courier;
-				font-size: 1.8rem;
-				line-height: 3rem;
-				height: 9rem;
-				overflow: hidden;
-				border: none;
-				/*padding: 0 1rem 0 1rem;*/
-
-				max-width: 80.0rem;
-				width: 100%;
-				text-align: left;
-				margin: 8rem auto 0;
-
-				/*background: white;
-				color: black;*/
-
-				/*background: #191919;*/
-				color: #ccc;
-				font-family: "PT mono";
-				/*courier font at 1.5rem: */
-				/*width: 72.01rem;*/ /*minimum size for 80 chars*/
-				/*width: 72.91rem;*/ /*maximum size for 80 chars*/
-				/*padding left & right does not effect width calc*/
-				/*padding top & bottom DOES effect height calc*/
-			}
-
-			/*$background-color: #fff;
-			$footer-color: #fff;
-			$details-color: #fff;
-			$font-color: #fff;*/
- 			
- 			/*form {
-				line-height: 3rem;
-			}*/
+			/* forms & custom inputs --------------------------------------------------- */
 
 			.input-group {
 						display: -webkit-flex;
@@ -691,59 +626,53 @@
  			 	color: #ccc;
  			}
 
-			/*-----------------------------------------------*/
+			/* toggle checkbox --------------------------------------------------- */
+			/*<!-- <input class="toggle" id="sample" name="sample" type="checkbox">
+						<label for="sample">
+							<div class="description">Sample Label</div>
+							<div class="slider"><div class="round"></div></div>
+						</label> -->*/
 			
-			/*cursor: pointer;*/
 			.toggle {
 				display:none;
 			}
 
 			.toggle+label {
-				height: 3rem;
 				width: 100%;
+				height: 3rem;
 					display: -webkit-flex;
 				display: flex;
 				justify-content: space-between;
-
-				margin: auto 0 auto 0;
-				margin-bottom: 1rem;
 				position: relative;
-				/*background: red;*/
+				margin: 1rem 0;
 			}
 
 			.toggle+label .description {
 				margin: auto 0;
-				/*background: deepPink;*/
 			}
 
 			.toggle+label .slider {
-				height: 2.6rem;
 				min-width: 5rem;
 				max-width: 5rem;
+				height: 2.6rem;
 				position: relative;
-			  border-radius: 1.5rem;
-			  transition: border-color 0.2s ease;
 			  border:0.2rem solid #eee;
+			  border-radius: 1.5rem;
 			  overflow: hidden;
+			  transition: border-color 0.2s ease;
+			  cursor: pointer;
 			}
 
 			.toggle+label .slider .round {
+				width: 1.8rem;
+				height: 1.8rem;
 			  position: absolute;
-			  height: 1.8rem;
-			  width: 1.8rem;
-			  margin: 0.2rem 0.3rem;
-			  border-radius: 50%;
 			  right: 2.1rem;
-			  
-			  border:0.2rem solid #E4648A;
-			  box-shadow: 0 0 0.9rem #E4648A;
-
+			  margin: 0.2rem 0.3rem;
+			  border:0.2rem solid var(--color-error);
+			  border-radius: 50%;
+			  box-shadow: 0 0 0.9rem var(--color-error-glow);
 			  transition: right 0.3s ease;
-			}
-
-			.toggle:checked+label .slider {
-				/*background-color: #000;*/
-				/*border-color:#8EEEF6;*/
 			}
 
 			.toggle:checked+label .slider .round {
@@ -752,28 +681,14 @@
 				box-shadow: 0 0 0.9rem #8EEEF6;
 			}
 
-			.toggle+label .slider.neutral {
-				height: 2.6rem;
-				min-width: 5rem;
-				max-width: 5rem;
-				position: relative;
-			  border-radius: 1.5rem;
-			  border:0.2rem solid #eee;
-			  overflow: hidden;
-			}
-
 			.toggle+label .slider.neutral .round {
-			  position: absolute;
+				width: 1.8rem;
 			  height: 1.8rem;
-			  width: 1.8rem;
-			  margin: 0.2rem 0.3rem;
-			  border-radius: 50%;
-			  right: 2.1rem;
+			  position: absolute;
+				right: 2.1rem;
+			  margin: 0.2rem 0.3rem;			  
 			  text-align: center;
-			  font-family: sans-serif;
-			  font-size:1rem;
-			  line-height: 1.8rem;
-			  
+			  border-radius: 50%;
 			  border:0.2rem solid #fff;
 			  box-shadow: 0 0 0.9rem #bbb;
 			}
@@ -782,101 +697,93 @@
 				right: 0;
 			}
 
+			/* select & incrementer inputs ---------------------------------------------- */
+
 			.form-container {
+				width: 100%;
+				height: 3rem;
 					display: -webkit-flex;
 				display: flex;
 				justify-content: space-between;
-				align-items: center;
-
-				width: 100%;
-				height: 3rem;
+				align-items: center;				
 				position: relative;
-				
 				padding: 0.5rem 0;
-				/*background: red;*/
 			}
 
 			.form-container select {
+				width: 7rem;
+				height: 3rem;
 				  -webkit-appearance: none;
 				appearance: none;
 				outline:none;
 				background: none;
-
-				width: 7rem;
-				height: 3rem;
-
 				border:2px solid white;
 				border-radius: 1.5rem;
 
 				color: #eee;
 				text-align: center;
 				text-align-last:center;
-				font-family: sans-serif;
+				font-size: 1.1rem;
 			}
 
 			.form-spacer-1 {
-				height:0.5rem;
 				width:100%;
+				height:0.5rem;
 			}
 
 			.form-spacer-2 {
-				height:1.5rem;
 				width:100%;
+				height:1.5rem;
 			}
 
 			.form-container .button-holder {
 				width:5.5rem;
+					display: -webkit-flex;
+				display: flex;
+
 			}
 
 			.form-container .button-holder input {
+				width: 50%;
+				max-width: 50%;
+				height: 3rem;
 				-webkit-appearance: none;
 				appearance: none;
 				outline:none;
 				background: none;
-				/*border:none;*/
-
-				border:0.2rem solid #fff;
-				width: 50%;
-				height: 3rem;
-				color:#eee;
-				font-size: 1.2rem;
+				border:0.2rem solid var(--color-neutral);
+				font-size: 1.4rem;
+				color:#ddd;
 			}
 
 			.form-container .button-holder input:active {
-				box-shadow: 0 0 0.9rem #ccc;
+				box-shadow: 0 0 0.9rem var(--color-neutral-glow);
 			}
 
-
 			#minus-button {
-				width: 2.75rem;
 				border-radius: 1.5rem 0 0 1.5rem;
-				float: left;
+				order:0;
 			}
 
 			#plus-button {
-				width: 2.75rem;
 				border-left: none;
 				border-radius: 0 1.5rem 1.5rem 0;
-				float: left;
+				order:1;
 			}
 
 			#reset-button {
+				width: 100%;
+				height: 3rem;
 				  -webkit-appearance: none;
 				appearance: none;
 				outline:none;
 				background: none;
-
-				width: 100%;
-				height: 3rem;
 				margin-bottom: 4rem;
-
-				border:0.2rem solid #E4648A;
+				border:0.2rem solid var(--color-error-glow);
 				border-radius: 1.5rem;
-				
-				color: #E4648A;
-				opacity: 0.9;
-				font-size: 0.9rem;
-				font-family: sans-serif;
+				color: var(--color-error);
+				font-family: var(--font-sans);
+				font-size: 1rem;
 				text-transform: uppercase;
 			}
 
@@ -886,32 +793,43 @@
 		</style>
 	</head>
 
+	<!-- big hand choosers
+	<form name="settings">
+<div class="input-group">
+	<input id="hand-left" name="hand" type="radio" value="left"> 
+	<label class="item" for="hand-left"><span>L</span></label>
+
+	<input id="hand-right" name="hand" type="radio" value="right"> 
+	<label class="item" for="hand-right"><span>R</span></label>
+</div> -->
+
 	<body>
 		<div class="main">
 			<div id="sidebar-left" class="sidebar left">
 				<div class="inner">
 				  <!-- <div style="width: 100%;background: red;height: 100%">
 					</div> -->
-					Lessons / Settings
-					<form name="settings">
-					<div class="input-group">
-						<input id="hand-left" name="hand" type="radio" value="left"> 
-						<label class="item" for="hand-left"><span>L</span></label>
+					<label for="simulate-layout" class="form-container">
+						<div>Mode</div>
+						<select id="simulate-layout" name="simulate-layout" style="width:10rem;">
+						  <option value="">Training</option>
+						  <option value="">Speed Test</option>
+						  <option value="">Free Write</option>
+						</select>
+					</label>
 
-						<input id="hand-right" name="hand" type="radio" value="right"> 
-						<label class="item" for="hand-right"><span>R</span></label>
-					</div>
+					<label for="simulate-layout" class="form-container">
+						<div>Lesson</div>
+						<select id="simulate-layout" name="simulate-layout" style="width:15rem;">
+						  <option value="">Common Bigrams</option>
+						  <option value="">Speed Test</option>
+						  <option value="">Free Write</option>
+						</select>
+					</label>
 
-					<br><br>
-					<HR>
 					<br>
-
-					
-						<!-- <input class="toggle" id="sample" name="sample" type="checkbox">
-						<label for="sample">
-							<div class="description">Sample Label</div>
-							<div class="slider"><div class="round"></div></div>
-						</label> -->
+					<hr>
+					<br>
 
 					<input class="toggle" id="typing-hand" name="typing-hand" type="checkbox">
 					<label for="typing-hand">
@@ -1008,10 +926,8 @@
 							</div>
 						</div>
 					</div> -->
-					<div id="pre" class="text2">this is the line that was just finished</div>
-					<div id="text" class="text2">this is the line that was just finished<br>
-					123456789-123456789-123456789-123456789-123456789-123456789-123456789-X<br>
-					this is the next line up to be typed after the current one</div>
+					<div id="pre" class="text2"></div>
+					<div id="text" class="text2">Aa Bb Cc De Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz The quick brown fox jumps over the lazy dog. 01234567890 l1 0O Il</div>
 					<div id="post" class="text2">this is the upcoming line</div>
 
 				</div>
@@ -1089,7 +1005,7 @@
 					</div>
 				</div> -->
 
-				<div class="sidebar right">
+				<div id="sidebar-right" class="sidebar right">
 					<div class="inner">
 						<div class="chords">
 							<div class="chord header">
@@ -1361,9 +1277,13 @@
 			sidebarLeft.addEventListener("touch", openSidebar);
 			sidebarLeft.addEventListener("click", openSidebar);
 
-				function openSidebar() {
-					sidebarLeft.classList.add('open');
-					sidebarLeft.addEventListener("touch", touchFunc);
+			var sidebarRight = document.getElementById("sidebar-right");
+			sidebarRight.addEventListener("touch", openSidebar);
+			sidebarRight.addEventListener("click", openSidebar);
+
+				function openSidebar(e) {
+					e.currentTarget.classList.add('open');
+					e.currentTarget.addEventListener("touch", touchFunc);
 				}
 
 		    var radios = document.settings.hand;
