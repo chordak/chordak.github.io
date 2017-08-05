@@ -10,11 +10,19 @@
 			:root {
 				--color-neutral: #fff;
 				--color-neutral-glow: #bbb;
+				--color-muted: #ccc;
 				--color-correct: #8eeef6;
 				--color-correct-glow: #8eeef6;
 				--color-error: #e4648a;
 				--color-error-glow: #e4648a;
-				--font-mono: "Courier Prime Sans", courier, monospace;
+				--color-accent: #7bd507; /*orange #e38563;*/ /*green #96E363;*/
+				/*--font-mono: "Courier Prime Sans", courier, monospace;*/
+				/*--font-mono: "Courier Final Draft", courier, monospace;*/
+				/*--font-mono: "Courier Little Foot", courier, monospace;*/
+				/*--font-mono: "Inconsolata", courier, monospace;*/
+				/*--font-mono: "InconsolataGo", courier, monospace;*/
+				/*--font-mono: "Consolas", courier, monospace;*/
+				--font-mono: "Anonymous Pro", monospace;
 				--font-sans: "Open Sans", courier;
 				--font-block: "Open Sans", courier;
 				--font-brand: "Open Sans", courier;
@@ -46,7 +54,7 @@
 			
 			.main {
 				width: 100%;
-			  height: calc(100% - 9rem);
+			  height: calc(100% - 8.8rem);
 					display: -webkit-flex;
 				display: flex;
 			  justify-content:flex-start;
@@ -70,14 +78,14 @@
 				border-color: #222
 			}
 
-			footer .mast {
+			footer .masthead {
 				flex: 0 0 14rem;
 				position: relative;
 				text-align: right;
-				background: #1f1f1f;
+				background: #222; /*#1f1f1f;*/
 			}
 
-			footer .mast span {
+			footer .masthead span {
 				position: absolute;
 				bottom: 0.7rem;
 				right: 1rem;
@@ -107,7 +115,8 @@
 			.sidebar {
 				min-width: 2.5rem;
 				max-width: 2.5rem;
-				height: calc(100% - 6rem);
+				/*height: calc(100% - 6rem);*/
+				height: 100vh;
 				flex: 1 0 15rem;
 				position: relative;
 				padding-bottom: -10rem;
@@ -145,14 +154,16 @@
 
 			.sidebar.left .inner {
 				right: 2.5rem;
-				-webkit-box-shadow: 5px 0 5px -2px #888;
-          		box-shadow: 5px 0 5px -2px #000;
+				  -webkit-box-shadow: 5px 0 5px -2px white;
+        box-shadow: 5px 0 5px -2px black;
+        margin-right: 0;
+      	transition: margin-right 0.3s ease;
 			}
 
 			.sidebar.right .inner {
 				left: 2.5rem;
-				-webkit-box-shadow: -5px 0 5px -2px #888;
-          		box-shadow: -5px 0 5px -2px #000;
+				  -webkit-box-shadow: -5px 0 5px -2px black;
+				box-shadow: -5px 0 5px -2px black;
 			}
 
 			.sidebar.left .inner form {
@@ -160,9 +171,14 @@
 			}
 
 			.sidebar.left.open {
-				min-width: 25rem;
-				max-width: 25rem;
-				margin-right: -22.5rem;
+				min-width: 22.5rem;
+				max-width: 22.5rem;
+				margin-right: -20rem;
+				
+			}
+
+			.sidebar.left.open .inner {
+				margin-right: -2.5rem;
 			}
 
 			.sidebar.right.open {
@@ -181,11 +197,19 @@
 				width:1.5rem;
 				height:1.5rem;
 				opacity: 0.9;
+
 			}
 			.sidebar.left .icon {
 				right: 3rem;
 				bottom: 0.6rem;
+				transition: right 0.3s ease;
 			}
+
+			.sidebar.left.open .icon {
+				right: 0.5rem;
+				bottom: 0.6rem;
+			}
+
 			.sidebar.right .icon {
 				left: 0.3rem;
 				font-size: 1.6rem;
@@ -224,7 +248,7 @@
 				text-align: center;
 			}
 
-			.practice {
+/*			.practice {
 				font-family: 'PT Mono', monospace;
 			    float:left;
 			    width: 100%;
@@ -251,7 +275,7 @@
 			    height:1.2em;
 			    margin:1px;
 			    background-color: #333;
-			}
+			}*/
 
 			.indicator {
 				 float:right;
@@ -279,7 +303,7 @@
 				resize: none;
 				/*width: 100%;*/
 				font-family: var(--font-mono);
-				font-size: 1.4rem;
+				font-size: 1.6rem;
 				line-height: 3rem;
 				height: 9rem;
 				overflow: hidden;
@@ -305,7 +329,7 @@
 			
 			/* keyboard ------------------------------------------------------------ */
 
-			.keyboard {
+			#keyboard {
 				flex: 1 1 auto;
 				max-width: 84rem;
 				min-height: 26rem;
@@ -314,7 +338,7 @@
 				font-size: 1rem;
 			}
 			
-			.keyboard .inner {
+			#keyboard .inner {
 				display: -webkit-flex;
 				display: flex;
 
@@ -332,29 +356,29 @@
 				/*border: 0.1rem solid red;*/
 			}
 
-			.keyboard.left {
+			#keyboard.left {
 				width: 50rem;
 				font-size: 1rem;
 			}
-			.keyboard.right {
+			#keyboard.right {
 				width: 50rem;
 				font-size: 1rem;
 			}
 
-			.keyboard.left .inner {
+			#keyboard.left .inner {
 				flex: 1 0 84rem;
 				min-width: 50rem;
 				max-width: 84rem;
 				width: 50rem;
 				margin: auto;
 			}
-			.keyboard.right .inner {
+			#keyboard.right .inner {
 				width: 50rem;
 				margin-left: -35rem;
 				padding-right: 35rem;
 			}
 
-			.keyboard .inner .overlay {
+			#keyboard .inner #overlay {
 				position: absolute;
 				width: 100%;
 				height: 100%;
@@ -362,24 +386,24 @@
 				/*border: 0.1rem solid yellow;*/
 			}
 
-			.keyboard.left .inner .overlay {
+			#keyboard.left .inner #overlay {
 				background: -webkit-linear-gradient(22deg, 
 					rgba(17,17,17,0) 60%,
 					rgba(17,17,17,1) 82%);
 			}
-			.keyboard.right .inner .overlay {
+			#keyboard.right .inner #overlay {
 				margin-left: 35rem;
 				background: -webkit-linear-gradient(-158deg, 
 					rgba(17,17,17,0) 81%,
 					rgba(17,17,17,1) 93%);
 			}
 
-			.keyboard .inner .row {
+			#keyboard .inner .row {
 					display: -webkit-flex;
 				display: flex;
 			}
 
-			.key {
+			#keyboard .inner .row .key {
 				flex: 0 0 4.8rem;
 				height: 4.8rem;
 				font-size: 1.8rem;
@@ -396,11 +420,11 @@
 				margin: 0.4rem;
 			}
 
-			.key.text {
+			#keyboard .inner .row .key.text {
 				font-size: 0.9rem;
 			}
 
-			.key.pressed {
+			#keyboard .inner .row .key.pressed {
 	 		    -webkit-transform: scale(0.95, 0.95);
 			    -moz-transform: scale(0.95, 0.95);
 			    -ms-transform: scale(0.95, 0.95);
@@ -411,7 +435,7 @@
 				box-shadow: 0rem 0rem 1.8rem #bbb;
 			}
 
-			.key.pressed-wrong {
+			#keyboard .inner .row .key.pressed-wrong {
 	 		    -webkit-transform: scale(0.95, 0.95);
 			    -moz-transform: scale(0.95, 0.95);
 			    -ms-transform: scale(0.95, 0.95);
@@ -422,7 +446,7 @@
 				box-shadow: 0rem 0rem 1.8rem #E4648A;
 			}
 
-			.key.pressed-correct {
+			#keyboard .inner .row .key.pressed-correct {
 	 		    -webkit-transform: scale(0.95, 0.95);
 			    -moz-transform: scale(0.95, 0.95);
 			    -ms-transform: scale(0.95, 0.95);
@@ -433,27 +457,27 @@
 				box-shadow: 0rem 0rem 1.8rem #8EEEF6;
 			}
 
-			.key.caps {
+			#keyboard .inner .row .key.caps {
 				margin-left: 2.5rem;
 			}
-			.key.shift {
+			#keyboard .inner .row .key.shift {
 				margin-left: 5.4rem;
 			}
-			.key.command {
+			#keyboard .inner .row .key.command {
 				margin-left: 17.4rem;
 			}
-			.key.space {
+			#keyboard .inner .row .key.space {
 				flex: 0 0 28.8rem;
 				border-radius: 2.5rem;
 			}
 
-			.key.stack {
+			#keyboard .inner .row .key.stack {
 				font-size: 1.6rem;
 				line-height: 1.8rem;
 				align-content: center;
 			}
 
-			.itsy {
+			#keyboard .inner .row .itsy {
 				line-height: 50%;
 				font-size: 150%;
 			}
@@ -556,7 +580,7 @@
 				font-family: Helvetica;
 				font-size: 0.9rem;
 				color:#bbb;
-				font-family: ERROR
+				/*font-family: ERROR*/
 			}
 
 			/*.chord.header .c {
@@ -645,6 +669,8 @@
 				justify-content: space-between;
 				position: relative;
 				margin: 1rem 0;
+				  -webkit-user-select: none;
+				user-select: none;
 			}
 
 			.toggle+label .description {
@@ -689,15 +715,16 @@
 			  margin: 0.2rem 0.3rem;			  
 			  text-align: center;
 			  border-radius: 50%;
-			  border:0.2rem solid #fff;
-			  box-shadow: 0 0 0.9rem #bbb;
+			  border:0.2rem solid var(--color-neutral);
+			  box-shadow: 0 0 0.9rem var(--color-neutral-glow);
+			  color: #eee;
 			}
 
 			.toggle:checked+label .slider.neutral .round {
 				right: 0;
 			}
 
-			/* select & incrementer inputs ---------------------------------------------- */
+			/* select & incrementer inputs ----------------------------- */
 
 			.form-container {
 				width: 100%;
@@ -708,6 +735,7 @@
 				align-items: center;				
 				position: relative;
 				padding: 0.5rem 0;
+				overflow: visible;
 			}
 
 			.form-container select {
@@ -723,7 +751,13 @@
 				color: #eee;
 				text-align: center;
 				text-align-last:center;
+				font-family: var(--font-sans);
 				font-size: 1.1rem;
+				padding: 0 1rem 0 1rem; 
+			}
+
+			.form-container select:focus {
+				box-shadow: 0 0 0.9rem var(--color-neutral-glow);
 			}
 
 			.form-spacer-1 {
@@ -737,36 +771,39 @@
 			}
 
 			.form-container .button-holder {
-				width:5.5rem;
+				width:5rem;
+				height:2.6rem;
 					display: -webkit-flex;
 				display: flex;
-
+				border:0.2rem solid var(--color-neutral);
+				border-radius:1.5rem;
+				background: none;
 			}
 
 			.form-container .button-holder input {
-				width: 50%;
-				max-width: 50%;
-				height: 3rem;
+				width: 2.4rem;
+				height: 100%;
 				-webkit-appearance: none;
 				appearance: none;
 				outline:none;
 				background: none;
-				border:0.2rem solid var(--color-neutral);
+				border:none;
 				font-size: 1.4rem;
 				color:#ddd;
 			}
 
 			.form-container .button-holder input:active {
-				box-shadow: 0 0 0.9rem var(--color-neutral-glow);
+				box-shadow: 0 0 1.1rem var(--color-neutral-glow);
 			}
 
 			#minus-button {
+				border-right: 0.1rem solid var(--color-neutral);
 				border-radius: 1.5rem 0 0 1.5rem;
 				order:0;
 			}
 
 			#plus-button {
-				border-left: none;
+				border-left: 0.1rem solid var(--color-neutral);
 				border-radius: 0 1.5rem 1.5rem 0;
 				order:1;
 			}
@@ -790,6 +827,69 @@
 			#reset-button:active {
 				box-shadow: 0rem 0rem 0.9rem #E4648A;
 			}
+
+			/* custom layout ----------------------------- */
+
+			#custom-layout {
+				width:19.2rem;
+				/*width: calc(100% - 0.4rem);*/
+					display: -webkit-flex;
+				display: flex;
+				flex-direction: column;
+				padding:0.1rem;
+				border-radius: 1.5rem;
+				margin: 0.5rem auto 1rem auto;
+				/*background: var(--color-debug-1);*/
+			}
+
+			#custom-layout .row {
+					display: -webkit-flex;
+				display: flex;
+				justify-content: flex-start;
+			}
+
+			#custom-layout .row .key {
+				width: 2.6rem;
+				height: 2.6rem;
+				margin: 0.1rem;
+				border:0.2rem solid var(--color-error-glow);
+				border-radius: 1.5rem;
+				text-align: center;
+				line-height: 2.6rem;
+				font-size: 0.9rem;
+				font-family: var(--font-sans);
+				color: var(--color-neutral);
+				box-shadow: 0 0 0.4rem var(--color-error-glow);
+			}
+
+			#custom-layout .row .key.set {
+				border-color: var(--color-muted);
+				box-shadow: none;
+			}
+
+			#custom-layout.left .row {
+				justify-content: flex-end;
+			}
+
+			#custom-layout.right .row {
+				justify-content: flex-start;
+			}
+
+			#custom-layout.left .row .key.num {
+				order:0;
+			}
+			#custom-layout .row .key.thumb {
+				width: 5.8rem;
+				order:1;
+			}
+
+			#custom-layout.right .row .key.num {
+				order:1;
+			}
+			#custom-layout.right .row .key.thumb {
+				width: 5.8rem;
+				order:0;
+			}
 		</style>
 	</head>
 
@@ -807,34 +907,122 @@
 		<div class="main">
 			<div id="sidebar-left" class="sidebar left">
 				<div class="inner">
-				  <!-- <div style="width: 100%;background: red;height: 100%">
-					</div> -->
 					<label for="simulate-layout" class="form-container">
-						<div>Mode</div>
-						<select id="simulate-layout" name="simulate-layout" style="width:10rem;">
-						  <option value="">Training</option>
+						<div>Typing Mode</div>
+						<select id="simulate-layout" name="simulate-layout" style="width:9rem;">
+						  <option value="" selected>Lessons</option>
 						  <option value="">Speed Test</option>
-						  <option value="">Free Write</option>
+						  <option value="">Copy Text</option>
+						  <option value="">Blank</option>
 						</select>
 					</label>
 
 					<label for="simulate-layout" class="form-container">
 						<div>Lesson</div>
-						<select id="simulate-layout" name="simulate-layout" style="width:15rem;">
-						  <option value="">Common Bigrams</option>
-						  <option value="">Speed Test</option>
-						  <option value="">Free Write</option>
+						<select id="simulate-layout" name="simulate-layout" style="width:13rem;">
+							<optgroup label="Alphabet">
+								<option value="">o a t e _</option>
+								<option value="">g v w y</option>
+								<option value="">d f k l</option>
+								<option value="">i p q r</option>
+								<option value="">h n s z</option>
+								<option value="">b c m u</option>
+								<option value="">x&nbsp;&nbsp;j&nbsp;&nbsp;,&nbsp;&nbsp;.</option>
+							</optgroup>
+
+							<optgroup label="Practice">
+								<option value="">Common Bigrams</option>
+							  <option value="">Common Trigrams</option>
+							  <option value="">Common Words</option>
+							  <option value="">Pangrams</option>
+								<option value="">abc...</option>
+								<option value="">a b c...</option>
+								<option value="">Random Letters</option>
+								<option value="">Opposite Chords</option>
+							</optgroup>
+
+							<optgroup label="Formatting">
+								<option value="">Navigation</option>
+								<option value="">Return</option>
+								<option value="">Tab</option>
+							</optgroup>
+
+							<optgroup label="Capitals">
+								<option value="">Shift Left</option>
+								<option value="">Shift Right</option>
+								<option value="">Aa Bb Cc...</option>
+								<option value="">Capital Bigrams</option>
+								<option value="">Capital Trigrams</option>
+								<option value="">Capital Words</option>
+								<option value="">Caps Lock</option>
+								<option value="">Acronyms</option>
+							</optgroup>
+
+							<optgroup label="Numerals">
+								<option value="">0 1 2 3</option>
+								<option value="">4 7 9</option>
+								<option value="">5 8 6</option>
+								<option value="">Num Lock*</option>
+								<option value="">123...</option>
+								<option value="">Random Numbers</option>
+								<option value="">Formatted Numbers</option>
+								<option value="">Alphanumeric</option>
+							</optgroup>
+
+							<optgroup label="Brackets">
+								<option value="">( )&nbsp;&nbsp;Round</option>
+								<option value="">[ ]&nbsp;&nbsp;Square</option>
+								<option value="">{ }&nbsp;&nbsp;Curly</option>
+								<option value="">&lt; &gt;&nbsp;&nbsp;Angle</option>
+								<option value="">\ /&nbsp;&nbsp;Slashes</option>
+								<option value="">|&nbsp;&nbsp;Vertical Bar</option>
+							</optgroup>
+
+							<optgroup label="Symbols">
+								<option value="">'&nbsp;&nbsp;Apostrophe</option>
+								<option value="">"&nbsp;&nbsp;Quotes</option>
+								<option value="">;&nbsp;&nbsp;Semicolon</option>
+								<option value="">?&nbsp;&nbsp;Question</option>
+								<option value="">!&nbsp;&nbsp;Exclamation</option>
+								<option value="">_&nbsp;&nbsp;Underscore</option>
+								<option value="">:&nbsp;&nbsp;Colon</option>
+								<option value="">+&nbsp;&nbsp;Plus Sign</option>
+								<option value="">-&nbsp;&nbsp;Hyphen-Minus</option>
+								<option value="">=&nbsp;&nbsp;Equals Sign</option>
+								<option value="">@&nbsp;&nbsp;At Sign</option>
+								<option value="">&amp;&nbsp;&nbsp;Ampersand</option>
+								<option value="">*&nbsp;&nbsp;Asterisk</option>
+								<option value="">%&nbsp;&nbsp;Percent Sign</option>
+								<option value="">#&nbsp;&nbsp;Number Sign</option>
+								<option value="">$&nbsp;&nbsp;Dollar Sign</option>
+								<option value="">^&nbsp;&nbsp;Caret</option>
+								<option value="">~&nbsp;&nbsp;Tilde</option>
+								<option value="">`&nbsp;&nbsp;Grave Accent</option>
+							</optgroup>
+
+							<optgroup label="Shortcuts">
+								<option value="">Command</option>
+								<option value="">Option/Alt</option>
+								<option value="">Control</option>
+								<option value="">Function</option>
+								<option value="">Meta</option>
+							</optgroup>
+
+							<optgroup label="Advanced Practice">
+							  <option value="">Math</option>
+							  <option value="">Programming</option>
+							  <option value="">Rare Bigrams</option>
+								<option value="">Finger Breakers</option>
+							</optgroup>
 						</select>
 					</label>
 
-					<br>
 					<hr>
-					<br>
 
 					<input class="toggle" id="typing-hand" name="typing-hand" type="checkbox">
 					<label for="typing-hand">
 						<div class="description">Typing Hand</div>
-						<div class="slider neutral"><div class="round text">L</div></div>
+						<div class="slider neutral"><div id="typing-hand-text" class="round text">L</div></div>
 					</label>
 
 					<div class="form-spacer-1"></div>
@@ -847,9 +1035,43 @@
 						  <option value="dvorak">Dvorak</option>
 						  <option value="workman">Workman</option>
 					  	<option value="chordak">Chordak</option>
-					  	<option value="other">Other</option>
+					  	<option value="other">Other...</option>
 						</select>
 					</label>
+
+					<div id="custom-layout" class="left">
+						<div class="row above">
+							<div class="key set">TAB</div>
+							<div class="key set">Q</div>
+							<div class="key"></div>
+							<div class="key"></div>
+							<div class="key"></div>
+							<div class="key"></div>
+						</div>
+						
+						<div class="row home">
+							<div class="key set">CAPS</div>
+							<div class="key"></div>
+							<div class="key set">R</div>
+							<div class="key set">S</div>
+							<div class="key set">T</div>
+							<div class="key set">D</div>
+						</div>
+						
+						<div class="row below">
+							<div class="key set">SHIFT</div>
+							<div class="key set">Z</div>
+							<div class="key set">X</div>
+							<div class="key"></div>
+							<div class="key set">V</div>
+							<div class="key set">B</div>
+						</div>
+
+						<div class="row gutter left">
+							<div class="key num set">&#x2318;</div>
+							<div class="key thumb set">SPACE</div>
+						</div>
+					</div>
 					
 					<label for="simulate-layout" class="form-container">
 						<div>Simulate Layout</div>
@@ -909,7 +1131,7 @@
 
 			<div class="content">
 				<div id="trainer" class="trainer">
-	<!-- 				<div class="flex-item" style="margin-bottom: 0.5em">	
+					<div class="flex-item" style="margin-bottom: 0.5em">	
 						<div class="indicator" style="width:5em">
 							<span id="speed">-</span> wpm
 						</div>
@@ -925,14 +1147,15 @@
 								<div id="practice" class="flex-item-practice"></div>
 							</div>
 						</div>
-					</div> -->
-					<div id="pre" class="text2"></div>
-					<div id="text" class="text2">Aa Bb Cc De Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz The quick brown fox jumps over the lazy dog. 01234567890 l1 0O Il</div>
-					<div id="post" class="text2">this is the upcoming line</div>
+					</div>
+					<!-- <div id="pre" class="text2">Aa Bb Cc De Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz The quick brown fox jumps over the lazy dog. 01234567890 l1 0O Il<br></div> -->
+					<div id="text" class="text2">...</div>
+					<!-- <div id="practice" class="text2"></div> -->
+					<div id="practice" class="text2">this is the upcoming line</div>
 
 				</div>
 
-				<div class="keyboard">
+				<div id="keyboard">
 					<div class="inner">
 						<div class="row">
 				  			<div class="key text">ESC</div>
@@ -988,8 +1211,7 @@
 				  			<div class="key">#...</div>
 						</div>
 
-						<div class="overlay">
-						</div>
+						<div id="overlay"></div>
 					</div>
 				</div>
 			</div>
@@ -1261,7 +1483,7 @@
 
 		<!-- <div>site design &copy;2017</div> -->
 		<footer>
-			<div class="mast">
+			<div class="masthead">
 				<span>CHORDAK</span>
 			</div>
 			<div class="menu">
@@ -1273,38 +1495,58 @@
 		</footer>
 
 		<script>
-			var sidebarLeft = document.getElementById("sidebar-left");
-			sidebarLeft.addEventListener("touch", openSidebar);
-			sidebarLeft.addEventListener("click", openSidebar);
+			function $(s) { 
+				if (s[0] == '.') {
+					return document.getElementsByClassName(s.substr(1));
+				}
+				return document.getElementById(s);
+			}
 
-			var sidebarRight = document.getElementById("sidebar-right");
-			sidebarRight.addEventListener("touch", openSidebar);
-			sidebarRight.addEventListener("click", openSidebar);
+			// alert($('custom-layout').offsetHeight);
 
+			var sidebarLeft = $('sidebar-left');
+			sidebarLeft.addEventListener('click', openSidebar);
+			//sidebarLeft.addEventListener('touch', openSidebar);
+
+			var sidebarRight = $('sidebar-right');
+			sidebarRight.addEventListener('click', openSidebar);
+			
+			var openedSidebar = null;
 				function openSidebar(e) {
-					e.currentTarget.classList.add('open');
-					e.currentTarget.addEventListener("touch", touchFunc);
+					if(openedSidebar != null) {
+						openedSidebar.classList.remove('open');
+						openedSidebar = null;	//redundant but explicit
+					}
+					openedSidebar = e.currentTarget;
+					openedSidebar.classList.add('open');
+					
+					e.stopPropogation;
+					document.body.addEventListener('click', closeSidebar);
+					e.stopPropogation;
 				}
 
-		    var radios = document.settings.hand;
-		    for(var i = 0; i < radios.length; i++) {
-		    	radios[i].addEventListener("change", changeHandler);
-		    }
+				function closeSidebar(e) {
+					var id = e.target.id;
+					if(openedSidebar == e.target || openedSidebar.contains(e.target)) {
+						//alert('click was on/in sidebar, do not close');
+					} else {
+						//alert('click was not on/in open sidebar, close now');
+						openedSidebar.classList.remove('open');
+					}
+				}
 
-		    function changeHandler(event) {
-		    	var keyboard = document.getElementsByClassName('keyboard')[0];
-				var ovelay = document.getElementsByClassName('keyboard-overlay')[0];
+		    $('typing-hand').addEventListener("change", switchHand);
 
-
-		    	var hand = event.target.value;
-		    	var to = (hand == 'left') ? 'left' : 'right';
-		    	var from = (hand == 'left') ? 'right' : 'left';
-
-		    	keyboard.classList.remove(from);
-		    	keyboard.classList.add(to);
-
-		    	overlay.classList.remove(from);
-		    	overlay.classList.add(to);
+		    function switchHand(e) {
+		    	var keyboard = $('keyboard');
+					var overlay = $('overlay');
+		    	let [remove, add, text] = e.currentTarget.checked ? 
+		    			['left', 'right', 'R'] : ['right', 'left', 'L'];
+	    		keyboard.classList.remove(remove);
+	    		overlay.classList.remove(remove);
+	    		keyboard.classList.add(add);		    	
+	    		overlay.classList.add(add);
+		    	$('typing-hand-text').innerHTML = text;
 		    }
 		    
 			//macbook pro: 68 cN is enough to activate any key; some are softer because of wear from frequent use ('A', 54 cN) or replacement ('D', 48 cN)
