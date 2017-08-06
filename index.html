@@ -4,25 +4,19 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="Content-Language" content="en">
 		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-		<title>chordak demo v2</title>
+		<title>Chordak</title>
 
 		<style>
 			:root {
 				--color-neutral: #fff;
 				--color-neutral-glow: #bbb;
-				--color-muted: #ccc;
+				--color-muted: #ddd;
 				--color-correct: #8eeef6;
 				--color-correct-glow: #8eeef6;
 				--color-error: #e4648a;
 				--color-error-glow: #e4648a;
-				--color-accent: #7bd507; /*orange #e38563;*/ /*green #96E363;*/
-				/*--font-mono: "Courier Prime Sans", courier, monospace;*/
-				/*--font-mono: "Courier Final Draft", courier, monospace;*/
-				/*--font-mono: "Courier Little Foot", courier, monospace;*/
-				/*--font-mono: "Inconsolata", courier, monospace;*/
-				/*--font-mono: "InconsolataGo", courier, monospace;*/
-				/*--font-mono: "Consolas", courier, monospace;*/
-				--font-mono: "Anonymous Pro", monospace;
+				--color-accent: #7bd507;/*orange #e38563; green #96E363;*/
+				--font-mono: 'Menlo', courier, monospace;
 				--font-sans: "Open Sans", courier;
 				--font-block: "Open Sans", courier;
 				--font-brand: "Open Sans", courier;
@@ -40,52 +34,44 @@
 
 			html {
 				font-size:62.5%; /* 1rem = 10 css pixels */
+				background: #111;
 			}
 
 			body {
 				width: 100%;
 				height: 100%;
 				margin:0;
-			  padding:0;
+				padding:0;
 			  background: #111;
-			  font-family: times;
-  			/*border: 1px solid var(--color-debug-1);*/
+			  position: fixed;
+  			/*background-color: var(--color-debug-1);*/
 			}
 			
-			.main {
-				width: 100%;
-			  height: calc(100% - 8.8rem);
-					display: -webkit-flex;
-				display: flex;
-			  justify-content:flex-start;
-			  position: absolute;			  	
-			  
-			  flex:1 1;
-			  /*border: 1px solid var(--color-debug-1);*/
-			}
-
 			footer {
 				width: 100%;
 				height: 6rem;
+
 					display: -webkit-flex;
 				display: flex;
 				justify-content: flex-start;
-				position: absolute;
+
+				position: fixed;
 				bottom:0;
 				margin-bottom: 2.5rem;
+					
 				border-width: 0.1rem 0;
 				border-style: solid;
-				border-color: #222
+				border-color: #222;
 			}
 
-			footer .masthead {
+			footer .name {
 				flex: 0 0 14rem;
 				position: relative;
 				text-align: right;
-				background: #222; /*#1f1f1f;*/
+				background: #1f1f1f;
 			}
 
-			footer .masthead span {
+			footer .name span {
 				position: absolute;
 				bottom: 0.7rem;
 				right: 1rem;
@@ -108,121 +94,131 @@
 				line-height: 1.3rem;
 				text-transform: uppercase;
 				color:#aaa;
+				background-color: #111;
 			}
 
-			/* sidebars ------------------------------------------------------------ */
+			footer a {
+				text-decoration: none;
+				color:#ddd;
+			}
 
-			.sidebar {
-				min-width: 2.5rem;
-				max-width: 2.5rem;
-				/*height: calc(100% - 6rem);*/
-				height: 100vh;
-				flex: 1 0 15rem;
-				position: relative;
-				padding-bottom: -10rem;
-  			color: #ddd;
-  			overflow: hidden;
+			/* asides --------------------------------------------- */
+
+			aside {
+				width: 2.5rem;
+				height: 100%;
+				position: fixed;
+				top:0;
+				bottom:0;
+  			color: var(--color-muted);
   			z-index: 2;
-				/*border: 1px solid var(--color-debug-4);*/
 			}
 
-			.sidebar.left {
+			aside.left {
+				left: 0;
 				padding-right: 2.5rem;
   			font-family: var(--font-sans);
   			font-size: 1.2rem;
-  			transition: max-width 0.3s ease,min-width 0.3s ease,margin-right 0.3s ease;
+  			transition: width 0.3s ease;
 			}
 
-			.sidebar.right {
-				/*padding-left: 2.5rem;*/
+			aside.right {
+				right: 0;
 				padding-left: 2.5rem;
-				/*margin-left: -5rem;*/
-				transition: max-width 0.3s ease,min-width 0.3s ease,margin-left 0.3s ease;
+				transition: width 0.3s ease;
 			}
 
-			.sidebar .inner {
+			aside .inner {
+				height: 100%;
 				position: absolute;
 				top:0;
-				width: 20rem;
-				height: 100%;
-				padding-left: 2.5rem;
-				padding-right: 2.5rem;
-          		background-color: #222;
+        background-color: #222;
 				overflow: scroll;
-				/*border: 1px solid yellow;*/ 
 			}
 
-			.sidebar.left .inner {
+			aside.left .inner {
 				right: 2.5rem;
-				  -webkit-box-shadow: 5px 0 5px -2px white;
-        box-shadow: 5px 0 5px -2px black;
+				width: 20rem;
+				padding-left: 2.5rem;
+        padding-right: 2.5rem;
         margin-right: 0;
+				  -webkit-box-shadow: 0.5rem 0 0.5rem -0.2rem black;
+        box-shadow: 0.5rem 0 0.5rem -0.2rem black;
+        
       	transition: margin-right 0.3s ease;
 			}
 
-			.sidebar.right .inner {
+			aside.right .inner {
 				left: 2.5rem;
-				  -webkit-box-shadow: -5px 0 5px -2px black;
-				box-shadow: -5px 0 5px -2px black;
-			}
-
-			.sidebar.left .inner form {
-				/*border: 1px solid green;*/
-			}
-
-			.sidebar.left.open {
-				min-width: 22.5rem;
-				max-width: 22.5rem;
-				margin-right: -20rem;
+				width: 20rem;
+				padding-left: 2.5rem;
+				padding-right: 2.5rem;
+				  -webkit-box-shadow: 0.5rem 0 0.5rem -0.2rem black;
+				box-shadow: 0.5rem 0 0.5rem -0.2rem black;
 				
+				transition: margin-left 0.3s ease;
 			}
 
-			.sidebar.left.open .inner {
+			aside.left.open {
+				width: 22.5rem;
+			}
+
+			aside.left.open .inner {
 				margin-right: -2.5rem;
 			}
 
-			.sidebar.right.open {
-				min-width: 20rem;
-				max-width: 20rem;
-				margin-left: -17.5rem;
-			}
-			.sidebar.right .inner .chords {
-				/*border: 1px solid green;*/
-				height: 100%;
-
+			aside.right.open {
+				width: 22.5em;
 			}
 
-			.sidebar .icon {
+			aside.right.open .inner {
+				margin-left: -2.5rem;
+			}
+
+			aside .icon {
+				width:1.6rem;
+				height:1.6rem;
 				position: absolute;
-				width:1.5rem;
-				height:1.5rem;
-				opacity: 0.9;
-
+				
 			}
-			.sidebar.left .icon {
+			aside.left .icon {
 				right: 3rem;
-				bottom: 0.6rem;
-				transition: right 0.3s ease;
+				bottom: calc(50% - 0.8rem);
+				opacity: 0.8;
+				transition: opacity 0.3s ease;
 			}
 
-			.sidebar.left.open .icon {
-				right: 0.5rem;
-				bottom: 0.6rem;
+			aside.right .icon {
+				left: 0.5rem;
+				bottom: 50%;
+				font-size: 2rem;
+				opacity: 0.8;
+				transition: opacity 0.3s ease;
 			}
 
-			.sidebar.right .icon {
-				left: 0.3rem;
-				font-size: 1.6rem;
-				bottom: 1rem;
+			aside.left.open .icon {
+				opacity: 0;
 			}
 
-			/* main content ------------------------------------------------------------ */
+			aside.right.open .icon {
+				opacity: 0;
+				/*right: 0.5rem;*/
+			}
 
-			.content {
-				/*flex: 1 1 55vw;*/
-				/*flex: 1 1 auto;*/
-				/*min-width: 40rem;*/
-				/*min-width: 60vw;*/
+			/* main content ----------------------------------------- */
+
+			main {
+				width: 100%;
+			  height: calc(100% - 8.7rem);
+			  	display: -webkit-flex;
+				display: flex;
+				flex-direction: column;
+			  justify-content: center; /*flex-start;*/
+			  align-items: center;
+			  /*background-color: var(--color-debug-3);*/
+			}
+
+			/*.content {
 				overflow: hidden;
 				width: 100%;
 				margin: 0 -5rem 0 -5rem;
@@ -232,20 +228,87 @@
 				flex-direction: column;
 				justify-content: flex-start;
 				align-items: center;
+			}*/
+
+			#paper {
+					display: -webkit-flex;
+				display: flex;
+				justify-content: center;
+				width: calc(100%-5rem);
+				height: 20rem;
+				/*background-color: #222*/
+				border-bottom: 1px solid #000;
+				margin: 0 2.5rem 1rem 2.5rem;
+
+				/*  -webkit-box-shadow: 0.5rem 0 0.5rem -0.2rem black;*/
+        /*box-shadow: inset 0 -0.5rem 1rem -0.5rem black;*/
 			}
 
-			.trainer {
+			#paper .left {
+				flex: 0 0 10rem;
+				height: 100%;
+					background: -webkit-linear-gradient(176deg, 
+					rgba(0,0,0,1) 2%,
+					rgba(0,0,0,0) 14%);
+			}
+
+			#paper .center {
+				flex: 0 1 90rem;
+				width: 90rem;
+				height: 100%;
 				/*border: 1px solid red;*/
-				flex: 1 1 auto;
-				min-height: 15rem;
-				max-height: 30rem;
+				/*background-color: #252525;*/
+				/*box-shadow: -0rem -0.2rem 0.5rem #000;*/
+
+				/*background: -webkit-linear-gradient(top, 
+					rgba(3,3,3,1.0) 0%,
+					rgba(20,20,20,1.0) 100%);*/
+
+				background: -webkit-linear-gradient(top, 
+				rgba(15,15,15,1.0) 0%,
+				rgba(20,20,20,1.0) 100%);
+
+					display: -webkit-flex;
+				display: flex;
+				justify-content: center;
+				align-content: center;
+
+			}
+
+			#paper .center div {
+				width: 65rem;
+				height: 15rem;
+				/*background-color: red;*/
+
+				color:#ccc;
+				margin:auto;
+				font-size: 1.6rem;
+				font-family: var(--font-mono);
+			}
+
+			#paper .right {
+				flex: 0 0 10rem;
+				height: 100%;
+				background: -webkit-linear-gradient(-176deg, 
+					rgba(0,0,0,0) 88%,
+					rgba(0,0,0,1) 98%);
+				/*border: 1px solid blue;*/
+			}
+
+
+			.page {
+				/*border: 1px solid red;*/
+				/*flex: 1 1 auto;*/
+				/*min-height: 15rem;*/
+				/*max-height: 30rem;*/
 				color:#eee;
 				/*width: 50rem;*/
 				font-size: 1.4em;
 				/*max-width: 60rem;*/
 				width: calc(100% - 10rem);
-				/*border:1px solid green;*/
 				text-align: center;
+
+				display: none;
 			}
 
 /*			.practice {
@@ -287,77 +350,55 @@
 			#pre {
 				transform: scale(0.95, 0.95);
 				opacity: 0.9;
-
-				-webkit-transform: rotateX(60deg); /* Safari */
- 				transform: rotateX(60deg) scale(0.95, 0.95);
- 				display: none;
 			}
 
 			#post {
 				transform: scale(0.95, 0.95);
 				opacity: 0.4;
-				display: none;
 			}
 
 			.text2 {
 				resize: none;
 				/*width: 100%;*/
 				font-family: var(--font-mono);
-				font-size: 1.6rem;
+
+				font-size: 1.8rem;
 				line-height: 3rem;
-				height: 9rem;
+				/*height: 9rem;*/
 				overflow: hidden;
 				border: none;
-				/*padding: 0 1rem 0 1rem;
-
-				max-width: 80.0rem;
-				width: 100%;
-				text-align: left;
-				margin: 8rem auto 0;
-
-				/*background: white;
-				color: black;*/
-
-				/*background: #191919;*/
 				color: #ddd;
 				/*courier font at 1.5rem: */
 				/*width: 72.01rem;*/ /*minimum size for 80 chars*/
 				/*width: 72.91rem;*/ /*maximum size for 80 chars*/
 				/*padding left & right does not effect width calc*/
 				/*padding top & bottom DOES effect height calc*/
+				background-color: var(--color-debug-1);
 			}
 			
-			/* keyboard ------------------------------------------------------------ */
+			/* keyboard --------------------------------------------- */
 
 			#keyboard {
-				flex: 1 1 auto;
-				max-width: 84rem;
+				width: 84rem;
 				min-height: 26rem;
-				overflow: hidden;
-				/*border: 0.1rem solid green;*/
-				font-size: 1rem;
-			}
-			
-			#keyboard .inner {
-				display: -webkit-flex;
+				flex: 0 0;
+					display: -webkit-flex;
 				display: flex;
-
-				min-width: 50rem;
-				max-width: 84rem;
-
-				position: relative;				
-				width: calc(100vw - 10.5rem);
-				height:100%;
-				/*margin: auto;*/
-					
 				flex-direction: column;
 				justify-content: center;
+				font-size: 1rem;
+				
+				/*position: relative;*/
 				overflow: hidden;
-				/*border: 0.1rem solid red;*/
-			}
+				/*background-color: green;*/
+				/*border-top: 2px solid #111;*/
 
+				  /*-webkit-box-shadow: 0.5rem 0 0.5rem -0.2rem black;*/
+        /*box-shadow: 0 -0.5rem 1rem 0 black;*/
+			}
+			
 			#keyboard.left {
-				width: 50rem;
+				width: 40rem;
 				font-size: 1rem;
 			}
 			#keyboard.right {
@@ -365,7 +406,7 @@
 				font-size: 1rem;
 			}
 
-			#keyboard.left .inner {
+			/*#keyboard.left .inner {
 				flex: 1 0 84rem;
 				min-width: 50rem;
 				max-width: 84rem;
@@ -376,9 +417,9 @@
 				width: 50rem;
 				margin-left: -35rem;
 				padding-right: 35rem;
-			}
+			}*/
 
-			#keyboard .inner #overlay {
+			#keyboard #overlay {
 				position: absolute;
 				width: 100%;
 				height: 100%;
@@ -386,24 +427,24 @@
 				/*border: 0.1rem solid yellow;*/
 			}
 
-			#keyboard.left .inner #overlay {
+			#keyboard.left #overlay {
 				background: -webkit-linear-gradient(22deg, 
 					rgba(17,17,17,0) 60%,
 					rgba(17,17,17,1) 82%);
 			}
-			#keyboard.right .inner #overlay {
+			#keyboard.right #overlay {
 				margin-left: 35rem;
 				background: -webkit-linear-gradient(-158deg, 
 					rgba(17,17,17,0) 81%,
 					rgba(17,17,17,1) 93%);
 			}
 
-			#keyboard .inner .row {
+			#keyboard .row {
 					display: -webkit-flex;
 				display: flex;
 			}
 
-			#keyboard .inner .row .key {
+			#keyboard .row .key {
 				flex: 0 0 4.8rem;
 				height: 4.8rem;
 				font-size: 1.8rem;
@@ -418,13 +459,14 @@
 				border-color: #555;
 				color: #bbb;
 				margin: 0.4rem;
+				font-family: "Open Sans";
 			}
 
-			#keyboard .inner .row .key.text {
+			#keyboard .row .key.text {
 				font-size: 0.9rem;
 			}
 
-			#keyboard .inner .row .key.pressed {
+			#keyboard .row .key.pressed {
 	 		    -webkit-transform: scale(0.95, 0.95);
 			    -moz-transform: scale(0.95, 0.95);
 			    -ms-transform: scale(0.95, 0.95);
@@ -435,7 +477,7 @@
 				box-shadow: 0rem 0rem 1.8rem #bbb;
 			}
 
-			#keyboard .inner .row .key.pressed-wrong {
+			#keyboard .row .key.pressed-wrong {
 	 		    -webkit-transform: scale(0.95, 0.95);
 			    -moz-transform: scale(0.95, 0.95);
 			    -ms-transform: scale(0.95, 0.95);
@@ -446,7 +488,7 @@
 				box-shadow: 0rem 0rem 1.8rem #E4648A;
 			}
 
-			#keyboard .inner .row .key.pressed-correct {
+			#keyboard .row .key.pressed-correct {
 	 		    -webkit-transform: scale(0.95, 0.95);
 			    -moz-transform: scale(0.95, 0.95);
 			    -ms-transform: scale(0.95, 0.95);
@@ -457,151 +499,197 @@
 				box-shadow: 0rem 0rem 1.8rem #8EEEF6;
 			}
 
-			#keyboard .inner .row .key.caps {
+			#keyboard .row .key.caps {
 				margin-left: 2.5rem;
 			}
-			#keyboard .inner .row .key.shift {
+			#keyboard .row .key.shift {
 				margin-left: 5.4rem;
 			}
-			#keyboard .inner .row .key.command {
+			#keyboard .row .key.command {
 				margin-left: 17.4rem;
 			}
-			#keyboard .inner .row .key.space {
+			#keyboard .row .key.space {
 				flex: 0 0 28.8rem;
 				border-radius: 2.5rem;
 			}
 
-			#keyboard .inner .row .key.stack {
+			#keyboard .row .key.stack {
 				font-size: 1.6rem;
 				line-height: 1.8rem;
 				align-content: center;
 			}
 
-			#keyboard .inner .row .itsy {
+			#keyboard .row .itsy {
 				line-height: 50%;
 				font-size: 150%;
 			}
 
-			/* chords legend ------------------------------------------------------------ */
+			/* chords legend ---------------------------------------- */
 
-			.legend {
+			#nameless {
+				width:20rem;
+				height:10rem;
+				margin: 0.4rem 0 0.6rem 0;
+				/*background-color: green;*/
+				position: relative;
+			}
+			#nameless .legend {
+				width: 6rem;
+				height: 10rem;
+			}
+			#nameless .legend img {
+				width: 6rem;
+				height: 100%;
 				position: absolute;
-				width:10rem;
-				height: 12rem;
-
-				left:-10.2rem;
-				bottom: 0;
-				
-				color:#eee;
-				/*font-family: ;*/
-				border: 0.1rem solid #222;
+				top: 0;
+				left: 0;
+				opacity: 0.9;
 			}
 
-			.legend div {
-				position: absolute;
+			#nameless .legend div {
+				font-family: var(--font-mono);
 				font-size: 1.3rem;
-				font-style: italic;
-				color: #ccc;
+				position: absolute;
 			}
-
-			.legend .thumb {
-				top:4.4rem;
-				left: 7.6rem;
+			#nameless .legend .pinkie {
+				top:1.4rem;
+				left:0.4rem;
 			}
-
-			.legend .index {
+			#nameless .legend .ring {
+				top:0.9rem;
+				left:1.3rem;
+			}
+			#nameless .legend .middle {
 				top:0.4rem;
-				left: 5.1rem;
+				left:2.4rem;
+			}
+			#nameless .legend .index {
+				top:1.2rem;
+				left:3.4rem;
+			}
+			#nameless .legend .thumb {
+				top:4.1rem;
+				left:5rem;
 			}
 
-			.legend .middle {
-				top:0rem;
-				left: 3.7rem;
+			#nameless .legend.right img {
+				-moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+			}
+			#nameless .legend.right .pinkie { left:4.8rem; }
+			#nameless .legend.right .ring { left:3.7rem; }
+			#nameless .legend.right .middle { left:2.8rem; }
+			#nameless .legend.right .index { left:1.7rem; }
+			#nameless .legend.right .thumb { left:0.1rem; }
+
+			#nameless .info {
+				width: 11.5rem;
+				height: 8rem;
+				padding: 1rem;
+				position: absolute;
+				top: 0;
+				right: 0;
+				font-family: var(--font-sans);
+				font-size: 1.2rem;
+				text-align: left;
+				/*background-color: yellow;*/
+
 			}
 
-			.legend .ring {
-				top:0.6rem;
-				left: 2.1rem;
+			/* chords ----------------------------------------------- */
+
+
+			#chords {
+				width: 20rem;
+				/*height: calc(100% - 3rem);*/
+				/*margin-top: 1.5rem;*/
+				/*background-color: var(--color-debug-1);*/
 			}
 
-			.legend .pinkie {
-				top:2.0rem;
-				left: 0.8rem;
-			}
-
-			/* chords ------------------------------------------------------------ */
-
-			.chord {
+			#chords div {
+				width: 100%;
 					display: -webkit-flex;
 				display: flex;
-				flex-direction: row;
-				font-size: 1.2rem;
-				/*width: 100%;*/
-				/*line-height: 2rem;*/
-				/*min-height: 1.2rem;*/
-			}
-
-			.chord div {
-				text-align: center;
-				color: #bbb;
-				font-family: Helvetica;
-				min-width: 2.2rem;
-				border-top: 1px solid #1e1e1e;
-				border-right: 1px solid #1e1e1e;
-			}
-
-			.chord .c {
-				font-style: italic;
+				justify-content: space-between;
+				font-family: var(--font-mono);
 				font-size: 1.3rem;
-				/*line-height: 1.8rem;*/
-				font-family: 'PT mono';
-				min-width: 4.8rem;
+				border-bottom: 0.1rem solid #444;
+			}
+
+			#chords div span {
+				width: 3rem;
+				height: 1.8rem;
+				line-height: 1.8rem;
+				height: 100%;
+				
+				
+				text-align: center;
+				color: #ddd;
+				overflow: hidden;
+			}
+
+			#chords div .c {
+				text-align: left;
+				width: 4.5rem;
+				font-style: italic;
+				padding-left: 0.5rem;
 				order: 1;
 			}
-
-			.chord .l {
-				color: #fff;
+			#chords div .l {
 				order: 2;
+				background-color: #333;
 			}
-			.chord .s {
+			#chords div .s {
 				order: 5;
 			}
-			.chord .b {
+			#chords div .b {
 				order: 4;
 			}
-			.chord .n {
+			#chords div .n {
 				order: 3;
 			}
 
-			.chord.header div {
-				font-style: normal;
-				text-align: center;
-				text-transform: uppercase;
-				font-family: Helvetica;
-				font-size: 0.9rem;
-				color:#bbb;
-				/*font-family: ERROR*/
+			#chords .header span {
+				background-color: #444;
+				font-family: var(--font-sans);
+				font-size: 1rem;
 			}
 
-			/*.chord.header .c {
-				font-style: normal;
-				background: red;
-				min-width: 4.5rem;
+			#chords .header .c {
+				font-style: initial;
+				text-align: center;
+				padding: 0;
+				padding:0 0.25rem;
+			}
+
+
+/*			#chord-t .l {
+				font-family: helvetica;
+				font-size: 2rem;
+				line-height: 1.7rem;
+				color:red;
+			}
+
+			#chord-t .l {
+				font-family: helvetica;
+				font-size: 2rem;
+				line-height: 1.7rem;
+				color:red;
+			}
+
+			#chord-prm .l {
+				font-size: 3rem;
+				line-height: 1.7rem;
+			}
+
+			#chord-rmi .l {
+				font-size: 1.8rem;
+				line-height: 2rem;
 			}*/
 
-/*			.chord.header { order:1; }
-			.chord.r { order:2; }
-			.chord.pr { order:3; }
-			.chord.pt { order:4; }*/
-
-			
-
-			a {
-				text-decoration: none;
-				color:#ddd;
-			}
-
-			/* forms & custom inputs --------------------------------------------------- */
+			/* custom inputs ---------------------------------------- */
 
 			.input-group {
 						display: -webkit-flex;
@@ -893,597 +981,116 @@
 		</style>
 	</head>
 
-	<!-- big hand choosers
-	<form name="settings">
-<div class="input-group">
-	<input id="hand-left" name="hand" type="radio" value="left"> 
-	<label class="item" for="hand-left"><span>L</span></label>
-
-	<input id="hand-right" name="hand" type="radio" value="right"> 
-	<label class="item" for="hand-right"><span>R</span></label>
-</div> -->
-
 	<body>
-		<div class="main">
-			<div id="sidebar-left" class="sidebar left">
-				<div class="inner">
-					<label for="simulate-layout" class="form-container">
-						<div>Typing Mode</div>
-						<select id="simulate-layout" name="simulate-layout" style="width:9rem;">
-						  <option value="" selected>Lessons</option>
-						  <option value="">Speed Test</option>
-						  <option value="">Copy Text</option>
-						  <option value="">Blank</option>
-						</select>
-					</label>
-
-					<label for="simulate-layout" class="form-container">
-						<div>Lesson</div>
-						<select id="simulate-layout" name="simulate-layout" style="width:13rem;">
-							<optgroup label="Alphabet">
-								<option value="">o a t e _</option>
-								<option value="">g v w y</option>
-								<option value="">d f k l</option>
-								<option value="">i p q r</option>
-								<option value="">h n s z</option>
-								<option value="">b c m u</option>
-								<option value="">x&nbsp;&nbsp;j&nbsp;&nbsp;,&nbsp;&nbsp;.</option>
-							</optgroup>
-
-							<optgroup label="Practice">
-								<option value="">Common Bigrams</option>
-							  <option value="">Common Trigrams</option>
-							  <option value="">Common Words</option>
-							  <option value="">Pangrams</option>
-								<option value="">abc...</option>
-								<option value="">a b c...</option>
-								<option value="">Random Letters</option>
-								<option value="">Opposite Chords</option>
-							</optgroup>
-
-							<optgroup label="Formatting">
-								<option value="">Navigation</option>
-								<option value="">Return</option>
-								<option value="">Tab</option>
-							</optgroup>
-
-							<optgroup label="Capitals">
-								<option value="">Shift Left</option>
-								<option value="">Shift Right</option>
-								<option value="">Aa Bb Cc...</option>
-								<option value="">Capital Bigrams</option>
-								<option value="">Capital Trigrams</option>
-								<option value="">Capital Words</option>
-								<option value="">Caps Lock</option>
-								<option value="">Acronyms</option>
-							</optgroup>
-
-							<optgroup label="Numerals">
-								<option value="">0 1 2 3</option>
-								<option value="">4 7 9</option>
-								<option value="">5 8 6</option>
-								<option value="">Num Lock*</option>
-								<option value="">123...</option>
-								<option value="">Random Numbers</option>
-								<option value="">Formatted Numbers</option>
-								<option value="">Alphanumeric</option>
-							</optgroup>
-
-							<optgroup label="Brackets">
-								<option value="">( )&nbsp;&nbsp;Round</option>
-								<option value="">[ ]&nbsp;&nbsp;Square</option>
-								<option value="">{ }&nbsp;&nbsp;Curly</option>
-								<option value="">&lt; &gt;&nbsp;&nbsp;Angle</option>
-								<option value="">\ /&nbsp;&nbsp;Slashes</option>
-								<option value="">|&nbsp;&nbsp;Vertical Bar</option>
-							</optgroup>
-
-							<optgroup label="Symbols">
-								<option value="">'&nbsp;&nbsp;Apostrophe</option>
-								<option value="">"&nbsp;&nbsp;Quotes</option>
-								<option value="">;&nbsp;&nbsp;Semicolon</option>
-								<option value="">?&nbsp;&nbsp;Question</option>
-								<option value="">!&nbsp;&nbsp;Exclamation</option>
-								<option value="">_&nbsp;&nbsp;Underscore</option>
-								<option value="">:&nbsp;&nbsp;Colon</option>
-								<option value="">+&nbsp;&nbsp;Plus Sign</option>
-								<option value="">-&nbsp;&nbsp;Hyphen-Minus</option>
-								<option value="">=&nbsp;&nbsp;Equals Sign</option>
-								<option value="">@&nbsp;&nbsp;At Sign</option>
-								<option value="">&amp;&nbsp;&nbsp;Ampersand</option>
-								<option value="">*&nbsp;&nbsp;Asterisk</option>
-								<option value="">%&nbsp;&nbsp;Percent Sign</option>
-								<option value="">#&nbsp;&nbsp;Number Sign</option>
-								<option value="">$&nbsp;&nbsp;Dollar Sign</option>
-								<option value="">^&nbsp;&nbsp;Caret</option>
-								<option value="">~&nbsp;&nbsp;Tilde</option>
-								<option value="">`&nbsp;&nbsp;Grave Accent</option>
-							</optgroup>
-
-							<optgroup label="Shortcuts">
-								<option value="">Command</option>
-								<option value="">Option/Alt</option>
-								<option value="">Control</option>
-								<option value="">Function</option>
-								<option value="">Meta</option>
-							</optgroup>
-
-							<optgroup label="Advanced Practice">
-							  <option value="">Math</option>
-							  <option value="">Programming</option>
-							  <option value="">Rare Bigrams</option>
-								<option value="">Finger Breakers</option>
-							</optgroup>
-						</select>
-					</label>
-
-					<hr>
-
-					<input class="toggle" id="typing-hand" name="typing-hand" type="checkbox">
-					<label for="typing-hand">
-						<div class="description">Typing Hand</div>
-						<div class="slider neutral"><div id="typing-hand-text" class="round text">L</div></div>
-					</label>
-
-					<div class="form-spacer-1"></div>
-
-					<label for="current-layout" class="form-container">
-						<div>Current Layout</div>
-						<select id="current-layout" name="current-layout">
-						  <option value="qwerty">QWERTY</option>
-						  <option value="colemak">Colemak</option>
-						  <option value="dvorak">Dvorak</option>
-						  <option value="workman">Workman</option>
-					  	<option value="chordak">Chordak</option>
-					  	<option value="other">Other...</option>
-						</select>
-					</label>
-
-					<div id="custom-layout" class="left">
-						<div class="row above">
-							<div class="key set">TAB</div>
-							<div class="key set">Q</div>
-							<div class="key"></div>
-							<div class="key"></div>
-							<div class="key"></div>
-							<div class="key"></div>
-						</div>
-						
-						<div class="row home">
-							<div class="key set">CAPS</div>
-							<div class="key"></div>
-							<div class="key set">R</div>
-							<div class="key set">S</div>
-							<div class="key set">T</div>
-							<div class="key set">D</div>
-						</div>
-						
-						<div class="row below">
-							<div class="key set">SHIFT</div>
-							<div class="key set">Z</div>
-							<div class="key set">X</div>
-							<div class="key"></div>
-							<div class="key set">V</div>
-							<div class="key set">B</div>
-						</div>
-
-						<div class="row gutter left">
-							<div class="key num set">&#x2318;</div>
-							<div class="key thumb set">SPACE</div>
-						</div>
-					</div>
-					
-					<label for="simulate-layout" class="form-container">
-						<div>Simulate Layout</div>
-						<select id="simulate-layout" name="simulate-layout">
-							<option value="none">None</option>
-							<option value="chordak" selected>Chordak</option>
-							<option disabled></option>
-							<option value="colemak">Colemak</option>
-							<option value="workman">Workman</option>
-						  <option value="dvorak">Dvorak</option>
-						</select>
-					</label>
-
-					<div class="form-spacer-2"></div>
-					
-					<input class="toggle" id="show-keyboard" name="show-keyboard" type="checkbox" checked>
-					<label for="show-keyboard">
-						<div class="description">Show Keyboard</div>
-						<div class="slider"><div class="round"></div></div>
-					</label>
-
-					<input class="toggle" id="show-hints" name="show-hints" type="checkbox" checked>
-					<label for="show-hints">
-						<div class="description">Show Chord Hints</div>
-						<div class="slider"><div class="round"></div></div>
-					</label>
-
-					<input class="toggle" id="stagger" name="stagger" type="checkbox" checked>
-					<label for="stagger">
-						<div class="description">Stagger Keys</div>
-						<div class="slider"><div class="round"></div></div>
-					</label>
-
-					<input class="toggle" id="sound" name="sound" type="checkbox">
-					<label for="sound">
-						<div class="description">Error Sounds</div>
-						<div class="slider"><div class="round"></div></div>
-					</label>
-
-					<div class="form-container">
-						<div>Font Size</div>
-						<div class="button-holder">
-							<input id="minus-button" type="button" value="-">
-							<input id="plus-button" type="button" value="+">	
-						</div>
-					</div>
-										
+		<main>
+			<div id="paper">
+				<div class="left"></div>
+				<div class="center">
+					<div>
+					<span style="color:#444">Aa Bb Cc De Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv</span>
 					<br>
-
-					<input id="reset-button" name="reset-button" value="Reset &amp; Clear Stored Data" type="button">
-
-					</form>
+					<br>
+					<span style="color:#666">The quick brown fox jumps over </span><span style="color:#ddd">the lazy dog. 0123456789 l1I 0O</span>
+					<br>
+					<br>
+					<span style="color:#bbb">. , ' " ; : ! @ # $ % ^ &amp; * _ + - &ndash; &mdash; = (0) {} [] < > / ? \ | ` ~</span>
+					<br>
+					<br>
+					<span style="color:#aaa"></span>
+					</div>
 				</div>
-				<img class="icon" src="flower-icon.png"/>
-				<!-- <span>&#9835;</span> -->
+				<div class="right"></div>
 			</div>
 
-			<div class="content">
-				<div id="trainer" class="trainer">
-					<div class="flex-item" style="margin-bottom: 0.5em">	
-						<div class="indicator" style="width:5em">
-							<span id="speed">-</span> wpm
-						</div>
-						<div class="indicator" style="width:6em">
-							<span id="timer">0</span> sec
-						</div>
+			<div id="trainer" class="page">
+				<!-- <div class="flex-item" style="margin-bottom: 0.5em">	
+					<div class="indicator" style="width:5em">
+						<span id="speed">-</span> wpm
 					</div>
-
-					<div class="flex-item">
-						<div class="practice">
-							<div class="flex-container-practice">
-								<div id="test" class="flex-item-practice"></div>
-								<div id="practice" class="flex-item-practice"></div>
-							</div>
-						</div>
+					<div class="indicator" style="width:6em">
+						<span id="timer">0</span> sec
 					</div>
-					<!-- <div id="pre" class="text2">Aa Bb Cc De Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz The quick brown fox jumps over the lazy dog. 01234567890 l1 0O Il<br></div> -->
-					<div id="text" class="text2">...</div>
-					<!-- <div id="practice" class="text2"></div> -->
-					<div id="practice" class="text2">this is the upcoming line</div>
+				</div> -->					
 
-				</div>
-
-				<div id="keyboard">
-					<div class="inner">
-						<div class="row">
-				  			<div class="key text">ESC</div>
-				  			<div class="key text">HYPER</div>
-				  			<div class="key text">BRACES</div>
-				  			<div class="key text">MOVE</div>
-				  			<div class="key text">MARKS</div>
-				  			<div class="key text">TAB</div>
-				  			<div class="key text">TAB</div>
-				  			<div class="key text">MARKS</div>
-				  			<div class="key text">MOVE</div>
-				  			<div class="key text">BRACES</div>
-				  			<div class="key text">HYPER</div>
-				  			<div class="key text">ESC</div>
-				  			<div class="key"></div>
-				  			<div class="key"></div>
-						</div>
-						
-						<div class="row">
-				  			<div class="key caps text">DELETE</div>
-				  			<div class="key pressed-wrong"></div>
-				  			<div class="key pressed-wrong"></div>
-				  			<div class="key pressed-correct"></div>
-				  			<div class="key pressed"></div>
-				  			<div class="key">&crarr;</div>
-				  			<div class="key text">RETURN</div>
-				  			<div class="key pressed-wrong"></div>
-				  			<div class="key pressed"></div>
-				  			<div class="key"></div>
-				  			<div class="key pressed-correct"></div>
-				  			<div class="key text">DELETE</div>
-				  			<div class="key return text"></div>
-						</div>
-
-						<div class="row">
-				  			<div class="key shift">&#x21E7;</div>
-				  			<div class="key text">FN</div>
-				  			<div class="key text">CTRL</div>
-				  			<div class="key ">&#8997;</div>
-				  			<div class="key">&#x2318;</div>
-				  			<div class="key">&#x21E7;</div>
-				  			<div class="key">&#x2318;</div>
-				  			<div class="key">&#8997;</div>
-				  			<div class="key text">CTRL</div>
-				  			<div class="key text">FN</div>
-				  			<div class="key">&#x21E7;</div>
-				  			<div class="key"></div>
-						</div>
-
-						<div class="row">
-				  			<div class="key command">#...</div>
-				  			<div class="key pressed space"></div>
-				  			<div class="key">#...</div>
-						</div>
-
-						<div id="overlay"></div>
-					</div>
-				</div>
-			</div>
-
-				<!-- <div class="legend">
-					<div class="legend-inner">
-						<img src="temp-hand.png"/>
-						<div class="thumb">t</div>
-						<div class="index">i</div>
-						<div class="middle">m</div>
-						<div class="ring">r</div>
-						<div class="pinkie">p</div>
+				<!-- <div class="practice">
+					<div class="flex-container-practice">
+						<div id="test" class="flex-item-practice"></div>
+						<div id="practice" class="flex-item-practice"></div>
 					</div>
 				</div> -->
 
-				<div id="sidebar-right" class="sidebar right">
-					<div class="inner">
-						<div class="chords">
-							<div class="chord header">
-								<div class="c">chord</div>
-								<div class="l"></div>
-								<div class="s">sym</div>
-								<div class="b">bkt</div>
-								<div class="n">num</div>
-							</div>
-
-							<div class="chord r">
-								<div class="c">r</div>
-								<div class="l">A</div>
-								<div class="s">;</div>
-								<div class="b">/</div>
-								<div class="n">2</div>
-							</div>
-
-							<div class="chord pr">
-								<div class="c">p&#x00B7;r</div>
-								<div class="l">B</div>
-								<div class="s">@</div>
-								<div class="b">|</div>
-								<div class="n">4</div>
-							</div>
-
-							<div class="chord pt">
-								<div class="c">p&#x00B7;t</div>
-								<div class="l">C</div>
-								<div class="s">_</div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord it">
-								<div class="c">i&#x00B7;t</div>
-								<div class="l">D</div>
-								<div class="s">=</div>
-								<div class="b">{</div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord i">
-								<div class="c">i</div>
-								<div class="l">E</div>
-								<div class="s">!</div>
-								<div class="b">)</div>
-								<div class="n">0</div>
-							</div>
-
-							<div class="chord ir">
-								<div class="c">i&#x00B7;r</div>
-								<div class="l">F</div>
-								<div class="s">$</div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord tm">
-								<div class="c">t&#x00B7;m</div>
-								<div class="l">G</div>
-								<div class="s"></div>
-								<div class="b">&gt;</div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord rt">
-								<div class="c">r&#x00B7;t</div>
-								<div class="l">H</div>
-								<div class="s">-</div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord mi">
-								<div class="c">m&#x00B7;i</div>
-								<div class="l">I</div>
-								<div class="s">*</div>
-								<div class="b">[</div>
-								<div class="n">6</div>
-							</div>
-
-							<div class="chord mit">
-								<div class="c">m&#x00B7;i&#x00B7;t</div>
-								<div class="l">J</div>
-								<div class="s"></div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord ip">
-								<div class="c">i&#x00B7;p</div>
-								<div class="l">K</div>
-								<div class="s">~</div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord im">
-								<div class="c">i&#x00B7;m</div>
-								<div class="l">L</div>
-								<div class="s">^</div>
-								<div class="b">]</div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord pm">
-								<div class="c">p&#x00B7;m</div>
-								<div class="l">M</div>
-								<div class="s">&amp;</div>
-								<div class="b"></div>
-								<div class="n">7</div>
-							</div>
-
-							<div class="chord rm">
-								<div class="c">r&#x00B7;m</div>
-								<div class="l">N</div>
-								<div class="s">:</div>
-								<div class="b"></div>
-								<div class="n">5</div>
-							</div>
-
-							<div class="chord p">
-								<div class="c">p</div>
-								<div class="l">O</div>
-								<div class="s">"</div>
-								<div class="b">/</div>
-								<div class="n">3</div>
-							</div>
-
-							<div class="chord mr">
-								<div class="c">m&#x00B7;r</div>
-								<div class="l">P</div>
-								<div class="s">%</div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord mp">
-								<div class="c">m&#x00B7;p</div>
-								<div class="l">Q</div>
-								<div class="s">`</div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord mt">
-								<div class="c">m&#x00B7;t</div>
-								<div class="l">R</div>
-								<div class="s">+</div>
-								<div class="b">&lt;</div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord ri">
-								<div class="c">r&#x00B7;i</div>
-								<div class="l">S</div>
-								<div class="s"></div>
-								<div class="b"></div>
-								<div class="n">8</div>
-							</div>
-
-							<div class="chord m">
-								<div class="c">m</div>
-								<div class="l">T</div>
-								<div class="s">?</div>
-								<div class="b">(</div>
-								<div class="n">1</div>
-							</div>
-
-							<div class="chord pi">
-								<div class="c">p&#x00B7;i</div>
-								<div class="l">U</div>
-								<div class="s">#</div>
-								<div class="b"></div>
-								<div class="n">9</div>
-							</div>
-
-							<div class="chord tp">
-								<div class="c">t&#x00B7;p</div>
-								<div class="l">V</div>
-								<div class="s"></div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord ti">
-								<div class="c">t&#x00B7;i</div>
-								<div class="l">W</div>
-								<div class="s"></div>
-								<div class="b">}</div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord rmt">
-								<div class="c">r&#x00B7;m&#x00B7;t</div>
-								<div class="l">X</div>
-								<div class="s"></div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord tr">
-								<div class="c">t&#x00B7;r</div>
-								<div class="l">Y</div>
-								<div class="s"></div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-							
-							<div class="chord rp">
-								<div class="c">r&#x00B7;p</div>
-								<div class="l">Z</div>
-								<div class="s"></div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord t">
-								<div class="c">t</div>
-								<div class="l">&#x2423;</div>
-								<div class="s">'</div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord prm">
-								<div class="c">p&#x00B7;r&#x00B7;m</div>
-								<div class="l">.</div>
-								<div class="s"></div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-
-							<div class="chord rmi">
-								<div class="c">r&#x00B7;m&#x00B7;i</div>
-								<div class="l">,</div>
-								<div class="s"></div>
-								<div class="b"></div>
-								<div class="n"></div>
-							</div>
-						</div>
-
-						<span class="icon">&#9835;</span>
-						<!-- <img class="icon" src="flower-icon.png"/> -->
-					</div>
-					<span style="color:#fff">
-						keep visible
-					</span>
+				<div id="pre" class="text2">
+					The line that was just typed.
 				</div>
-			</div>
-		</div>
+				<div id="text" class="text2">
+					Aa Bb Cc De Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+				</div>
+				<div id="practice" class="text2">
+					The quick brown fox jumps over the lazy dog. 01234567890 l1 0O Il
+				</div>
+			</div> <!-- trainer -->
 
-		<!-- <div>site design &copy;2017</div> -->
+			<div id="keyboard">
+				<div class="row">
+	  			<div class="key text">ESC</div>
+	  			<div class="key text">HYPER</div>
+	  			<div class="key text">BRACES</div>
+	  			<div class="key text">MOVE</div>
+	  			<div class="key text">MARKS</div>
+	  			<div class="key text">TAB</div>
+	  			<div class="key text">TAB</div>
+	  			<div class="key text">MARKS</div>
+	  			<div class="key text">MOVE</div>
+	  			<div class="key text">BRACES</div>
+	  			<div class="key text">HYPER</div>
+	  			<div class="key text">ESC</div>
+	  			<div class="key"></div>
+	  			<div class="key"></div>
+				</div>
+				
+				<div class="row">
+		  		<div class="key caps text">DELETE</div>
+	  			<div class="key pressed-wrong"></div>
+	  			<div class="key pressed-wrong"></div>
+	  			<div class="key pressed-correct"></div>
+	  			<div class="key pressed"></div>
+	  			<div class="key">&crarr;</div>
+	  			<div class="key text">RETURN</div>
+	  			<div class="key pressed-wrong"></div>
+	  			<div class="key pressed"></div>
+	  			<div class="key"></div>
+	  			<div class="key pressed-correct"></div>
+	  			<div class="key text">DELETE</div>
+	  			<div class="key return text"></div>
+				</div>
+
+				<div class="row">
+	  			<div class="key shift">&#x21E7;</div>
+	  			<div class="key text">FN</div>
+	  			<div class="key text">CTRL</div>
+	  			<div class="key ">&#8997;</div>
+	  			<div class="key">&#x2318;</div>
+	  			<div class="key">&#x21E7;</div>
+	  			<div class="key">&#x2318;</div>
+	  			<div class="key">&#8997;</div>
+	  			<div class="key text">CTRL</div>
+	  			<div class="key text">FN</div>
+	  			<div class="key">&#x21E7;</div>
+	  			<div class="key"></div>
+				</div>
+
+				<div class="row">
+	  			<div class="key command">#...</div>
+	  			<div class="key pressed space"></div>
+	  			<div class="key">#...</div>
+				</div>
+
+				<div id="overlay"></div>
+			</div> <!-- keyboard -->
+		</main>
+		
 		<footer>
-			<div class="masthead">
+			<div class="name">
 				<span>CHORDAK</span>
 			</div>
 			<div class="menu">
@@ -1493,6 +1100,499 @@
 				<div><a href="">pre-order</a></div>
 			</div>
 		</footer>
+		<!-- <div>site design &copy;2017</div> -->
+
+
+		<aside id="sidebar-left" class="left">
+			<div class="inner">
+				<br>
+				<label for="simulate-layout" class="form-container">
+					<div>Typing Mode</div>
+					<select id="simulate-layout" name="simulate-layout" style="width:9rem;">
+					  <option value="" selected>Lessons</option>
+					  <option value="">Speed Test</option>
+					  <option value="">Copy Text</option>
+					  <option value="">Blank</option>
+					</select>
+				</label>
+
+				<label for="simulate-layout" class="form-container">
+					<div>Lesson</div>
+					<select id="simulate-layout" name="simulate-layout" style="width:13rem;">
+						<optgroup label="Alphabet">
+							<option value="">o a t e _</option>
+							<option value="">g v w y</option>
+							<option value="">d f k l</option>
+							<option value="">i p q r</option>
+							<option value="">h n s z</option>
+							<option value="">b c m u</option>
+							<option value="">x&nbsp;&nbsp;j&nbsp;&nbsp;,&nbsp;&nbsp;.</option>
+						</optgroup>
+
+						<optgroup label="Practice">
+							<option value="">Common Bigrams</option>
+						  <option value="">Common Trigrams</option>
+						  <option value="">Common Words</option>
+						  <option value="">Pangrams</option>
+							<option value="">abc...</option>
+							<option value="">a b c...</option>
+							<option value="">Random Letters</option>
+							<option value="">Opposite Chords</option>
+						</optgroup>
+
+						<optgroup label="Formatting">
+							<option value="">Navigation</option>
+							<option value="">Return</option>
+							<option value="">Tab</option>
+						</optgroup>
+
+						<optgroup label="Capitals">
+							<option value="">Shift Left</option>
+							<option value="">Shift Right</option>
+							<option value="">Aa Bb Cc...</option>
+							<option value="">Capital Bigrams</option>
+							<option value="">Capital Trigrams</option>
+							<option value="">Capital Words</option>
+							<option value="">Caps Lock</option>
+							<option value="">Acronyms</option>
+						</optgroup>
+
+						<optgroup label="Numerals">
+							<option value="">0 1 2 3</option>
+							<option value="">4 7 9</option>
+							<option value="">5 8 6</option>
+							<option value="">Num Lock*</option>
+							<option value="">123...</option>
+							<option value="">Random Numbers</option>
+							<option value="">Formatted Numbers</option>
+							<option value="">Alphanumeric</option>
+						</optgroup>
+
+						<optgroup label="Brackets">
+							<option value="">( )&nbsp;&nbsp;Round</option>
+							<option value="">[ ]&nbsp;&nbsp;Square</option>
+							<option value="">{ }&nbsp;&nbsp;Curly</option>
+							<option value="">&lt; &gt;&nbsp;&nbsp;Angle</option>
+							<option value="">\ /&nbsp;&nbsp;Slashes</option>
+							<option value="">|&nbsp;&nbsp;Vertical Bar</option>
+						</optgroup>
+
+						<optgroup label="Symbols">
+							<option value="">'&nbsp;&nbsp;Apostrophe</option>
+							<option value="">"&nbsp;&nbsp;Quotes</option>
+							<option value="">;&nbsp;&nbsp;Semicolon</option>
+							<option value="">?&nbsp;&nbsp;Question</option>
+							<option value="">!&nbsp;&nbsp;Exclamation</option>
+							<option value="">_&nbsp;&nbsp;Underscore</option>
+							<option value="">:&nbsp;&nbsp;Colon</option>
+							<option value="">+&nbsp;&nbsp;Plus Sign</option>
+							<option value="">-&nbsp;&nbsp;Hyphen-Minus</option>
+							<option value="">=&nbsp;&nbsp;Equals Sign</option>
+							<option value="">@&nbsp;&nbsp;At Sign</option>
+							<option value="">&amp;&nbsp;&nbsp;Ampersand</option>
+							<option value="">*&nbsp;&nbsp;Asterisk</option>
+							<option value="">%&nbsp;&nbsp;Percent Sign</option>
+							<option value="">#&nbsp;&nbsp;Number Sign</option>
+							<option value="">$&nbsp;&nbsp;Dollar Sign</option>
+							<option value="">^&nbsp;&nbsp;Caret</option>
+							<option value="">~&nbsp;&nbsp;Tilde</option>
+							<option value="">`&nbsp;&nbsp;Grave Accent</option>
+						</optgroup>
+
+						<optgroup label="Shortcuts">
+							<option value="">Command</option>
+							<option value="">Option/Alt</option>
+							<option value="">Control</option>
+							<option value="">Function</option>
+							<option value="">Meta</option>
+						</optgroup>
+
+						<optgroup label="Advanced Practice">
+						  <option value="">Math</option>
+						  <option value="">Programming</option>
+						  <option value="">Rare Bigrams</option>
+							<option value="">Finger Breakers</option>
+						</optgroup>
+					</select>
+				</label>
+
+				<hr>
+
+				<input class="toggle" id="typing-hand" name="typing-hand" type="checkbox">
+				<label for="typing-hand">
+					<div class="description">Typing Hand</div>
+					<div class="slider neutral"><div id="typing-hand-text" class="round text">L</div></div>
+				</label>
+
+				<div class="form-spacer-1"></div>
+
+				<label for="current-layout" class="form-container">
+					<div>Current Layout</div>
+					<select id="current-layout" name="current-layout">
+					  <option value="qwerty">QWERTY</option>
+					  <option value="colemak">Colemak</option>
+					  <option value="dvorak">Dvorak</option>
+					  <option value="workman">Workman</option>
+				  	<option value="chordak">Chordak</option>
+				  	<option value="other">Other...</option>
+					</select>
+				</label>
+
+				<div id="custom-layout" class="left">
+					<div class="row above">
+						<div class="key set">TAB</div>
+						<div class="key set">Q</div>
+						<div class="key"></div>
+						<div class="key"></div>
+						<div class="key"></div>
+						<div class="key"></div>
+					</div>
+					
+					<div class="row home">
+						<div class="key set">CAPS</div>
+						<div class="key"></div>
+						<div class="key set">R</div>
+						<div class="key set">S</div>
+						<div class="key set">T</div>
+						<div class="key set">D</div>
+					</div>
+					
+					<div class="row below">
+						<div class="key set">SHIFT</div>
+						<div class="key set">Z</div>
+						<div class="key set">X</div>
+						<div class="key"></div>
+						<div class="key set">V</div>
+						<div class="key set">B</div>
+					</div>
+
+					<div class="row gutter left">
+						<div class="key num set">&#x2318;</div>
+						<div class="key thumb set">SPACE</div>
+					</div>
+				</div>
+				
+				<label for="simulate-layout" class="form-container">
+					<div>Simulate Layout</div>
+					<select id="simulate-layout" name="simulate-layout">
+						<option value="none">None</option>
+						<option value="chordak" selected>Chordak</option>
+						<option disabled></option>
+						<option value="colemak">Colemak</option>
+						<option value="workman">Workman</option>
+					  <option value="dvorak">Dvorak</option>
+					</select>
+				</label>
+
+				<div class="form-spacer-2"></div>
+				
+				<input class="toggle" id="show-keyboard" name="show-keyboard" type="checkbox" checked>
+				<label for="show-keyboard">
+					<div class="description">Show Keyboard</div>
+					<div class="slider"><div class="round"></div></div>
+				</label>
+
+				<input class="toggle" id="show-hints" name="show-hints" type="checkbox" checked>
+				<label for="show-hints">
+					<div class="description">Show Chord Hints</div>
+					<div class="slider"><div class="round"></div></div>
+				</label>
+
+				<input class="toggle" id="stagger" name="stagger" type="checkbox" checked>
+				<label for="stagger">
+					<div class="description">Stagger Keys</div>
+					<div class="slider"><div class="round"></div></div>
+				</label>
+
+				<input class="toggle" id="sound" name="sound" type="checkbox">
+				<label for="sound">
+					<div class="description">Error Sounds</div>
+					<div class="slider"><div class="round"></div></div>
+				</label>
+
+				<div class="form-container">
+					<div>Font Size</div>
+					<div class="button-holder">
+						<input id="minus-button" type="button" value="-">
+						<input id="plus-button" type="button" value="+">	
+					</div>
+				</div>
+									
+				<br>
+
+				<input id="reset-button" name="reset-button" value="Reset &amp; Clear Stored Data" type="button">
+			</div>
+			<img class="icon" src="flower-icon.png"/>
+			<!-- <span>&#9835;</span> -->
+		</aside>
+
+
+		<aside id="sidebar-right" class="right open">
+			<div class="inner">
+
+				<div id="nameless">
+					<div class="legend">
+						<img src="hand.gif"/>
+						<div class="thumb">t</div>
+						<div class="index">i</div>
+						<div class="middle">m</div>
+						<div class="ring">r</div>
+						<div class="pinkie">p</div>
+					</div>
+					<div class="info" />This is where some additional info could go... and possibly a hide legend button.
+					</div>
+				</div>
+
+				<div id="chords">
+					<div class="header">
+						<span class="c">CHORD</span>
+						<span class="l">LTR</span>
+						<span class="s">NUM</span>
+						<span class="b">BKT</span>
+						<span class="n">SYM</span>
+					</div>
+
+					<div id="chord r">
+						<span class="c">r</span>
+						<span class="l">A</span>
+						<span class="s">;</span>
+						<span class="b">/</span>
+						<span class="n">2</span>
+					</div>
+
+					<div id="chord-pr">
+						<span class="c">p&#x00B7;r</span>
+						<span class="l">B</span>
+						<span class="s">@</span>
+						<span class="b">|</span>
+						<span class="n">4</span>
+					</div>
+
+					<div id="chord-pt">
+						<span class="c">p&#x00B7;t</span>
+						<span class="l">C</span>
+						<span class="s">_</span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-it">
+						<span class="c">i&#x00B7;t</span>
+						<span class="l">D</span>
+						<span class="s">=</span>
+						<span class="b">{</span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-i">
+						<span class="c">i</span>
+						<span class="l">E</span>
+						<span class="s">!</span>
+						<span class="b">)</span>
+						<span class="n">0</span>
+					</div>
+
+					<div id="chord-ir">
+						<span class="c">i&#x00B7;r</span>
+						<span class="l">F</span>
+						<span class="s">$</span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-tm">
+						<span class="c">t&#x00B7;m</span>
+						<span class="l">G</span>
+						<span class="s"></span>
+						<span class="b">&gt;</span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-rt">
+						<span class="c">r&#x00B7;t</span>
+						<span class="l">H</span>
+						<span class="s">-</span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-mi">
+						<span class="c">m&#x00B7;i</span>
+						<span class="l">I</span>
+						<span class="s">*</span>
+						<span class="b">[</span>
+						<span class="n">6</span>
+					</div>
+
+					<div id="chord-mit">
+						<span class="c">m&#x00B7;i&#x00B7;t</span>
+						<span class="l">J</span>
+						<span class="s"></span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-ip">
+						<span class="c">i&#x00B7;p</span>
+						<span class="l">K</span>
+						<span class="s">~</span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-im">
+						<span class="c">i&#x00B7;m</span>
+						<span class="l">L</span>
+						<span class="s">^</span>
+						<span class="b">]</span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-pm">
+						<span class="c">p&#x00B7;m</span>
+						<span class="l">M</span>
+						<span class="s">&amp;</span>
+						<span class="b"></span>
+						<span class="n">7</span>
+					</div>
+
+					<div id="chord-rm">
+						<span class="c">r&#x00B7;m</span>
+						<span class="l">N</span>
+						<span class="s">:</span>
+						<span class="b"></span>
+						<span class="n">5</span>
+					</div>
+
+					<div id="chord-p">
+						<span class="c">p</span>
+						<span class="l">O</span>
+						<span class="s">"</span>
+						<span class="b">/</span>
+						<span class="n">3</span>
+					</div>
+
+					<div id="chord-mr">
+						<span class="c">m&#x00B7;r</span>
+						<span class="l">P</span>
+						<span class="s">%</span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-mp">
+						<span class="c">m&#x00B7;p</span>
+						<span class="l">Q</span>
+						<span class="s">`</span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-mt">
+						<span class="c">m&#x00B7;t</span>
+						<span class="l">R</span>
+						<span class="s">+</span>
+						<span class="b">&lt;</span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-ri">
+						<span class="c">r&#x00B7;i</span>
+						<span class="l">S</span>
+						<span class="s"></span>
+						<span class="b"></span>
+						<span class="n">8</span>
+					</div>
+
+					<div id="chord-m">
+						<span class="c">m</span>
+						<span class="l">T</span>
+						<span class="s">?</span>
+						<span class="b">(</span>
+						<span class="n">1</span>
+					</div>
+
+					<div id="chord-pi">
+						<span class="c">p&#x00B7;i</span>
+						<span class="l">U</span>
+						<span class="s">#</span>
+						<span class="b"></span>
+						<span class="n">9</span>
+					</div>
+
+					<div id="chord-tp">
+						<span class="c">t&#x00B7;p</span>
+						<span class="l">V</span>
+						<span class="s"></span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-ti">
+						<span class="c">t&#x00B7;i</span>
+						<span class="l">W</span>
+						<span class="s"></span>
+						<span class="b">}</span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-rmt">
+						<span class="c">r&#x00B7;m&#x00B7;t</span>
+						<span class="l">X</span>
+						<span class="s"></span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-tr">
+						<span class="c">t&#x00B7;r</span>
+						<span class="l">Y</span>
+						<span class="s"></span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+					
+					<div id="chord-rp">
+						<span class="c">r&#x00B7;p</span>
+						<span class="l">Z</span>
+						<span class="s"></span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-t">
+						<span class="c">t</span>
+						<span class="l">&#x2423;</span>
+						<span class="s">'</span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-prm">
+						<span class="c">p&#x00B7;r&#x00B7;m</span>
+						<span class="l">.</span>
+						<span class="s"></span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+
+					<div id="chord-rmi">
+						<span class="c">r&#x00B7;m&#x00B7;i</span>
+						<span class="l">,</span>
+						<span class="s"></span>
+						<span class="b"></span>
+						<span class="n"></span>
+					</div>
+				</div> <!-- chords -->
+
+				<span class="icon">&#9835;</span>
+				<!-- <img class="icon" src="flower-icon.png"/> -->
+			</div>
+			<!-- <span style="color:#fff">
+				keep visible
+			</span> -->
+		</aside>
+
 
 		<script>
 			function $(s) { 
