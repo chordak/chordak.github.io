@@ -1613,10 +1613,10 @@
 			sidebarRight.addEventListener('click', openSidebar);
 			
 			function openSidebar(e) {
-				if(openedSidebar != null) {
-					openedSidebar.classList.remove('open');
-					openedSidebar = null;	//redundant but explicit
-				}
+				alert("trying to open");
+				// if(openedSidebar != null) {
+				// 	openedSidebar.classList.remove('open');
+				// }
 				openedSidebar = e.currentTarget;
 				openedSidebar.classList.add('open');
 				
@@ -1627,9 +1627,17 @@
 			}
 
 			function closeSidebar(e) {
-				alert("trying to close");
-				if(openedSidebar != e.target && !openedSidebar.contains(e.target)) {
+				var con1 = openedSidebar == e.target;
+				var con2 = openedSidebar.contains(e.target);
+				alert(con1 + ", " + con2);
+				if(con1 && con2) {
+					//do nothing, click was still in sidebar
+					alert("don't close click was in sidebar");
+				} else {
+					document.body.removeEventListener('click', closeSidebar);
 					openedSidebar.classList.remove('open');
+					openedSidebar = null;
+
 					sidebarLeft.addEventListener('click', openSidebar);
 					sidebarRight.addEventListener('click', openSidebar);
 				}
