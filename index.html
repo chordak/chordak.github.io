@@ -45,7 +45,7 @@
 			  background: #111;
 			  position: fixed;
   			/*background-color: var(--color-debug-1);*/
-  			cursor:pointer;
+  			cursor:pointer; /* essential for mobile safari */
 			}
 			
 			footer {
@@ -1612,10 +1612,6 @@
 			sidebarRight.addEventListener('click', openSidebar);
 			
 			function openSidebar(e) {
-				alert("trying to open");
-				// if(openedSidebar != null) {
-				// 	openedSidebar.classList.remove('open');
-				// }
 				openedSidebar = e.currentTarget;
 				openedSidebar.classList.add('open');
 				
@@ -1626,12 +1622,8 @@
 			}
 
 			function closeSidebar(e) {
-				var con1 = openedSidebar == e.target;
-				var con2 = openedSidebar.contains(e.target);
-				alert(con1 + ", " + con2);
-				if(con1 && con2) {
+				if(openedSidebar == e.target; && openedSidebar.contains(e.target)) {
 					//do nothing, click was still in sidebar
-					alert("don't close click was in sidebar");
 				} else {
 					document.body.removeEventListener('click', closeSidebar);
 					openedSidebar.classList.remove('open');
