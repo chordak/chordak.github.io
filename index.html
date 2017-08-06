@@ -1604,51 +1604,52 @@
 
 			// alert($('custom-layout').offsetHeight);
 
+			var openedSidebar = null;
 			var sidebarLeft = $('sidebar-left');
-			sidebarLeft.addEventListener('click', openSidebar);
-			//sidebarLeft.addEventListener('touch', openSidebar);
-
 			var sidebarRight = $('sidebar-right');
+			sidebarLeft.addEventListener('click', openSidebar);
 			sidebarRight.addEventListener('click', openSidebar);
 			
-			var openedSidebar = null;
-				function openSidebar(e) {
-					if(openedSidebar != null) {
-						openedSidebar.classList.remove('open');
-						openedSidebar = null;	//redundant but explicit
-					}
-					openedSidebar = e.currentTarget;
-					openedSidebar.classList.add('open');
-					
-					e.stopPropogation;
-					document.body.addEventListener('click', closeSidebar);
-					e.stopPropogation;
+			function openSidebar(e) {
+				if(openedSidebar != null) {
+					openedSidebar.classList.remove('open');
+					openedSidebar = null;	//redundant but explicit
 				}
+				openedSidebar = e.currentTarget;
+				openedSidebar.classList.add('open');
+				
+				sidebarLeft.removeEventListener('click', openSidebar);
+				sidebarRight.removeEventListener('click', openSidebar);
+				document.body.addEventListener('click', closeSidebar);
+				//e.stopPropogation();
+			}
 
-				function closeSidebar(e) {
-					var id = e.target.id;
-					if(openedSidebar == e.target || openedSidebar.contains(e.target)) {
-						//alert('click was on/in sidebar, do not close');
-					} else {
-						//alert('click was not on/in open sidebar, close now');
-						openedSidebar.classList.remove('open');
-					}
+			function closeSidebar(e) {
+				var id = e.target.id;
+				if(openedSidebar == e.target || openedSidebar.contains(e.target)) {
+					//alert('click was on/in sidebar, do not close');
+				} else {
+					//alert('click was not on/in open sidebar, close now');
+					openedSidebar.classList.remove('open');
+					sidebarLeft.addEventListener('click', openSidebar);
+					sidebarRight.addEventListener('click', openSidebar);
 				}
+			}
 
-		    $('typing-hand').addEventListener("change", switchHand);
+	    $('typing-hand').addEventListener("change", switchHand);
 
-		    function switchHand(e) {
-		    	var keyboard = $('keyboard');
-					var overlay = $('overlay');
-		    	let [remove, add, text] = e.currentTarget.checked ? 
-		    			['left', 'right', 'R'] : ['right', 'left', 'L'];
-	    		keyboard.classList.remove(remove);
-	    		overlay.classList.remove(remove);
-	    		keyboard.classList.add(add);		    	
-	    		overlay.classList.add(add);
-		    	$('typing-hand-text').innerHTML = text;
-		    }
-		    
+	    function switchHand(e) {
+	    	var keyboard = $('keyboard');
+				var overlay = $('overlay');
+	    	let [remove, add, text] = e.currentTarget.checked ? 
+	    			['left', 'right', 'R'] : ['right', 'left', 'L'];
+    		keyboard.classList.remove(remove);
+    		overlay.classList.remove(remove);
+    		keyboard.classList.add(add);		    	
+    		overlay.classList.add(add);
+	    	$('typing-hand-text').innerHTML = text;
+	    }
+	    
 			//macbook pro: 68 cN is enough to activate any key; some are softer because of wear from frequent use ('A', 54 cN) or replacement ('D', 48 cN)
 				// 'A' 53.9 cN
 				// 'S' 62.5 cN
