@@ -1638,6 +1638,7 @@
 					openedSidebar.classList.remove('open');
 					openedSidebar = null;
 
+					e.stopPropagation();
 					sidebarLeft.addEventListener('click', openSidebar);
 					sidebarRight.addEventListener('click', openSidebar);
 				}
