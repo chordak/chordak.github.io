@@ -8,14 +8,19 @@
 
 		<style>
 			:root {
-				--color-neutral: #fff;
-				--color-neutral-glow: #bbb;
-				--color-muted: #ddd;
+				--color-stark: #fff;
+				--color-stark-glow: #ddd;
+				--color-neutral: #ddd;
+				--color-neutral-glow: #aaa;
+				--color-muted: #333;
+
 				--color-correct: #8eeef6;
 				--color-correct-glow: #8eeef6;
 				--color-error: #e4648a;
 				--color-error-glow: #e4648a;
+
 				--color-accent: #7bd507;/*orange #e38563; green #96E363;*/
+
 				--font-mono: 'Menlo', courier, monospace;
 				--font-sans: "Open Sans", courier;
 				--font-block: "Open Sans", courier;
@@ -23,13 +28,10 @@
 				/* alt correct C2DAB1, D0E1A7, 55D9C0, B4C76D, 77ACA1, 77EAAC, 7FFCD1, 5BE4A7, 8EEEF6 */
 				/* alt error DB7D9E,DF8F8C */
 				/* misc colors AACFD8, F4C437 */
-				--color-debug-1: deepPink;
-				--color-debug-2: Aquamarine;
-				--color-debug-3: Coral;
-				--color-debug-4: Gold;
-				--color-debug-5: YellowGreen;
-				/*background: var(--color-debug-1);*/
-				/*border: 1px solid var(--color-debug-1);*/
+				--color-debug-pink: deepPink;
+				--color-debug-aqua: Aquamarine;
+				--color-debug-coral: Coral;
+				--color-debug-gold: Gold;
 			}
 
 			html {
@@ -44,7 +46,7 @@
 				padding:0;
 			  background: #111;
 			  position: fixed;
-  			/*background-color: var(--color-debug-1);*/
+  			/*background-color: var(--color-debug-pink);*/
   			cursor:pointer; /* essential for mobile safari */
 			}
 			
@@ -111,7 +113,7 @@
 				position: fixed;
 				top:0;
 				bottom:0;
-  			color: var(--color-muted);
+  			color: var(--color-neutral);
   			z-index: 2;
 			}
 
@@ -216,7 +218,7 @@
 				flex-direction: column;
 			  justify-content: center; /*flex-start;*/
 			  align-items: center;
-			  /*background-color: var(--color-debug-3);*/
+			  /*background-color: var(--color-debug-coral);*/
 			}
 
 			/*.content {
@@ -257,14 +259,7 @@
 				flex: 0 1 90rem;
 				width: 90rem;
 				height: 100%;
-				/*border: 1px solid red;*/
-				/*background-color: #252525;*/
-				/*box-shadow: -0rem -0.2rem 0.5rem #000;*/
-
-				/*background: -webkit-linear-gradient(top, 
-					rgba(3,3,3,1.0) 0%,
-					rgba(20,20,20,1.0) 100%);*/
-
+				border: 1px solid red;
 				background: -webkit-linear-gradient(top, 
 				rgba(15,15,15,1.0) 0%,
 				rgba(20,20,20,1.0) 100%);
@@ -374,7 +369,7 @@
 				/*width: 72.91rem;*/ /*maximum size for 80 chars*/
 				/*padding left & right does not effect width calc*/
 				/*padding top & bottom DOES effect height calc*/
-				background-color: var(--color-debug-1);
+				background-color: var(--color-debug-pink);
 			}
 			
 			/* keyboard --------------------------------------------- */
@@ -606,7 +601,7 @@
 				width: 20rem;
 				/*height: calc(100% - 3rem);*/
 				/*margin-top: 1.5rem;*/
-				/*background-color: var(--color-debug-1);*/
+				/*background-color: var(--color-debug-pink);*/
 			}
 
 			#chords div {
@@ -771,7 +766,7 @@
 				max-width: 5rem;
 				height: 2.6rem;
 				position: relative;
-			  border:0.2rem solid #eee;
+			  border:0.2rem solid var(--color-neutral);
 			  border-radius: 1.5rem;
 			  overflow: hidden;
 			  transition: border-color 0.2s ease;
@@ -805,7 +800,7 @@
 			  text-align: center;
 			  border-radius: 50%;
 			  border:0.2rem solid var(--color-neutral);
-			  box-shadow: 0 0 0.9rem var(--color-neutral-glow);
+			  box-shadow: 0 0 0.6rem var(--color-neutral-glow);
 			  color: #eee;
 			}
 
@@ -834,7 +829,7 @@
 				appearance: none;
 				outline:none;
 				background: none;
-				border:2px solid white;
+				border:0.2rem solid var(--color-neutral);
 				border-radius: 1.5rem;
 
 				color: #eee;
@@ -859,43 +854,49 @@
 				height:1.5rem;
 			}
 
-			.form-container .button-holder {
-				width:5rem;
-				height:2.6rem;
-					display: -webkit-flex;
-				display: flex;
-				border:0.2rem solid var(--color-neutral);
+			.form-container .incrementer {
+				width:5.4rem;
+				height:3.0rem;
+				position: relative;
 				border-radius:1.5rem;
 				background: none;
 			}
+			/* 5rem - 0.4rem outer border - 0.2rem mid border = 4.4rem */
 
-			.form-container .button-holder input {
-				width: 2.4rem;
+			.form-container .incrementer input {
+				width: 2.7rem;
 				height: 100%;
+				position:absolute;
+				top:0;
 				-webkit-appearance: none;
 				appearance: none;
 				outline:none;
 				background: none;
 				border:none;
+				font-family: var(--font-mono);
 				font-size: 1.4rem;
-				color:#ddd;
+				text-align: center;
+				color: var(--color-stark);
+				border:0.2rem solid var(--color-neutral);
 			}
 
-			.form-container .button-holder input:active {
-				box-shadow: 0 0 1.1rem var(--color-neutral-glow);
-			}
-
-			#minus-button {
-				border-right: 0.1rem solid var(--color-neutral);
+			.form-container .incrementer .left {
+				left:0;
+				border-width: 0.2rem 0.1rem 0.2rem 0.2rem;
 				border-radius: 1.5rem 0 0 1.5rem;
-				order:0;
 			}
 
-			#plus-button {
-				border-left: 0.1rem solid var(--color-neutral);
+			.form-container .incrementer .right {
+				right:0;
+				border-width: 0.2rem 0.2rem 0.2rem 0.1rem;
 				border-radius: 0 1.5rem 1.5rem 0;
-				order:1;
 			}
+
+			.form-container .incrementer input:active {
+				box-shadow: 0 0 0.8rem var(--color-neutral-glow);
+			}
+
+			
 
 			#reset-button {
 				width: 100%;
@@ -917,6 +918,10 @@
 				box-shadow: 0rem 0rem 0.9rem #E4648A;
 			}
 
+			hr {
+				border: 0.15rem solid var(--color-muted);
+			}
+
 			/* custom layout ----------------------------- */
 
 			#custom-layout {
@@ -928,7 +933,7 @@
 				padding:0.1rem;
 				border-radius: 1.5rem;
 				margin: 0.5rem auto 1rem auto;
-				/*background: var(--color-debug-1);*/
+				/*background: var(--color-debug-pink);*/
 			}
 
 			#custom-layout .row {
@@ -947,7 +952,7 @@
 				line-height: 2.6rem;
 				font-size: 0.9rem;
 				font-family: var(--font-sans);
-				color: var(--color-neutral);
+				color: var(--color-stark);
 				box-shadow: 0 0 0.4rem var(--color-error-glow);
 			}
 
@@ -978,6 +983,15 @@
 			#custom-layout.right .row .key.thumb {
 				width: 5.8rem;
 				order:0;
+			}
+
+			@media screen and (max-height: 480px) {
+					footer {
+						margin-bottom: 1rem;
+					}
+			    #keyboard {
+			        display:none;
+			    }
 			}
 		</style>
 	</head>
@@ -1313,9 +1327,9 @@
 
 				<div class="form-container">
 					<div>Font Size</div>
-					<div class="button-holder">
-						<input id="minus-button" type="button" value="-">
-						<input id="plus-button" type="button" value="+">	
+					<div class="incrementer">
+						<input id="minus-button" class="left" type="button" value="-">
+						<input id="plus-button" class="right" type="button" value="+">	
 					</div>
 				</div>
 									
