@@ -120,12 +120,14 @@
   			font-family: var(--font-sans);
   			font-size: 1.2rem;
   			transition: width 0.3s ease;
+  			background-color: yellow;
 			}
 
 			aside.right {
 				right: 0;
 				padding-left: 2.5rem;
 				transition: width 0.3s ease;
+				background-color: green;
 			}
 
 			aside .inner {
@@ -1620,9 +1622,8 @@
 				
 				sidebarLeft.removeEventListener('click', openSidebar);
 				sidebarRight.removeEventListener('click', openSidebar);
-				document.body.addEventListener('click', closeSidebar);
 				e.stopPropagation();
-				
+				document.body.addEventListener('click', closeSidebar);
 			}
 
 			function closeSidebar(e) {
