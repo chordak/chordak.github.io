@@ -1622,7 +1622,7 @@
 			}
 
 			function closeSidebar(e) {
-				if(openedSidebar == e.target && openedSidebar.contains(e.target)) {
+				if(openedSidebar == e.target || openedSidebar.contains(e.target)) {
 					//do nothing, click was still in sidebar
 				} else {
 					document.body.removeEventListener('click', closeSidebar);
