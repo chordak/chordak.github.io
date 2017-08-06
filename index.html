@@ -112,25 +112,10 @@
 				height: 100%;
 				position: fixed;
 				top:0;
-				bottom:0;
   			color: var(--color-neutral);
   			z-index: 2;
+  			background: green;
 			}
-
-			aside.left {
-				left: 0;
-				padding-right: 2.5rem;
-  			font-family: var(--font-sans);
-  			font-size: 1.2rem;
-  			transition: width 0.3s ease;
-			}
-
-			aside.right {
-				right: 0;
-				padding-left: 2.5rem;
-				transition: width 0.3s ease;
-			}
-
 			aside .inner {
 				height: 100%;
 				position: absolute;
@@ -138,17 +123,49 @@
         background-color: #222;
 				overflow: scroll;
 			}
+			aside .icon {
+				width:1.6rem;
+				height:1.6rem;
+				position: absolute;
+			}
 
+			/* aside left ---------------------------------------- */
+
+			aside.left {
+				width: 22.5rem; /*testing*/
+				left: 0;
+  			font-family: var(--font-sans);
+  			font-size: 1.2rem;
+  			transform: translate3d(-17.5rem, 0, 0);
+  			transition: transform 300ms ease;
+			}
 			aside.left .inner {
 				right: 2.5rem;
 				width: 20rem;
-				padding-left: 2.5rem;
-        padding-right: 2.5rem;
-        margin-right: 0;
+				padding: 0 2.5rem;
+        /*margin-right: 0;*/
 				  -webkit-box-shadow: 0.5rem 0 0.5rem -0.2rem black;
         box-shadow: 0.5rem 0 0.5rem -0.2rem black;
         
-      	transition: margin-right 0.3s ease;
+      	/*transition: margin-right 0.3s ease;*/
+			}
+			aside.left.open {
+				/*width: 22.5rem;*/
+
+				transform: translate3d(2.5rem, 0, 0);
+			}
+
+			aside.left.open .inner {
+				/*margin-right: -2.5rem;*/
+				/*margin-right: 0rem; /*testing*/
+			}
+
+			/* aside right --------------------------------------- */
+
+			aside.right {
+				right: 0;
+				padding-left: 2.5rem;
+				transition: width 0.3s ease;
 			}
 
 			aside.right .inner {
@@ -162,13 +179,7 @@
 				transition: margin-left 0.3s ease;
 			}
 
-			aside.left.open {
-				width: 22.5rem;
-			}
 
-			aside.left.open .inner {
-				margin-right: -2.5rem;
-			}
 
 			aside.right.open {
 				width: 22.5em;
@@ -178,17 +189,11 @@
 				margin-left: -2.5rem;
 			}
 
-			aside .icon {
-				width:1.6rem;
-				height:1.6rem;
-				position: absolute;
-				
-			}
 			aside.left .icon {
 				right: 3rem;
 				bottom: calc(50% - 0.8rem);
 				opacity: 0.8;
-				transition: opacity 0.3s ease;
+				transition: opacity 0.2s ease;
 			}
 
 			aside.right .icon {
@@ -196,7 +201,7 @@
 				bottom: 50%;
 				font-size: 2rem;
 				opacity: 0.8;
-				transition: opacity 0.3s ease;
+				transition: opacity 0.2s ease;
 			}
 
 			aside.left.open .icon {
@@ -985,7 +990,7 @@
 				order:0;
 			}
 
-			@media screen and (max-height: 480px) {
+			@media screen and (max-height: 350px) {
 					footer {
 						margin-bottom: 1rem;
 					}
@@ -1636,9 +1641,8 @@
 			}
 
 			function closeSidebar(e) {
-				if(openedSidebar == e.target || openedSidebar.contains(e.target)) {
-					//do nothing, click was still in sidebar
-				} else {
+				// openedSidebar != e.target condition was removed
+				if(!openedSidebar.contains(e.target)) {
 					document.body.removeEventListener('click', closeSidebar);
 					openedSidebar.classList.remove('open');
 					openedSidebar = null;
