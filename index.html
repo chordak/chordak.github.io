@@ -16,12 +16,14 @@
 
 				--color-correct: #8eeef6;
 				--color-correct-glow: #8eeef6;
-				--color-error: #e4648a;
-				--color-error-glow: #e4648a;
+				--color-mistake: #e4648a;
+				--color-mistake-glow: #e4648a;
 
 				--color-accent: #7bd507;/*orange #e38563; green #96E363;*/
 
 				--font-mono: 'Menlo', courier, monospace;
+				/*--font-mono: 'SF Mono', courier, monospace;*/
+				/*--font-mono: 'DejaVu Sans Mono', courier, monospace;*/
 				--font-sans: "Open Sans", courier;
 				--font-block: "Open Sans", courier;
 				--font-brand: "Open Sans", courier;
@@ -46,12 +48,13 @@
 				padding:0;
 			  background: #111;
 			  position: fixed;
-  			/*background-color: var(--color-debug-pink);*/
 
   			/* essential for mobile safari experience */
-  			cursor:pointer;
   			-webkit-tap-highlight-color:rgba(0,0,0,0);
+  			/*cursor:pointer;*/
 			}
+
+			/* footer ----------------------------------------------- */
 			
 			footer {
 				width: 100%;
@@ -108,115 +111,98 @@
 				color:#ddd;
 			}
 
-			/* asides --------------------------------------------- */
+			/* asides ----------------------------------------------- */
 
 			aside {
-				width: 2.5rem;
+				width: 22.5rem;
 				height: 100%;
 				position: fixed;
 				top:0;
-  			color: var(--color-neutral);
   			z-index: 2;
-  			background: green;
+  			/*background: green;*/
 			}
+
 			aside .inner {
 				height: 100%;
 				position: absolute;
-				top:0;
         background-color: #222;
 				overflow: scroll;
 			}
+
 			aside .icon {
 				width:1.6rem;
 				height:1.6rem;
 				position: absolute;
+				bottom: calc(50% - 0.8rem);
 			}
 
-			/* aside left ---------------------------------------- */
+			/* aside left ------------------------------------------- */
 
 			aside.left {
-				width: 22.5rem; /*testing*/
 				left: 0;
-  			font-family: var(--font-sans);
-  			font-size: 1.2rem;
   			transform: translate3d(-17.5rem, 0, 0);
   			transition: transform 300ms ease;
 			}
+
 			aside.left .inner {
 				right: 2.5rem;
 				width: 20rem;
 				padding: 0 2.5rem;
-        /*margin-right: 0;*/
-				  -webkit-box-shadow: 0.5rem 0 0.5rem -0.2rem black;
-        box-shadow: 0.5rem 0 0.5rem -0.2rem black;
-        
-      	/*transition: margin-right 0.3s ease;*/
+        box-shadow: 0.5rem 0 0.5rem -0.15rem black;
+        font-family: var(--font-sans);
+  			font-size: 1.2rem;
+  			color: var(--color-neutral);
 			}
+
 			aside.left.open {
-				/*width: 22.5rem;*/
-
-				transform: translate3d(2.5rem, 0, 0);
-			}
-
-			aside.left.open .inner {
-				/*margin-right: -2.5rem;*/
-				/*margin-right: 0rem; /*testing*/
-			}
-
-			/* aside right --------------------------------------- */
-
-			aside.right {
-				right: 0;
-				padding-left: 2.5rem;
-				transition: width 0.3s ease;
-			}
-
-			aside.right .inner {
-				left: 2.5rem;
-				width: 20rem;
-				padding-left: 2.5rem;
-				padding-right: 2.5rem;
-				  -webkit-box-shadow: 0.5rem 0 0.5rem -0.2rem black;
-				box-shadow: 0.5rem 0 0.5rem -0.2rem black;
-				
-				transition: margin-left 0.3s ease;
-			}
-
-
-
-			aside.right.open {
-				width: 22.5em;
-			}
-
-			aside.right.open .inner {
-				margin-left: -2.5rem;
+				transform: translate3d(5rem, 0, 0);
 			}
 
 			aside.left .icon {
-				right: 3rem;
-				bottom: calc(50% - 0.8rem);
+				right: 2.95rem;
 				opacity: 0.8;
-				transition: opacity 0.2s ease;
-			}
-
-			aside.right .icon {
-				left: 0.5rem;
-				bottom: 50%;
-				font-size: 2rem;
-				opacity: 0.8;
-				transition: opacity 0.2s ease;
+				transition: opacity 200ms ease;
 			}
 
 			aside.left.open .icon {
 				opacity: 0;
 			}
 
-			aside.right.open .icon {
-				opacity: 0;
-				/*right: 0.5rem;*/
+			/* aside right ------------------------------------------ */
+
+			aside.right {
+				right: 0;
+				transform: translate3d(17.5rem, 0, 0);
+				transition: transform 300ms ease;
 			}
 
-			/* main content ----------------------------------------- */
+			aside.right .inner {
+				left: 2.5rem;
+				width: 20rem;
+				padding: 0 2.5rem;
+				box-shadow: -0.5rem 0 0.5rem -0.15rem black;
+			}
+
+			aside.right.open {
+				transform: translate3d(-5rem, 0, 0);
+			}
+
+			aside.right .icon {
+				left: 0.45rem;
+				transition: opacity 200ms ease;
+				opacity: 0.8;
+				/* these lines necessary because this icon is text */
+				font-family: var(--font-sans);
+				font-size: 1.8rem;
+				line-height: 1.6rem;
+				color: white;				
+			}
+
+			aside.right.open .icon {
+				opacity: 0;
+			}
+
+			/* main ------------------------------------------------- */
 
 			main {
 				width: 100%;
@@ -224,163 +210,67 @@
 			  	display: -webkit-flex;
 				display: flex;
 				flex-direction: column;
-			  justify-content: center; /*flex-start;*/
+			  justify-content: space-around; /*flex-start;*/
 			  align-items: center;
 			  /*background-color: var(--color-debug-coral);*/
 			}
 
-			/*.content {
-				overflow: hidden;
-				width: 100%;
-				margin: 0 -5rem 0 -5rem;
-
-				display: -webkit-flex;
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-start;
-				align-items: center;
-			}*/
+			/* main paper ------------------------------------------- */
 
 			#paper {
-					display: -webkit-flex;
-				display: flex;
-				justify-content: center;
-				width: calc(100%-5rem);
-				height: 20rem;
-				/*background-color: #222*/
-				border-bottom: 1px solid #000;
-				margin: 0 2.5rem 1rem 2.5rem;
-
-				/*  -webkit-box-shadow: 0.5rem 0 0.5rem -0.2rem black;*/
-        /*box-shadow: inset 0 -0.5rem 1rem -0.5rem black;*/
-			}
-
-			#paper .left {
+				max-width: 82.0rem; /*81.88rem should fit 80 chars at 1.7rem*/
+				/*max-width: 81.95rem; width adjusted for spans*/
+				padding: 0 1rem 0 1rem;
+				width: calc(100% - 12rem);
+				/*margin: 5rem;*/
+				height: 10rem;
 				flex: 0 0 10rem;
-				height: 100%;
-					background: -webkit-linear-gradient(176deg, 
-					rgba(0,0,0,1) 2%,
-					rgba(0,0,0,0) 14%);
+				min-height: 10rem;
+				margin: 5rem auto 0 auto;
+        box-shadow: 0rem 0rem 0.5rem 0.2rem black;
+        /*background-color: rgb(26,26,26);*/
+        background: green;
 			}
 
-			#paper .center {
-				flex: 0 1 90rem;
-				width: 90rem;
-				height: 100%;
-				border: 1px solid red;
-				background: -webkit-linear-gradient(top, 
-				rgba(15,15,15,1.0) 0%,
-				rgba(20,20,20,1.0) 100%);
+			#paper .line {
+				width: 100%;
+				height: 2rem;
+				margin: 1rem 0;
 
-					display: -webkit-flex;
-				display: flex;
-				justify-content: center;
-				align-content: center;
-
-			}
-
-			#paper .center div {
-				width: 65rem;
-				height: 15rem;
-				/*background-color: red;*/
-
-				color:#ccc;
-				margin:auto;
-				font-size: 1.6rem;
 				font-family: var(--font-mono);
+				font-size: 1.7rem;
+				color: rgb(221, 221, 221); /*221-238*/
+				white-space: nowrap;
+				background: #222;
 			}
 
-			#paper .right {
-				flex: 0 0 10rem;
-				height: 100%;
-				background: -webkit-linear-gradient(-176deg, 
-					rgba(0,0,0,0) 88%,
-					rgba(0,0,0,1) 98%);
-				/*border: 1px solid blue;*/
+			#paper span.c { /* correct */
+				color: #555;
+			}
+
+			#paper span.m { /* mistake */
+				color: #e4648a;
+			}
+
+			#paper span.caret {
+				line-height: 1.5rem;
+				background-color: #D1C27F; /*B4C76D 77ACA1 F4C437 EEEC8E */
+				color:#000;
+				border-radius: 0.3rem;
+				/* 96E363*/
+				/* alt correct C2DAB1, D0E1A7, 55D9C0, B4C76D, 77ACA1, 77EAAC, 7FFCD1, 5BE4A7, 8EEEF6 */
+				/* alt error DB7D9E,DF8F8C */
+				/* misc colors AACFD8, F4C437 */
 			}
 
 
-			.page {
-				/*border: 1px solid red;*/
-				/*flex: 1 1 auto;*/
-				/*min-height: 15rem;*/
-				/*max-height: 30rem;*/
-				color:#eee;
-				/*width: 50rem;*/
-				font-size: 1.4em;
-				/*max-width: 60rem;*/
-				width: calc(100% - 10rem);
-				text-align: center;
+			/*
+			#paper :nth-child(1) {}
+			#paper :nth-child(2) {}
+			#paper :nth-child(3) {}
+			*/
 
-				display: none;
-			}
-
-/*			.practice {
-				font-family: 'PT Mono', monospace;
-			    float:left;
-			    width: 100%;
-			    font-size: 1em;
-				border-radius: 1.25em;
-				overflow: hidden;
-			}
-
-			.flex-container-practice {
-			    display: flex;
-			    flex-direction: column;
-			    flex-wrap: nowrap;
-			    justify-content: left;
-			    align-content: left;
-			    align-items: flex-start;
-			}
-
-			.flex-item-practice {
-			    order: 0;
-			    flex: 0 1 auto;
-			    align-self: auto;
-			    padding:0.75em 0em 0.75em 1em;
-			    width:100%;
-			    height:1.2em;
-			    margin:1px;
-			    background-color: #333;
-			}*/
-
-			.indicator {
-				 float:right;
-				 font-family: 'PT Mono', monospace;
-				 text-align: right;
-				 margin-right:1em;
-			}
-
-			#pre {
-				transform: scale(0.95, 0.95);
-				opacity: 0.9;
-			}
-
-			#post {
-				transform: scale(0.95, 0.95);
-				opacity: 0.4;
-			}
-
-			.text2 {
-				resize: none;
-				/*width: 100%;*/
-				font-family: var(--font-mono);
-
-				font-size: 1.8rem;
-				line-height: 3rem;
-				/*height: 9rem;*/
-				overflow: hidden;
-				border: none;
-				color: #ddd;
-				/*courier font at 1.5rem: */
-				/*width: 72.01rem;*/ /*minimum size for 80 chars*/
-				/*width: 72.91rem;*/ /*maximum size for 80 chars*/
-				/*padding left & right does not effect width calc*/
-				/*padding top & bottom DOES effect height calc*/
-				background-color: var(--color-debug-pink);
-			}
-			
-			/* keyboard --------------------------------------------- */
+			/* main keybord ----------------------------------------- */
 
 			#keyboard {
 				width: 84rem;
@@ -472,9 +362,7 @@
 
 			#keyboard .row .key.pressed {
 	 		    -webkit-transform: scale(0.95, 0.95);
-			    -moz-transform: scale(0.95, 0.95);
 			    -ms-transform: scale(0.95, 0.95);
-			    -o-transform: scale(0.95, 0.95);
 				transform: scale(0.95, 0.95);
 				color:#FFF;
 				border-color: #fff;
@@ -483,9 +371,7 @@
 
 			#keyboard .row .key.pressed-wrong {
 	 		    -webkit-transform: scale(0.95, 0.95);
-			    -moz-transform: scale(0.95, 0.95);
 			    -ms-transform: scale(0.95, 0.95);
-			    -o-transform: scale(0.95, 0.95);
 				transform: scale(0.95, 0.95);
 				color:#E4648A;
 				border-color: #E4648A;
@@ -494,9 +380,7 @@
 
 			#keyboard .row .key.pressed-correct {
 	 		    -webkit-transform: scale(0.95, 0.95);
-			    -moz-transform: scale(0.95, 0.95);
 			    -ms-transform: scale(0.95, 0.95);
-			    -o-transform: scale(0.95, 0.95);
 				transform: scale(0.95, 0.95);
 				color:#8EEEF6;
 				border-color: #8EEEF6;
@@ -787,9 +671,9 @@
 			  position: absolute;
 			  right: 2.1rem;
 			  margin: 0.2rem 0.3rem;
-			  border:0.2rem solid var(--color-error);
+			  border:0.2rem solid var(--color-mistake);
 			  border-radius: 50%;
-			  box-shadow: 0 0 0.9rem var(--color-error-glow);
+			  box-shadow: 0 0 0.9rem var(--color-mistake-glow);
 			  transition: right 0.3s ease;
 			}
 
@@ -845,7 +729,8 @@
 				text-align-last:center;
 				font-family: var(--font-sans);
 				font-size: 1.1rem;
-				padding: 0 1rem 0 1rem; 
+				padding: 0 1rem 0 1rem;
+				cursor: pointer;
 			}
 
 			.form-container select:focus {
@@ -904,8 +789,6 @@
 				box-shadow: 0 0 0.8rem var(--color-neutral-glow);
 			}
 
-			
-
 			#reset-button {
 				width: 100%;
 				height: 3rem;
@@ -913,10 +796,10 @@
 				appearance: none;
 				outline:none;
 				background: none;
-				margin-bottom: 4rem;
-				border:0.2rem solid var(--color-error-glow);
+				margin-bottom: 2rem;
+				border:0.2rem solid var(--color-mistake-glow);
 				border-radius: 1.5rem;
-				color: var(--color-error);
+				color: var(--color-mistake);
 				font-family: var(--font-sans);
 				font-size: 1rem;
 				text-transform: uppercase;
@@ -954,14 +837,14 @@
 				width: 2.6rem;
 				height: 2.6rem;
 				margin: 0.1rem;
-				border:0.2rem solid var(--color-error-glow);
+				border:0.2rem solid var(--color-mistake-glow);
 				border-radius: 1.5rem;
 				text-align: center;
 				line-height: 2.6rem;
 				font-size: 0.9rem;
 				font-family: var(--font-sans);
 				color: var(--color-stark);
-				box-shadow: 0 0 0.4rem var(--color-error-glow);
+				box-shadow: 0 0 0.4rem var(--color-mistake-glow);
 			}
 
 			#custom-layout .row .key.set {
@@ -1004,54 +887,42 @@
 		</style>
 	</head>
 
+
+		<!-- <span style="color:#444">Aa Bb Cc De Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv</span>
+		
+		<span style="color:#666">The quick brown fox jumps over </span><span style="color:#ddd">the lazy dog. 0123456789 l1I 0O</span>
+		
+		<span style="color:#bbb">. , ' " ; : ! @ # $ % ^ &amp; * _ + - &ndash; &mdash; = (0) {} [] < > / ? \ | ` ~</span>
+		-->
+
+		<!-- <div class="line l0"><span class="c">-===10===--===20===--===30===--===40===--===50===--===60===--===70===--===80===-</span></div>
+				<div class="line l1">
+					<span class="c">AaBb<span class="m">C</span>cDeEeFfGg</span><span class="caret">H</span>hIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789 O0 l1Il
+				</div>
+				<div class="line l2">
+					jumps over the lazy dog. This line should be long enough to wrap onto the follow
+				</div> -->
+
 	<body>
 		<main>
 			<div id="paper">
-				<div class="left"></div>
-				<div class="center">
-					<div>
-					<span style="color:#444">Aa Bb Cc De Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv</span>
-					<br>
-					<br>
-					<span style="color:#666">The quick brown fox jumps over </span><span style="color:#ddd">the lazy dog. 0123456789 l1I 0O</span>
-					<br>
-					<br>
-					<span style="color:#bbb">. , ' " ; : ! @ # $ % ^ &amp; * _ + - &ndash; &mdash; = (0) {} [] < > / ? \ | ` ~</span>
-					<br>
-					<br>
-					<span style="color:#aaa"></span>
-					</div>
+				<div id="line-0" class="line">
 				</div>
-				<div class="right"></div>
-			</div>
+				<div  id="line-1"  class="line">
+					<span class="c">AaBb<span class="m">C</span>cDeEeFfGg</span><span class="caret">H</span>hIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789 O0 l1Il
+				</div>
+				<div  id="line-2" class="line">
+					jumps over the lazy dog. This line should be long enough to wrap onto the follow
+				</div>
 
-			<div id="trainer" class="page">
-				<!-- <div class="flex-item" style="margin-bottom: 0.5em">	
-					<div class="indicator" style="width:5em">
-						<span id="speed">-</span> wpm
-					</div>
-					<div class="indicator" style="width:6em">
-						<span id="timer">0</span> sec
-					</div>
-				</div> -->					
+				<div  id="line-3" class="line">
+					jumps over the lazy dog. This line should be long enough to wrap onto the follow
+				</div>
 
-				<!-- <div class="practice">
-					<div class="flex-container-practice">
-						<div id="test" class="flex-item-practice"></div>
-						<div id="practice" class="flex-item-practice"></div>
-					</div>
-				</div> -->
-
-				<div id="pre" class="text2">
-					The line that was just typed.
+				<div  id="line-4" class="line">
+					jumps over the lazy dog. This line should be long enough to wrap onto the follow
 				</div>
-				<div id="text" class="text2">
-					Aa Bb Cc De Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
-				</div>
-				<div id="practice" class="text2">
-					The quick brown fox jumps over the lazy dog. 01234567890 l1 0O Il
-				</div>
-			</div> <!-- trainer -->
+			</div> <!-- paper -->
 
 			<div id="keyboard">
 				<div class="row">
@@ -1112,21 +983,7 @@
 			</div> <!-- keyboard -->
 		</main>
 		
-		<footer>
-			<div class="name">
-				<span>CHORDAK</span>
-			</div>
-			<div class="menu">
-				<div><a href="">info</a></div>
-				<div><a href="">design</a></div>
-				<div><a href="">forum</a></div>
-				<div><a href="">pre-order</a></div>
-			</div>
-		</footer>
-		<!-- <div>site design &copy;2017</div> -->
-
-
-		<aside id="sidebar-left" class="left">
+		<aside id="aside-left" class="left">
 			<div class="inner">
 				<br>
 				<label for="simulate-layout" class="form-container">
@@ -1329,7 +1186,7 @@
 
 				<input class="toggle" id="sound" name="sound" type="checkbox">
 				<label for="sound">
-					<div class="description">Error Sounds</div>
+					<div class="description">mistake Sounds</div>
 					<div class="slider"><div class="round"></div></div>
 				</label>
 
@@ -1349,8 +1206,7 @@
 			<!-- <span>&#9835;</span> -->
 		</aside>
 
-
-		<aside id="sidebar-right" class="right">
+		<aside id="aside-right" class="right">
 			<div class="inner">
 
 				<div id="nameless">
@@ -1616,60 +1472,20 @@
 			</span> -->
 		</aside>
 
+		<footer>
+			<div class="name">
+				<span>CHORDAK</span>
+			</div>
+			<div class="menu">
+				<div><a href="">info</a></div>
+				<div><a href="">design</a></div>
+				<div><a href="">forum</a></div>
+				<div><a href="">pre-order</a></div>
+			</div>
+		</footer>
+		<!-- <div>site design &copy;2017</div> -->
 
 		<script>
-			function $(s) { 
-				if (s[0] == '.') {
-					return document.getElementsByClassName(s.substr(1));
-				}
-				return document.getElementById(s);
-			}
-
-			// alert($('custom-layout').offsetHeight);
-
-			var openedSidebar = null;
-			var sidebarLeft = $('sidebar-left');
-			var sidebarRight = $('sidebar-right');
-			sidebarLeft.addEventListener('click', openSidebar);
-			sidebarRight.addEventListener('click', openSidebar);
-			
-			function openSidebar(e) {
-				openedSidebar = e.currentTarget;
-				openedSidebar.classList.add('open');
-				
-				sidebarLeft.removeEventListener('click', openSidebar);
-				sidebarRight.removeEventListener('click', openSidebar);
-				e.stopPropagation();
-				document.body.addEventListener('click', closeSidebar);
-			}
-
-			function closeSidebar(e) {
-				// openedSidebar != e.target condition was removed
-				if(!openedSidebar.contains(e.target)) {
-					document.body.removeEventListener('click', closeSidebar);
-					openedSidebar.classList.remove('open');
-					openedSidebar = null;
-
-					e.stopPropagation();
-					sidebarLeft.addEventListener('click', openSidebar);
-					sidebarRight.addEventListener('click', openSidebar);
-				}
-			}
-
-	    $('typing-hand').addEventListener("change", switchHand);
-
-	    function switchHand(e) {
-	    	var keyboard = $('keyboard');
-				var overlay = $('overlay');
-	    	let [remove, add, text] = e.currentTarget.checked ? 
-	    			['left', 'right', 'R'] : ['right', 'left', 'L'];
-    		keyboard.classList.remove(remove);
-    		overlay.classList.remove(remove);
-    		keyboard.classList.add(add);		    	
-    		overlay.classList.add(add);
-	    	$('typing-hand-text').innerHTML = text;
-	    }
-	    
 			//macbook pro: 68 cN is enough to activate any key; some are softer because of wear from frequent use ('A', 54 cN) or replacement ('D', 48 cN)
 				// 'A' 53.9 cN
 				// 'S' 62.5 cN
@@ -1678,6 +1494,21 @@
 				// ' ' 68.6 cN (near left edge)
 
 			//cherry brown and clear switches look best so far because the reset point is so close to the activation point, provide tactile feedback, and are not too loud
+
+			/* utility functions ------------------------------------ */
+
+			function $(s) { 
+				if (s[0] == '.') {
+					return document.getElementsByClassName(s.substr(1));
+				}
+				return document.getElementById(s);
+			}
+
+			// alert($('custom-layout').offsetHeight);
+			// function funz(e) {
+			// }
+
+			/* chords ----------------------------------------------- */
 
 			var chords = {};			
 
@@ -1737,10 +1568,9 @@
 			// chords['42'] = '8';
 			// chords['52'] = '9';
 
-
 			//BARS & BRACKETS
 			// chords['5'] = '/';
-			// chords['4'] = '\\'; //escaped with extra backslash
+			// chords['4'] = '\\'; // escaped with extra backslash
 			// chords['54'] = '|';
 			// chords['3'] = '(';
 			// chords['2'] = ')';
@@ -1772,6 +1602,247 @@
 			// chords['25'] = '~';
 			// chords['35'] = '`';
 
+			/* lessons ---------------------------------------------- */
+
+			function htmlDecode(input){
+			  var e = document.createElement('div');
+			  e.innerHTML = input;
+			  return e.childNodes[0].nodeValue;
+			}
+
+			var lessons = []; 
+			lessons[0] = "-===10===--===20===--===30===- -===40===-" +
+			"-===50===--===60===--===70===- -===8 0===--===90===-";
+
+			lessons[1] = 'The quick brown fox jumps over the lazy dog.⏎' +
+									 'Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789';
+
+			lessons[2] = 'The quick brown fox⏎jumps over the lazy dog. This line should be long enough to wrap onto the following line without manual carriage return...';
+
+			lessons[3] = 'you might be one of those people that perform';
+
+			lessons[4] = 'The quick brown fox jumps over the lazy dog.';
+
+			var caret;
+			var glyphs = [];
+			var cssClasses = [];
+			var htmlSpans = [];
+			var wordLengths = [];
+			var lineStartsAt = []; //contains index of glyphs that start lines
+
+			loadLesson(4);
+
+			function loadLesson(n) {
+				//reset the lesson state
+				caret = 0;
+				glyphs = [];
+				htmlSpans = [];
+				cssClasses = [];
+				wordLengths = [];
+				lineStartsAt = [];
+				
+				var lesson = lessons[n];
+				var wordLength = 0;
+				for (var g = 0; g < lesson.length; g++) {
+					glyphs[g] = lesson[g];
+					//initialize the class for each glyph to ''
+					cssClasses[g] = '';
+					if (glyphs[g] == ' ') { glyphs[g] = '&nbsp;'; }
+					htmlSpans[g] = '<span class="m">' + glyphs[g] + '</span>';
+
+					/* computes and stores the length of each word includes trailing space and CR symbol to avoid starting a line with a space or CR */
+					wordLength++;
+					if (glyphs[g] == '&nbsp;') { 
+						wordLengths.push(wordLength)
+						wordLength = 0;
+					} else if (glyphs[g] == '⏎') { 
+						wordLengths.push(wordLength + 1);
+						wordLength = 0;
+					}
+				}
+
+				//needed for last word length
+				if(wordLength != 0) { wordLengths.push(wordLength) }
+				// alert(wordLengths);
+
+				reflowText();
+			}
+
+  // -===50===--===60===--===70===--===80===
+			/* reflow text ---------------------------------------------- */
+
+			function reflowText() {
+				var wordNumber = 0;
+				var lineNumber = 0;
+				var lineUsage = 0;
+				let lineCapacity = measureLineCapacity(); //80
+
+				lineStartsAt[0] = 0;
+				for (var g = 0; g < glyphs.length; g++) {
+					// lineStarts[lineNum] += htmlSpans[g];
+					var carriageReturn = false;
+					lineUsage++;
+					if (lineUsage == lineCapacity) { 
+						// sets flag if the line is full
+						carriageReturn = true; 
+					} else if (glyphs[g] == '⏎') { 
+						// sets flag if the glyph is a carriage return
+						carriageReturn = true; 
+					} else if (glyphs[g] == '&nbsp;') {
+						// sets flag if next word won't fit on line
+						// (but only if the word can fit on a line)
+						wordNumber++;
+						var nextWordLength = wordLengths[wordNumber];
+						var fit = nextWordLength <= (lineCapacity - lineUsage);
+						var fitsOnNextLine = nextWordLength <= lineCapacity;
+						// alert(nextWordLength + ", " + fit + ", " + fitsOnNextLine);
+						if (!fit && fitsOnNextLine) { carriageReturn = true }
+					}
+
+					if (carriageReturn == true) {
+						lineStartsAt.push(g+1);
+						lineNumber++;
+						lineUsage = 0;
+					}
+				}
+
+				updateLines();			
+			}
+
+			function updateLines() {
+				//NOTE currentLine SHOULD BE COMPUTED FROM CARET
+				var currentLine = 0;
+				var start = (currentLine == 0) ? 0 : (currentLine - 1);
+				//var limit = (currentLine == 0) ? (currentLine + 3) : (currentLine + 2);
+				var limit = 3;
+				
+				//concatenate the spans and replace lines on paper
+				for (var i = start; i < limit; i++) {
+					var g = lineStartsAt[i]
+					var max = (lineStartsAt.length > i+1) ? lineStartsAt[i+1] : (glyphs.length);
+
+					var innerHTML = '';
+					//end loop early if no more glyphs to place
+					if (g >= glyphs.length) { break; }
+					// alert('g: ' + g + ', max: ' + max);
+
+					while(g < max) {
+						if (htmlSpans[g] == '') { alert('span fail'); }
+						innerHTML += htmlSpans[g];
+						g++;
+					}
+					
+					// $('paper').children[i].innerHTML = innerHTML;
+					//$('paper').children[i].innerHTML = i;
+					// $('line-'+i).innerHTML = i;
+					$('line-' + i).innerHTML = innerHTML;
+				}
+
+
+				// var lineCount = (lineIndex > 2) ? 3 : lineIndex +1;
+
+				// for (var i = 0; i < lineCount; i++) {
+				// 	$('paper').children[i].innerHTML = lines[i];
+				// }
+			}
+
+			function measureChar() {
+				var e = document.createElement('div');
+				alert(e.outerHTML);
+				e.classList.add('line');
+				// e.class = 'line';
+				e.innerHTML = 'A';
+				alert(e.clientWidth);
+			  
+			  //return e.childNodes[0].nodeValue;
+			}
+
+			function measureLineCapacity() {
+				alert(window.devicePixelRatio);
+
+				var capacity = 20;
+				var a = $('paper').children[0].clientWidth;
+				var b = $('paper').children[0].offsetWidth;
+				alert('line ' + a + ' ' + b);
+
+				// alert(document.documentElement.style.font-size);
+				// window.getComputedStyle()
+				// $('line-' + i)
+				
+				// measureChar();
+				return capacity
+			}
+			// 472
+			// 452
+
+			function changeState() {
+								/*
+				cssClasses[15] = 'm';
+
+				for (var i = 0; i < glyphs.length; i++) {
+
+					var open = '<span class="' + cssClasses[i] + '">';
+					var glyph = glyphs[i];
+					var close = '</span>';
+					
+					if(glyph == ' ') {
+						breaks.push(i);
+						//special case for mistake on space (note: ␣ is U+2423)
+						if (cssClasses[i] == 'm') { glyph = '␣'; }
+					}
+					//concatenate the tags to produce the finished span
+					spans[i] = open + glyph + close;
+					if (i > 13 && i < 16) { alert(spans[i]); } 
+				}
+				*/
+			}
+
+
+			/* asides ----------------------------------------------- */
+
+			var asideOpen = null;
+			$('aside-left').addEventListener('click', toggleAside);
+			$('aside-right').addEventListener('click', toggleAside);
+			
+			function toggleAside(e) {
+				// if no aside is open, go ahead and open one now
+				if (asideOpen == null) {
+					asideOpen = e.currentTarget;
+					asideOpen.classList.add('open');
+					e.stopPropagation(); // may be unnecessay
+					document.body.style.cursor = 'pointer';
+					document.body.addEventListener('click', toggleAside);
+
+				// if an aside is open, closes on click out of aside
+				} else if (!asideOpen.contains(e.target)) {
+					document.body.style.cursor = 'auto';
+					document.body.removeEventListener('click', toggleAside);
+					asideOpen.classList.remove('open');
+					asideOpen = null;
+				}
+				// otherwise, ignore the event
+			}
+
+			/* typing hand ------------------------------------------ */
+
+	    $('typing-hand').addEventListener("change", switchHand);
+
+	    function switchHand(e) {
+	    	var keyboard = $('keyboard');
+				var overlay = $('overlay');
+	    	let [remove, add, text] = e.currentTarget.checked ? 
+	    			['left', 'right', 'R'] : ['right', 'left', 'L'];
+    		
+    		keyboard.classList.remove(remove);
+    		overlay.classList.remove(remove);
+
+    		keyboard.classList.add(add);		    	
+    		overlay.classList.add(add);
+	    	$('typing-hand-text').innerHTML = text;
+	    }
+
+	    /* standard keyboard layout ----------------------------- */
+	    
 			//var home = [' ', 'F', 'D', 'S', 'A']; //qwerty
 			var home = [' ', 'T', 'S', 'R', 'A']; //colemak left
 			//var home = [' ', 'N', 'E', 'I', 'O']; //colemak right
@@ -1781,43 +1852,40 @@
 			var count = 0;
 			var writing = ""
 
-			// var textRaw =
-			
-			// var test = "you might be one of those people that perform";
-			//var test = "the quick brown fox jumps over the lazy dog";
 			var start = 0;
 
+			/* reflow text on resize -------------------------------- */
 			
-			window.addEventListener("resize", debounceReflow);
-			var textarea = document.getElementById("text");
-			var w0 = textarea.clientWidth; //no counting border
-			var out;
-			function debounceReflow(event) {
-				var w = textarea.clientWidth;
-				// textarea.innerHTML = w;
-				if (w != w0) {
-					//only fires if width of writing area changed
-					textarea.style.opacity = 0;
-					window.clearTimeout(out);
-					out = window.setTimeout(reflow, 100);
-				}
-			}
+			// window.addEventListener("resize", debounceReflow);
+			// var textarea = document.getElementById("text");
+			// var w0 = textarea.clientWidth; //no counting border
+			// var out;
+			// function debounceReflow(event) {
+			// 	var w = textarea.clientWidth;
+			// 	// textarea.innerHTML = w;
+			// 	if (w != w0) {
+			// 		//only fires if width of writing area changed
+			// 		textarea.style.opacity = 0;
+			// 		window.clearTimeout(out);
+			// 		out = window.setTimeout(reflow, 100);
+			// 	}
+			// }
 
-			function reflow() {
-				var w = textarea.clientWidth;
-				textarea.innerHTML = "reflow... " + w + "px... " + (w/10) + "rem";
-				w0 = w;
-				textarea.style.opacity = 1;
-			}
+			// function reflow() {
+			// 	var w = textarea.clientWidth;
+			// 	textarea.innerHTML = "reflow... " + w + "px... " + (w/10) + "rem";
+			// 	w0 = w;
+			// 	textarea.style.opacity = 1;
+			// }
 
-			function zzz(event) {
-				var tar = event.target;
-			    var w = window.outerWidth;
-			    var h = window.outerHeight;
-			    var txt = "Window size: width=" + w + ", height=" + h;
-			    document.getElementById("trainer").innerHTML = txt;
-			    //document.getElementById("demo").innerHTML = txt;
-			}
+			// function zzz(event) {
+			// 	var tar = event.target;
+			//     var w = window.outerWidth;
+			//     var h = window.outerHeight;
+			//     var txt = "Window size: width=" + w + ", height=" + h;
+			//     document.getElementById("trainer").innerHTML = txt;
+			//     //document.getElementById("demo").innerHTML = txt;
+			// }
 
 			document.body.addEventListener("keydown", keydownHandler);
 			document.body.addEventListener("keyup", keyupHandler);
@@ -1828,8 +1896,6 @@
 			// document.getElementById("test").innerHTML = test;
 			var practice = document.getElementById("practice");
 			y = 0;
-
-			practice.innerHTML = "TEST";
 
 			function keydownHandler(e) {
 				var key = e.which;
@@ -1937,6 +2003,11 @@
 					}
 				}
 			}
+
+			/* setup ----------------------------------------- */
+
+			// loadLesson(0);
+
 		</script>
 	</body>
 </html>
