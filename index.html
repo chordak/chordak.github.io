@@ -16,13 +16,13 @@
       }
 
       body {
-        padding: 5rem 0 5rem 0;
         margin: 0;
         position: 
 
         width: 100%;
-        height: calc(100% - 10rem);
+        height: calc(100%);
         color: #f0f2e5;    
+        overflow: hidden;
       }
 
       .view {
@@ -34,12 +34,12 @@
         width: 100%;
         height: 100%;
         font-size: 2rem;
-        text-align: center;
         font-family: "Helvetica Neue", helvetica, sans-serif;
       }
 
       #home {
         background: #272821;
+
         
       }
 
@@ -60,7 +60,6 @@
         font-size: 16vw;
         line-height: 14vw;
         font-weight: bold;
-        
         font-family: "Helvetica Neue", helvetica, sans-serif;
         /*color: #383a33;*/
         color: #f0f2e5; /*off-white*/
@@ -74,19 +73,38 @@
         color:#6cc72c;
       }
 
-      header {
+      header, footer {
         display: flex;
+        flex-shrink: 0;
         justify-content: space-between;
-        margin: 0 3rem 0 3rem;
+        margin: 0 5vw 0 5vw;
 
         font-size: 3rem;
-        line-height: 3.5rem;
+        line-height: 2.3rem;
+        /*border: 1px solid yellow;*/
+      }
+
+      header {
+        padding-top: 4rem;
+      }
+
+      footer {
+        padding-bottom: 4rem;
+      }
+
+      main {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
       }
 
       .corner {
         /*border: 1px solid black;*/
         text-align: right;
-        
         font-weight: bold;
       }
 
@@ -94,33 +112,63 @@
         color: #fa2772;
       }
 
-      .corner div.label {
-        font-size: 2.5rem;
+      .corner span {
+        font-size: 1.5rem;
         font-weight: normal;
-        color: #383a33;
-
+        /*color: #383a33;*/
+        /*color:#686863;*/
+        padding-left: 0.2rem;
       }
 
       #fat {
         color: #e7db75;
       }
 
-      footer {
-        display: flex;
-        justify-content: space-between;
-        margin: 0 3rem 0 3rem;
-      }
-
        #add {
-        font-size: 5rem;
-
+        position: relative;
         width: 5rem;
         height: 5rem;
+        /*background-color: red;*/
+      }
 
-        border: 0.3rem solid;
-        border-radius: 2.8rem;
-        
-        line-height: 4rem;
+      #add div.h {
+        position: absolute;
+        width: 100%;
+        height: 0.8rem;
+        top: calc(50% - 0.4rem);
+        background-color: #f0f2e5;
+      }
+
+      #add div.v {
+        position: absolute;
+        height: 100%;
+        width: 0.8rem;
+        left: calc(50% - 0.4rem);
+        background-color: #f0f2e5;
+      }
+
+      #menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 5rem;
+        height: 5rem;
+        /*background-color: red;*/
+        /*cursor: pointer;*/
+      }
+
+      .bar1, .bar2, .bar3 {
+        width: 100%;
+        height: 0.8rem;
+        background-color: #f0f2e5;
+      }
+
+      #timer {
+        margin-top: 1rem;
+        opacity: 0.33;
+        border: 1px solid red;
+        font-size:4.5vw;
+
       }
     </style>
   </head>
@@ -129,20 +177,18 @@
     <div class="view" id="home"> <!-- Home Screen -->
       <header>
         <div class="corner">
-          <div id="weight">+44.0</div>
-          <div class="label">lbs</div>
+          <div id="weight">+44.0<span>lbs</span></div>
         </div>
 
         <div class="corner">
-          <div id="fat">+15.0</div>
-          <div class="label">%bf</div>
+          <div id="fat">+15.0<span>%&thinsp;bf</span></div>
+          
         </div>
       </header>
 
-      <div id="center">
+      <main>
         <div id="action">
-          HOLD<br>
-            FAST
+          FAST
           <!-- FEAST -->
           <!-- GRAZE -->
         </div>
@@ -150,19 +196,22 @@
           SINCE 8/14/2017
         </div>  -->
 
-        <div>
-          FOR 5 HR 11 MIN<br>
-          <small><small>(August 14, 2017 @ 00:00)</small></small>
+        <div id="timer">
+          +07:58:13&nbsp;&nbsp;&nbsp;&nbsp;-05:11:22<br>
+          <!-- <small><small>(August 14, 2017 @ 00:00)</small></small> -->
         </div> 
-      </div>
+      </main>
 
       <footer>
-        <div id="menu">
-          <div>MENU</div>
+        <div id="menu" class="container">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
         </div>
 
         <div id="add">
-        +
+          <div class="h"></div>
+          <div class="v"></div>
         </div>
       </footer>
 
@@ -171,6 +220,16 @@
 
 
     <script>
+      var timeoutTest;
+      var s = 60;
+      function timeoutHandler() {
+        s--;
+        timeoutTest = window.setTimeout(timeoutHandler, 1000);
+        var pad = (s < 10) ? '0' : '';
+        document.title = 'FAST -00:00:' + pad + s;
+        if (s == 0) { s = 60; }
+      }
+      speedTimeout = window.setTimeout(timeoutHandler, 1000);
     </script>
   </body>
 </html>
