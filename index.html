@@ -25,6 +25,7 @@
         border-bottom: 1px solid #333;
         border-top: 1px solid #333;
         /*overflow: hidden;*/
+        font-family: "Helvetica Neue", helvetica, sans-serif;
       }
 
       .view {
@@ -34,31 +35,14 @@
         width: 100%;
         height: 100%;
         font-size: 2rem;
-        font-family: "Helvetica Neue", helvetica, sans-serif;
-        /*border:1px solid red;*/
       }
 
       #home {
-        background: #272821;
-
-        
-      }
-
-      #home.fast {
-        /*background: #E5786D;*/
-        /*color:#222;*/
-
-        
-      }
-
-      #home.feast {
-        /*background: #CAE682;
-        color:#5f6d3b;*/
-        
+        background: #272821;        
       }
 
       #action {
-        font-size: 16vw;
+        font-size: 20vw;
         line-height: 14vw;
         font-weight: bold;
         font-family: "Helvetica Neue", helvetica, sans-serif;
@@ -191,7 +175,7 @@
 
       <main>
         <div id="action">
-          FAST
+          FEAST
           <!-- FEAST -->
           <!-- GRAZE -->
         </div>
@@ -233,6 +217,27 @@
         if (s == 0) { s = 60; }
       }
       speedTimeout = window.setTimeout(timeoutHandler, 1000);
+
+
+      function swapHandler() {
+        var curr = document.getElementById('action').innerHTML;
+        var next = '';
+        switch (curr) {
+          case 'FEAST':
+            next = 'FAST';
+            break;
+          case 'FAST':
+            next = 'GRAZE';
+            break;
+          default:
+            next = 'FEAST';
+            break;
+        }
+        document.getElementById('action').innerHTML = next;
+      }
+      document.getElementById('action').addEventListener('click', swapHandler);
+
+
     </script>
   </body>
 </html>
