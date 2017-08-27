@@ -9,39 +9,39 @@
     <style>
       :root {
         --color-stark: #fff;
-        
-        --color-cream: #f0f2e5;
-
-        --color-stark-glow: #ddd;
-        --color-neutral: #ddd;
-        --color-neutral-glow: #aaa;
-        --color-muted: #333;
+        --color-cream: #eee;
+        --color-cream-glow: #aaa;
+        --color-muted: #444;
 
         --color-correct: #8eeef6;
         --color-correct-glow: #8eeef6;
         --color-mistake: #e4648a;
         --color-mistake-glow: #e4648a;
 
-        --color-background: #12120f;
-        --color-chordak: #21211f; /*#1b1b18*/
-        --color-foreground: #21211f;
+        --color-background: #12130f;
+        --color-foreground: #1d1e1a;
+
+        --color-paper: #262723;
+        --color-type: #e1e1db;
+
+        --key: 5.4rem;
         
-
-        --color-accent: #7bd507;/*orange #e38563; green #96E363;*/
-
         --font-mono: 'Menlo', courier, monospace;
-        /*--font-mono: 'SF Mono', courier, monospace;*/
-        /*--font-mono: 'DejaVu Sans Mono', courier, monospace;*/
         --font-sans: "Open Sans", courier;
         --font-block: "Open Sans", courier;
         --font-brand: "Open Sans", courier;
-        /* alt correct C2DAB1, D0E1A7, 55D9C0, B4C76D, 77ACA1, 77EAAC, 7FFCD1, 5BE4A7, 8EEEF6 */
-        /* alt error DB7D9E,DF8F8C */
-        /* misc colors AACFD8, F4C437 */
+
         --color-debug-pink: deepPink;
         --color-debug-aqua: Aquamarine;
         --color-debug-coral: Coral;
         --color-debug-gold: Gold;
+      }
+
+      ::selection {
+        background: #999997; /* WebKit/Blink Browsers */
+      }
+      ::-moz-selection {
+        background: #999997; /* Gecko Browsers */
       }
 
       html {
@@ -57,15 +57,16 @@
         background: var(--color-background);
         position: fixed;
 
-        /* essential for mobile safari experience 
-        -webkit-tap-highlight-color:rgba(0,0,0,0);
-        /*cursor:pointer;*/
+        /* essential for mobile safari experience */
+        /* -webkit-tap-highlight-color:rgba(0,0,0,0); */
+        /* cursor:pointer; */
       }
 
       /* footer ----------------------------------------------- */
       
       footer {
-        width: calc(100% - 2.5rem);
+        /*width: calc(100% - 2.5rem);*/
+        width: 100%;
         height: 5.5rem;
 
         display: flex;
@@ -73,21 +74,21 @@
 
         position: fixed;
         bottom:0;
-        margin: 0 2.5rem 2.5rem 0;
+        /*margin: 0 2.5rem 2.5rem 0;*/
+        margin-bottom: 2.5rem;
           
         border-width: 0 0 0.1rem 0;
         border-style: solid;
         border-color: #222;
-        
+        /*background: red;*/
       }
 
       footer #chordak {
         flex: 0 1 18rem;
-        min-width: 14.5rem;
+        min-width: 14rem;
         position: relative;
         text-align: right;
-        background: var(--color-chordak);
-        /*margin-right: 0.5rem;*/
+        background: var(--color-foreground);
         color: var(--color-cream);
       }
 
@@ -98,10 +99,7 @@
         font-family: var(--font-brand);
         font-size: 2rem;
         line-height: 2rem;
-        /*border: 1px solid red;*/
         font-weight: bold;
-        /*color:#ddd;*/
-
       }
 
       footer .menu {
@@ -141,7 +139,6 @@
         position: fixed;
         top:0;
         z-index: 2;
-        /*background: green;*/
       }
 
       aside .inner {
@@ -168,16 +165,18 @@
 
       aside.left .inner {
         right: 2.5rem;
-        width: 20rem;
+        /*width: 20rem;*/
+        width: 17rem;
         padding: 0 2.5rem;
         box-shadow: 0.5rem 0 0.5rem -0.15rem black;
         font-family: var(--font-sans);
         font-size: 1.2rem;
-        color: var(--color-neutral);
+        color: var(--color-stark);
+        cursor: default;
       }
 
       aside.left.open {
-        transform: translate3d(5rem, 0, 0);
+        transform: translate3d(2rem, 0, 0);
       }
 
       aside.left .icon {
@@ -228,53 +227,55 @@
 
       main {
         width: 100%;
-        height: calc(100% - 8.7rem);
-          display: -webkit-flex;
+        height: calc(100% - 8rem); /* 8rem is footer height */
         display: flex;
         flex-direction: column;
-        justify-content: space-around; /*flex-start;*/
+        justify-content: center; /*flex-start;*/
         align-items: center;
         /*background-color: var(--color-debug-coral);*/
       }
 
       /* main paper ------------------------------------------- */
 
-      #paper {
-        max-width: 82.0rem;
+      #paper, #blank, #key-info {
+        flex: 0 0;
+        max-width: 77.2rem; /*max-width: 82.0rem;*/
         padding: 0 1rem 0 1rem;
         width: calc(100% - 12rem);
-        /*margin: 5rem;*/
         height: calc(1.7*1.5rem*3);
         min-height: calc(1.7*1.5rem*3);
-        /*max-height: calc(1.7*1.5rem*3  + 0.6rem);*/
-        margin: 5rem auto 0 auto;
         box-shadow: 0rem 0rem 0.5rem 0.2rem black;
-        /*background-color: rgb(26,26,26);*/
-        background: green;
         overflow: hidden;
-
         font-family: var(--font-mono);
-        font-size: 1.7rem;
+        font-size: 1.6rem; /*font-size: 1.7rem;*/
+        background-color: var(--color-paper);
+        color: var(--color-type);
       }
-      /*
-      width data
-      ----------
-      min-width: 82.0 rem (for 80 char)
-      */
 
+      #blank {
+        outline: none;
+        resize: none;
+        border: none;
+        height: 100%;
+        width: calc(100% - 15rem);
+        margin: 2.5rem 0;
+        padding: 2rem;
+        box-shadow: 0rem 0rem 0.5rem 0.4rem black;
+        caret-color:white;
+        font-size: 1.3rem;
+        overflow: scroll;
+      }
+
+      #blank.hidden, #paper.hidden {
+        display: none;
+      }
 
       #paper .line {
         width: 100%;
         height: calc(1.7rem*1.5);
         color: rgb(221, 221, 221); /*221-238*/
         white-space: nowrap;
-        /*background-color: #333;*/
-        background: var(--color-background); /*remove eventually*/
       }
-
-      /*#line-0 { background-color: #444; }
-      #line-1 { background-color: #555; }
-      #line-2 { background-color: #666; }*/
 
       #paper span.c { /* correct */
         color: #48483e;
@@ -292,114 +293,58 @@
         border-radius: 0.1rem;
       }
 
-      /*line-height: 1.5rem;*/
-        /*yellow #D1C27F*/
-        /*green, not bad B4C76D*/
-
-              /* 96E363*/
-        /* alt correct C2DAB1, D0E1A7, 55D9C0, B4C76D, 77ACA1, 77EAAC, 7FFCD1, 5BE4A7, 8EEEF6 */
-        /* alt error DB7D9E,DF8F8C */
-        /* misc colors AACFD8, F4C437 */
-
       .undefined {
         background-color: #e7db75;
         color:#48483e;
         border-radius: 0.1rem;
-        /*--color-accent: #7bd507;orange #e38563; green #96E363;*/
-
       }
 
       /* main keybord ----------------------------------------- */
 
       #keyboard {
-        width: 84rem;
-        min-height: 26rem;
         flex: 0 0;
-          display: -webkit-flex;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        font-size: 1rem;
-        
-        /*position: relative;*/
-        overflow: hidden;
+        min-height: calc(var(--key) * 6);
+        width: calc(var(--key) * 8);
+        position: relative;
         /*background-color: green;*/
-        /*border-top: 2px solid #111;*/
+        margin-top: 1rem;
 
-          /*-webkit-box-shadow: 0.5rem 0 0.5rem -0.2rem black;*/
-        /*box-shadow: 0 -0.5rem 1rem 0 black;*/
-      }
-      
-      #keyboard.left {
-        width: 40rem;
-        font-size: 1rem;
-      }
-      #keyboard.right {
-        width: 50rem;
-        font-size: 1rem;
+          /*-webkit-user-select: none;*/
+          /*-moz-user-select: none;*/
+          /*-ms-user-select: none;*/
+        user-select: none;
+        cursor: default;
       }
 
-      /*#keyboard.left .inner {
-        flex: 1 0 84rem;
-        min-width: 50rem;
-        max-width: 84rem;
-        width: 50rem;
-        margin: auto;
+      #keyboard.hidden {
+        display: none;
       }
-      #keyboard.right .inner {
-        width: 50rem;
-        margin-left: -35rem;
-        padding-right: 35rem;
-      }*/
 
-      #keyboard #overlay {
+      #keyboard .key { 
+        border: 0.2rem solid #555; /* REMOVE ABSOLUTE COLOR DECL!!! */
+        width: calc(var(--key) - 0.4rem);
+        height: calc(var(--key) - 0.4rem);
+        border-radius: calc(var(--key) / 2);
+        font-size: calc(var(--key) * 0.22);
+        font-family: var(--font-sans);
+        color: var(--color-cream);
+        
         position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        /*border: 0.1rem solid yellow;*/
-      }
-
-      #keyboard.left #overlay {
-        background: -webkit-linear-gradient(22deg, 
-          rgba(17,17,17,0) 60%,
-          rgba(17,17,17,1) 82%);
-      }
-      #keyboard.right #overlay {
-        margin-left: 35rem;
-        background: -webkit-linear-gradient(-158deg, 
-          rgba(17,17,17,0) 81%,
-          rgba(17,17,17,1) 93%);
-      }
-
-      #keyboard .row {
-          display: -webkit-flex;
-        display: flex;
-      }
-
-      #keyboard .row .key {
-        flex: 0 0 4.8rem;
-        height: 4.8rem;
-        font-size: 1.8rem;
-
-          display: -webkit-flex;
+        /* four line centering */
         display: flex;
         justify-content: center;
         align-items: center;
-        border-style: solid;
-        border-width: .2rem;
-        border-radius: 2.6rem;
-        border-color: #555;
-        color: #bbb;
-        margin: 0.4rem;
-        font-family: "Open Sans";
+        text-align: center;
+        transition: color 100ms ease, border-color 100ms ease, box-shadow 100ms ease;
       }
 
-      #keyboard .row .key.text {
-        font-size: 0.9rem;
+      #keyboard .key.editing {
+        color:#e7db75;
+        border-color: #e7db75;
+        box-shadow: 0rem 0rem 1.8rem #e7db75;
       }
 
-      #keyboard .row .key.pressed {
+      #keyboard .key.pressed {
           -webkit-transform: scale(0.95, 0.95);
           -ms-transform: scale(0.95, 0.95);
         transform: scale(0.95, 0.95);
@@ -408,7 +353,7 @@
         box-shadow: 0rem 0rem 1.8rem #bbb;
       }
 
-      #keyboard .row .key.pressed-wrong {
+      #keyboard .key.pressed-wrong {
           -webkit-transform: scale(0.95, 0.95);
           -ms-transform: scale(0.95, 0.95);
         transform: scale(0.95, 0.95);
@@ -417,38 +362,106 @@
         box-shadow: 0rem 0rem 1.8rem #E4648A;
       }
 
-      #keyboard .row .key.pressed-correct {
-          -webkit-transform: scale(0.95, 0.95);
-          -ms-transform: scale(0.95, 0.95);
+      #keyboard .key.pressed-correct {
+        -webkit-transform: scale(0.95, 0.95);
+        -ms-transform: scale(0.95, 0.95);
         transform: scale(0.95, 0.95);
         color:#8EEEF6;
         border-color: #8EEEF6;
         box-shadow: 0rem 0rem 1.8rem #8EEEF6;
       }
 
-      #keyboard .row .key.caps {
-        margin-left: 2.5rem;
+      #keyboard .key span {
+        font-size: calc(var(--key) * 0.4);
+        pointer-events: none;
       }
-      #keyboard .row .key.shift {
-        margin-left: 5.4rem;
-      }
-      #keyboard .row .key.command {
-        margin-left: 17.4rem;
-      }
-      #keyboard .row .key.space {
-        flex: 0 0 28.8rem;
-        border-radius: 2.5rem;
+      #keyboard .key span.stack {
+        font-size: calc(var(--key) * 0.3);
+        line-height: calc(var(--key) * 0.38);
       }
 
-      #keyboard .row .key.stack {
-        font-size: 1.6rem;
-        line-height: 1.8rem;
-        align-content: center;
-      }
+      #keyboard.L #p0 { top: 28.33%; }
+      #keyboard.L #p1 { top: 45.00%; }
+      #keyboard.L #p2 { top: 61.67%; }
 
-      #keyboard .row .itsy {
-        line-height: 50%;
-        font-size: 150%;
+      #keyboard.L #r0 { top: 10.00%; }
+      #keyboard.L #r1 { top: 30.00%; }
+      #keyboard.L #r2 { top: 50.00%; }
+
+      #keyboard.L #m0 { top:  3.33%; }
+      #keyboard.L #m1 { top: 23.33%; }
+      #keyboard.L #m2 { top: 43.33%; }
+
+      #keyboard.L #i0 { top: 10.00%; }
+      #keyboard.L #i1 { top: 30.00%; }
+      #keyboard.L #i2 { top: 50.00%; }
+
+      #keyboard.L #t0 { top: 81.67%; }
+      #keyboard.L #t1 { top: 75.00%; }
+      #keyboard.L #t2 { top: 73.33%; }
+      #keyboard.L #t3 { top: 76.67%; }
+
+      #keyboard.L #keyboard-title { top:86.67%; }
+
+      /* left handed keyboard layout */
+      #keyboard.L #p0 { left:  2.50%; }
+      #keyboard.L #p1 { left:  8.75%; }
+      #keyboard.L #p2 { left: 15.00%; }
+
+      #keyboard.L #r0 { left: 22.50%; }
+      #keyboard.L #r1 { left: 25.00%; }
+      #keyboard.L #r2 { left: 27.50%; }
+
+      #keyboard.L #m0 { left: 42.50%; }
+      #keyboard.L #m1 { left: 42.50%; }
+      #keyboard.L #m2 { left: 42.50%; }
+
+      #keyboard.L #i0 { left: 62.50%; }
+      #keyboard.L #i1 { left: 60.00%; }
+      #keyboard.L #i2 { left: 57.50%; }
+
+      #keyboard.L #t0 { left: 86.50%; }
+      #keyboard.L #t1 { left: 73.25%; }
+      #keyboard.L #t2 { left: 59.50%; }
+      #keyboard.L #t3 { left: 45.75%; }
+
+      #keyboard.L #keyboard-title { left: 0; }
+
+      /* right handed keyboard layout */
+      #keyboard.R #p0 { right:  2.50%; }
+      #keyboard.R #p1 { right:  8.75%; }
+      #keyboard.R #p2 { right: 15.00%; }
+
+      #keyboard.R #r0 { right: 22.50%; }
+      #keyboard.R #r1 { right: 25.00%; }
+      #keyboard.R #r2 { right: 27.50%; }
+
+      #keyboard.R #m0 { right: 42.50%; }
+      #keyboard.R #m1 { right: 42.50%; }
+      #keyboard.R #m2 { right: 42.50%; }
+
+      #keyboard.R #i0 { right: 62.50%; }
+      #keyboard.R #i1 { right: 60.00%; }
+      #keyboard.R #i2 { right: 57.50%; }
+
+      #keyboard.R #t0 { right: 86.50%; }
+      #keyboard.R #t1 { right: 73.25%; }
+      #keyboard.R #t2 { right: 59.50%; }
+      #keyboard.R #t3 { right: 45.75%; }
+
+      #keyboard.R #keyboard-title { right: 0; }
+
+      /*#p1, #r1, #m1, #i1, #t1 { background-color: #2b2c29; }*/
+
+      #keyboard-title { 
+        width: calc(var(--key) * 3.3);
+        font-size: calc(var(--key) * 0.26);
+        color: var(--color-muted);
+        position: absolute;
+        text-align: center;
+        font-family: var(--font-sans);
+        text-transform: uppercase;
+        font-weight: bold;
       }
 
       /* chords legend ---------------------------------------- */
@@ -537,7 +550,6 @@
 
       #chords div {
         width: 100%;
-          display: -webkit-flex;
         display: flex;
         justify-content: space-between;
         font-family: var(--font-mono);
@@ -591,120 +603,45 @@
         padding:0 0.25rem;
       }
 
+      /* settings --------------------------------------------- */
 
-/*      #chord-t .l {
-        font-family: helvetica;
-        font-size: 2rem;
-        line-height: 1.7rem;
-        color:red;
-      }
-
-      #chord-t .l {
-        font-family: helvetica;
-        font-size: 2rem;
-        line-height: 1.7rem;
-        color:red;
-      }
-
-      #chord-prm .l {
-        font-size: 3rem;
-        line-height: 1.7rem;
-      }
-
-      #chord-rmi .l {
-        font-size: 1.8rem;
-        line-height: 2rem;
-      }*/
-
-      /* custom inputs ---------------------------------------- */
-
-      .input-group {
-            display: -webkit-flex;
-          display: flex;
-          width: 100%;
-          height: 6rem;
-      }
-
-      .input-group label {
-          display: -webkit-flex;
-        display: flex;
-
-        /*font-size: 2rem;*/
-        width:50%;
-        height:100%;
-        border: none;
-        padding: 0.2rem;
-
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-
-        /*transition: border 0.2s ease, padding 0.2s ease;*/
-      }
-
-      .input-group label span {
-        color: #666;
-        font-size: 3rem
-      }
-
-      .input-group input[type="radio"] {
-        display: none;
-      }
-/*      label + input[type="radio"] {
-        color: #666;
-      }*/
-
-      .input-group input[type="radio"]:checked + label {
-        padding: 0rem;
-        border: 0.1rem solid #ccc;
-
-        box-shadow: 0 0 1.2rem #bbb;
-      }
-
-      .input-group input[type="radio"]:checked + label span {
-        color: #ccc;
-      }
-
-      /* toggle checkbox --------------------------------------------------- */
-      /*<!-- <input class="toggle" id="sample" name="sample" type="checkbox">
-            <label for="sample">
-              <div class="description">Sample Label</div>
-              <div class="slider"><div class="round"></div></div>
-            </label> -->*/
-      
-      .toggle {
-        display:none;
-      }
-
-      .toggle+label {
+      .setting {
         width: 100%;
         height: 3rem;
-          display: -webkit-flex;
+        padding: 0.5rem 0;
         display: flex;
-        justify-content: space-between;
+        align-items: center;
         position: relative;
-        margin: 1rem 0;
-          -webkit-user-select: none;
+      }
+      
+      .setting .hidden {
+        display: none;
+      }
+
+      .setting :first-child {
+        position: absolute;
+        left: 0;
+      }
+
+      .setting :last-child {
+        position: absolute;
+        right: 0;
+        -webkit-user-select: none;
         user-select: none;
       }
 
-      .toggle+label .description {
-        margin: auto 0;
-      }
-
-      .toggle+label .slider {
+      .switch {
         min-width: 5rem;
         max-width: 5rem;
         height: 2.6rem;
-        position: relative;
-        border:0.2rem solid var(--color-neutral);
+        border:0.2rem solid var(--color-cream);
         border-radius: 1.5rem;
-        overflow: hidden;
-        transition: border-color 0.2s ease;
+        overflow: hidden;       
         cursor: pointer;
+        transition: border-color 0.15s ease;
       }
 
-      .toggle+label .slider .round {
+      .switch .round {
         width: 1.8rem;
         height: 1.8rem;
         position: absolute;
@@ -713,54 +650,35 @@
         border:0.2rem solid var(--color-mistake);
         border-radius: 50%;
         box-shadow: 0 0 0.9rem var(--color-mistake-glow);
-        transition: right 0.3s ease;
+        transition: transform 0.3s ease;
       }
 
-      .toggle:checked+label .slider .round {
-        right: 0;
+      .setting input:checked+label .round {
         border-color:#8EEEF6;
         box-shadow: 0 0 0.9rem #8EEEF6;
+        transform: translate(2.2rem, 0);
       }
 
-      .toggle+label .slider.neutral .round {
-        width: 1.8rem;
-        height: 1.8rem;
-        position: absolute;
-        right: 2.1rem;
-        margin: 0.2rem 0.3rem;        
-        text-align: center;
-        border-radius: 50%;
-        border:0.2rem solid var(--color-neutral);
-        box-shadow: 0 0 0.6rem var(--color-neutral-glow);
-        color: #eee;
+      .switch.neutral .round {
+        text-align: center; 
+        border-color: var(--color-cream);
+        box-shadow: 0 0 0.9rem var(--color-cream-glow);
+        color: white;
       }
 
-      .toggle:checked+label .slider.neutral .round {
-        right: 0;
+      .setting input:checked+label.neutral .round {
+        border-color: var(--color-cream);
+        box-shadow: 0 0 0.9rem var(--color-cream-glow);
+        transform: translate(2.2rem, 0);
       }
 
-      /* select & incrementer inputs ----------------------------- */
-
-      .form-container {
-        width: 100%;
-        height: 3rem;
-          display: -webkit-flex;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;        
-        position: relative;
-        padding: 0.5rem 0;
-        overflow: visible;
-      }
-
-      .form-container select {
-        width: 7rem;
+      .setting select {
         height: 3rem;
           -webkit-appearance: none;
         appearance: none;
         outline:none;
         background: none;
-        border:0.2rem solid var(--color-neutral);
+        border:0.2rem solid var(--color-cream);
         border-radius: 1.5rem;
 
         color: #eee;
@@ -772,30 +690,24 @@
         cursor: pointer;
       }
 
-      .form-container select:focus {
-        box-shadow: 0 0 0.9rem var(--color-neutral-glow);
+      .setting select:focus {
+        box-shadow: 0 0 0.9rem var(--color-cream-glow);
       }
 
-      .form-spacer-1 {
-        width:100%;
-        height:0.5rem;
-      }
+      #mode { width: 11rem; }
+      #lesson { width: 11rem; }
+      #layout { width: 7.5rem; }
+      
 
-      .form-spacer-2 {
-        width:100%;
-        height:1.5rem;
-      }
-
-      .form-container .incrementer {
+      .incrementer {
         width:5.4rem;
         height:3.0rem;
         position: relative;
         border-radius:1.5rem;
         background: none;
       }
-      /* 5rem - 0.4rem outer border - 0.2rem mid border = 4.4rem */
-
-      .form-container .incrementer input {
+      
+      .incrementer input {
         width: 2.7rem;
         height: 100%;
         position:absolute;
@@ -809,23 +721,23 @@
         font-size: 1.4rem;
         text-align: center;
         color: var(--color-stark);
-        border:0.2rem solid var(--color-neutral);
+        border:0.2rem solid var(--color-cream);
       }
 
-      .form-container .incrementer .left {
+      .incrementer .left {
         left:0;
         border-width: 0.2rem 0.1rem 0.2rem 0.2rem;
         border-radius: 1.5rem 0 0 1.5rem;
       }
 
-      .form-container .incrementer .right {
+      .incrementer .right {
         right:0;
         border-width: 0.2rem 0.2rem 0.2rem 0.1rem;
         border-radius: 0 1.5rem 1.5rem 0;
       }
 
-      .form-container .incrementer input:active {
-        box-shadow: 0 0 0.8rem var(--color-neutral-glow);
+      .incrementer input:active {
+        box-shadow: 0 0 0.8rem var(--color-cream-glow);
       }
 
       #reset-button {
@@ -835,7 +747,7 @@
         appearance: none;
         outline:none;
         background: none;
-        margin-bottom: 2rem;
+        margin: 2rem 0;
         border:0.2rem solid var(--color-mistake-glow);
         border-radius: 1.5rem;
         color: var(--color-mistake);
@@ -849,195 +761,152 @@
       }
 
       hr {
-        border: 0.15rem solid var(--color-muted);
+        border: 0.1rem solid var(--color-muted);
       }
 
-      /* custom layout ----------------------------- */
+      /* layout ----------------------------- */
 
       #custom-layout {
-        width:19.2rem;
-        /*width: calc(100% - 0.4rem);*/
-          display: -webkit-flex;
-        display: flex;
-        flex-direction: column;
-        padding:0.1rem;
-        border-radius: 1.5rem;
-        margin: 0.5rem auto 1rem auto;
-        /*background: var(--color-debug-pink);*/
+        margin: 0.5rem 0 1rem 0;
+        position: relative;
       }
 
-      #custom-layout .row {
-          display: -webkit-flex;
-        display: flex;
-        justify-content: flex-start;
+      #custom-layout .instructions {
+        margin-top: 0.5rem;
+        /*color: #e7db75;*/
+        color:#666;
       }
 
-      #custom-layout .row .key {
-        width: 2.6rem;
-        height: 2.6rem;
-        margin: 0.1rem;
-        border:0.2rem solid var(--color-mistake-glow);
-        border-radius: 1.5rem;
+      #custom-layout ol {
+        padding-left: 1.5rem;
+        margin:0;
+        
+        font-size:1.1rem;
+      }
+
+      #custom-layout li {
+        margin:1rem 0;
+      }
+
+
+      #output {
+        position: fixed;
+        bottom:0;
+        width: calc(100% - 10rem);
+        /*margin-bottom: 1rem;*/
+        color: #fff;
+        font-size: 1.4rem;
+        font-family: var(--font-mono);
+        background-color: var(--color-debug-pink);
+        display: none;
+      }
+
+      #warning {
+        position: fixed;
+        top:0;
+        width: 100%;
+        padding: 1rem 0;
+        color: var(--color-foreground);
+        font-size: 1.3rem;
+        font-family: var(--font-mono);
+        background-color: #e7db75;
         text-align: center;
-        line-height: 2.6rem;
-        font-size: 0.9rem;
-        font-family: var(--font-sans);
-        color: var(--color-stark);
-        box-shadow: 0 0 0.4rem var(--color-mistake-glow);
+        opacity: 0;
+        transition: none;
+        z-index: 3;
+      }
+      #warning span {
+        font-weight: bold;
       }
 
-      #custom-layout .row .key.set {
-        border-color: var(--color-muted);
-        box-shadow: none;
+      #close-button {
+        color: red;
       }
 
-      #custom-layout.left .row {
-        justify-content: flex-end;
-      }
+/*      @media screen and (max-height: 350px) {
+        footer {
+          margin-bottom: 1rem;
+        }
+        #keyboard {
+          display:none;
+        }
+      }*/
 
-      #custom-layout.right .row {
-        justify-content: flex-start;
-      }
-
-      #custom-layout.left .row .key.num {
-        order:0;
-      }
-      #custom-layout .row .key.thumb {
-        width: 5.8rem;
-        order:1;
-      }
-
-      #custom-layout.right .row .key.num {
-        order:1;
-      }
-      #custom-layout.right .row .key.thumb {
-        width: 5.8rem;
-        order:0;
-      }
-
-      @media screen and (max-height: 350px) {
-          footer {
-            margin-bottom: 1rem;
-          }
-          #keyboard {
-              display:none;
-          }
+      @media screen and (max-height: 320px) {
+        #keyboard { display:none; }
       }
     </style>
   </head>
 
 
-    <!-- <span style="color:#444">Aa Bb Cc De Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv</span>
-    
-    <span style="color:#666">The quick brown fox jumps over </span><span style="color:#ddd">the lazy dog. 0123456789 l1I 0O</span>
-    
-    <span style="color:#bbb">. , ' " ; : ! @ # $ % ^ &amp; * _ + - &ndash; &mdash; = (0) {} [] < > / ? \ | ` ~</span>
-    -->
-
-    <!-- <div class="line l0"><span class="c">-===10===--===20===--===30===--===40===--===50===--===60===--===70===--===80===-</span></div>
-        <div class="line l1">
-          <span class="c">AaBb<span class="m">C</span>cDeEeFfGg</span><span class="caret">H</span>hIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789 O0 l1Il
-        </div>
-        <div class="line l2">
-          jumps over the lazy dog. This line should be long enough to wrap onto the follow
-        </div> -->
-
   <body>
     <main>
+      <div id="warning">WARNING</div>
+      <div id="output">&nbsp;</div>
+
+      <textarea id="blank" class="hidden"></textarea>
+
       <div id="paper">
         <div id="line-0" class="line">A</div>
         <div id="line-1" class="line">B</div>
         <div id="line-2" class="line">C</div>
         <div id="line-3" class="line">D</div>
         <div id="line-4" class="line">E</div>
-      </div> <!-- paper -->
+      </div>
 
-      <div id="keyboard">
-        <div class="row">
-          <div class="key text">ESC</div>
-          <div class="key text">HYPER</div>
-          <div class="key text">BRACES</div>
-          <div class="key text">MOVE</div>
-          <div class="key text">MARKS</div>
-          <div class="key text">TAB</div>
-          <div class="key text">TAB</div>
-          <div class="key text">MARKS</div>
-          <div class="key text">MOVE</div>
-          <div class="key text">BRACES</div>
-          <div class="key text">HYPER</div>
-          <div class="key text">ESC</div>
-          <div class="key"></div>
-          <div class="key"></div>
-        </div>
-        
-        <div class="row">
-          <div class="key caps text">DELETE</div>
-          <div class="key pressed-wrong"></div>
-          <div class="key pressed-wrong"></div>
-          <div class="key pressed-correct"></div>
-          <div class="key pressed"></div>
-          <div class="key">&crarr;</div>
-          <div class="key text">RETURN</div>
-          <div class="key pressed-wrong"></div>
-          <div class="key pressed"></div>
-          <div class="key"></div>
-          <div class="key pressed-correct"></div>
-          <div class="key text">DELETE</div>
-          <div class="key return text"></div>
-        </div>
+      <div id="keyboard" class="L">
+        <div id="keyboard-title"></div>
 
-        <div class="row">
-          <div class="key shift">&#x21E7;</div>
-          <div class="key text">FN</div>
-          <div class="key text">CTRL</div>
-          <div class="key ">&#8997;</div>
-          <div class="key">&#x2318;</div>
-          <div class="key">&#x21E7;</div>
-          <div class="key">&#x2318;</div>
-          <div class="key">&#8997;</div>
-          <div class="key text">CTRL</div>
-          <div class="key text">FN</div>
-          <div class="key">&#x21E7;</div>
-          <div class="key"></div>
-        </div>
+        <div id="p0" class="key"></div>
+        <div id="p1" class="key"></div>
+        <div id="p2" class="key"></div>
 
-        <div class="row">
-          <div class="key command">#...</div>
-          <div class="key pressed space"></div>
-          <div class="key">#...</div>
-        </div>
+        <div id="r0" class="key"></div>
+        <div id="r1" class="key"></div>
+        <div id="r2" class="key"></div>
 
-        <div id="overlay"></div>
-      </div> <!-- keyboard -->
+        <div id="m0" class="key"></div>
+        <div id="m1" class="key"></div>
+        <div id="m2" class="key"></div>
+
+        <div id="i0" class="key"></div>
+        <div id="i1" class="key"></div>
+        <div id="i2" class="key"></div>
+
+        <div id="t0" class="key"></div>
+        <div id="t1" class="key"></div>
+        <div id="t2" class="key"></div>
+        <div id="t3" class="key"></div>
+      </div>
     </main>
     
     <aside id="aside-left" class="left">
+    <div id="close-button">close</div>
       <div class="inner">
         <br>
-        <label for="simulate-layout" class="form-container">
-          <div>Typing Mode</div>
-          <select id="simulate-layout" name="simulate-layout" style="width:9rem;">
-            <option value="" selected>Lessons</option>
-            <option value="">Speed Test</option>
-            <option value="">Copy Text</option>
-            <option value="">Blank</option>
+        <div class="setting">
+          <div>Mode</div>
+          <select id="mode" style="width:11rem;">
+            <option value="training" selected>Training</option>
+            <option value="speed">Speed Test</option>
+            <option value="blank">Blank Page</option>
           </select>
-        </label>
+        </div>
 
-        <label for="simulate-layout" class="form-container">
+        <div class="setting">
           <div>Lesson</div>
-          <select id="simulate-layout" name="simulate-layout" style="width:13rem;">
+          <select id="lesson" style="width:11rem;">
             <optgroup label="Alphabet">
-              <option value="">o a t e _</option>
-              <option value="">g v w y</option>
-              <option value="">d f k l</option>
-              <option value="">i p q r</option>
-              <option value="">h n s z</option>
-              <option value="">b c m u</option>
-              <option value="">x&nbsp;&nbsp;j&nbsp;&nbsp;,&nbsp;&nbsp;.</option>
+              <option value="0">o a t e _</option>
+              <option value="1">g v w y</option>
+              <option value="2">d f k l</option>
+              <option value="3">i p q r</option>
+              <option value="4">h n s z</option>
+              <option value="5">b c m u</option>
+              <option value="6">x&nbsp;&nbsp;j&nbsp;&nbsp;,&nbsp;&nbsp;.</option>
             </optgroup>
 
-            <optgroup label="Practice">
+            <optgroup label="Alphabet Practice">
               <option value="">Common Bigrams</option>
               <option value="">Common Trigrams</option>
               <option value="">Common Words</option>
@@ -1122,116 +991,94 @@
               <option value="">Finger Breakers</option>
             </optgroup>
           </select>
-        </label>
+        </div>
 
         <hr>
-
-        <input class="toggle" id="typing-hand" name="typing-hand" type="checkbox">
-        <label for="typing-hand">
+        
+        <div class="setting">
           <div class="description">Typing Hand</div>
-          <div class="slider neutral"><div id="typing-hand-text" class="round text">L</div></div>
-        </label>
-
-        <div class="form-spacer-1"></div>
-
-        <label for="current-layout" class="form-container">
-          <div>Current Layout</div>
-          <select id="current-layout" name="current-layout">
-            <option value="qwerty">QWERTY</option>
-            <option value="colemak">Colemak</option>
-            <option value="dvorak">Dvorak</option>
-            <option value="workman">Workman</option>
-            <option value="chordak">Chordak</option>
-            <option value="other">Other...</option>
-          </select>
-        </label>
-
-        <div id="custom-layout" class="left">
-          <div class="row above">
-            <div class="key set">TAB</div>
-            <div class="key set">Q</div>
-            <div class="key"></div>
-            <div class="key"></div>
-            <div class="key"></div>
-            <div class="key"></div>
-          </div>
-          
-          <div class="row home">
-            <div class="key set">CAPS</div>
-            <div class="key"></div>
-            <div class="key set">R</div>
-            <div class="key set">S</div>
-            <div class="key set">T</div>
-            <div class="key set">D</div>
-          </div>
-          
-          <div class="row below">
-            <div class="key set">SHIFT</div>
-            <div class="key set">Z</div>
-            <div class="key set">X</div>
-            <div class="key"></div>
-            <div class="key set">V</div>
-            <div class="key set">B</div>
-          </div>
-
-          <div class="row gutter left">
-            <div class="key num set">&#x2318;</div>
-            <div class="key thumb set">SPACE</div>
-          </div>
+          <input class="hidden" id="typing-hand" name="typing-hand" type="checkbox">
+          <label for="typing-hand" class="switch neutral"><div id="typing-hand-label" class="round text">L</div></label>
         </div>
-        
-        <label for="simulate-layout" class="form-container">
-          <div>Simulate Layout</div>
-          <select id="simulate-layout" name="simulate-layout">
-            <option value="none">None</option>
-            <option value="chordak" selected>Chordak</option>
-            <option disabled></option>
-            <option value="colemak">Colemak</option>
-            <option value="workman">Workman</option>
+
+        <div class="setting">
+          <div>Your Layout</div>
+          <select id="layout">
+            <option value="qwerty">QWERTY</option>
+            <option value="colemak" selected>Colemak</option>
             <option value="dvorak">Dvorak</option>
+            <option value="custom">Other...</option>
           </select>
-        </label>
+        </div>
 
-        <div class="form-spacer-2"></div>
-        
-        <input class="toggle" id="show-keyboard" name="show-keyboard" type="checkbox" checked>
-        <label for="show-keyboard">
+        <div id="custom-layout" class="hidden">
+          <div class="instructions">
+            Custom Layout Instructions
+            <ol>
+              <li>Click the keyboard twice to switch to the physical view.</li>
+              <li>Click and hold on the key you want to modify.</li>
+              <li>Type the key you want to use.</li>
+            </ol>
+          </div>
+
+          <div id="c-p0" class="key"></div>
+          <div id="c-p1" class="key"></div>
+          <div id="c-p2" class="key"></div>
+
+          <div id="c-r0" class="key"></div>
+          <div id="c-r1" class="key"></div>
+          <div id="c-r2" class="key"></div>
+
+          <div id="c-m0" class="key"></div>
+          <div id="c-m1" class="key"></div>
+          <div id="c-m2" class="key"></div>
+
+          <div id="c-i0" class="key"></div>
+          <div id="c-i1" class="key"></div>
+          <div id="c-i2" class="key"></div>
+
+          <div id="c-t0" class="key"></div>
+          <div id="c-t1" class="key"></div>
+          <div id="c-t2" class="key"></div>
+          <div id="c-t3" class="key"></div>
+        </div>
+
+        <div class="setting">
+          <div class="description">Simulate Chordak</div>
+          <input class="hidden" id="simulate" name="simulate" type="checkbox">
+          <label for="simulate" class="switch"><div class="round"></div></label>
+        </div>
+
+
+        <div class="setting">
           <div class="description">Show Keyboard</div>
-          <div class="slider"><div class="round"></div></div>
-        </label>
+          <input class="hidden" id="show-keyboard" name="show-keyboard" type="checkbox">
+          <label for="show-keyboard" class="switch"><div class="round"></div></label>
+        </div>
 
-        <input class="toggle" id="show-hints" name="show-hints" type="checkbox" checked>
-        <label for="show-hints">
-          <div class="description">Show Chord Hints</div>
-          <div class="slider"><div class="round"></div></div>
-        </label>
+        <div class="setting">
+          <div class="description">Preview Keys</div>
+          <input class="hidden" id="preview-keys" name="preview-keys" type="checkbox">
+          <label for="preview-keys" class="switch"><div class="round"></div></label>
+        </div>
 
-        <input class="toggle" id="stagger" name="stagger" type="checkbox" checked>
-        <label for="stagger">
-          <div class="description">Stagger Keys</div>
-          <div class="slider"><div class="round"></div></div>
-        </label>
+        <div class="setting">
+          <div class="description">Sound</div>
+          <input class="hidden" id="sound" name="sound" type="checkbox">
+          <label for="sound" class="switch"><div class="round"></div></label>
+        </div>
 
-        <input class="toggle" id="sound" name="sound" type="checkbox">
-        <label for="sound">
-          <div class="description">mistake Sounds</div>
-          <div class="slider"><div class="round"></div></div>
-        </label>
-
-        <div class="form-container">
-          <div>Font Size</div>
+        <div class="setting">
+          <div class="description">Font Size</div>
           <div class="incrementer">
             <input id="minus-button" class="left" type="button" value="-">
-            <input id="plus-button" class="right" type="button" value="+">  
+            <input id="plus-button" class="right" type="button" value="+">
           </div>
         </div>
-                  
-        <br>
 
         <input id="reset-button" name="reset-button" value="Reset &amp; Clear Stored Data" type="button">
       </div>
       <img class="icon" src="flower-icon.png"/>
-      <!-- <span>&#9835;</span> -->
     </aside>
 
     <aside id="aside-right" class="right">
@@ -1510,26 +1357,11 @@
     </footer>
     <!-- <div>site design &copy;2017</div> -->
 
-    <!-- woodknock.wav make quieter -->
-    <!-- tangel.wav make softer -->
     <audio id="mistake-sound">
-      <!-- <source src="sounds/woodknock.mp3" type="audio/mpeg"> -->
       <source src="sounds/mistake.wav" type="audio/wav">
     </audio>
 
-        <audio id="undefined-sound">
-      <source src="sounds/undefined.wav" type="audio/wav">
-    </audio>
-
     <script>
-      //macbook pro: 68 cN is enough to activate any key; some are softer because of wear from frequent use ('A', 54 cN) or replacement ('D', 48 cN)
-        // 'A' 53.9 cN
-        // 'S' 62.5 cN
-        // 'D' 47.8 cN
-        // 'F' 68.6 cN
-        // ' ' 68.6 cN (near left edge)
-
-      //cherry brown and clear switches look best so far because the reset point is so close to the activation point, provide tactile feedback, and are not too loud
 
       /* utility functions ------------------------------------ */
 
@@ -1540,115 +1372,139 @@
         return document.getElementById(s);
       }
 
-      // alert($('custom-layout').offsetHeight);
-      // function funz(e) {
-      // }
-
       function htmlDecode(input){
         var e = document.createElement('div');
         e.innerHTML = input;
         return e.childNodes[0].nodeValue;
       }
 
-      /* chords ----------------------------------------------- */
+      function o(output) {
+        $('output').innerHTML = output;
+      }
 
-      // var chords = {};     
+      /* reflow lesson text on resize ------------------------- */
 
-      // //LETTERS
-      // chords['1'] = ' ';
-      // chords['432'] = ',';
-      // chords['543'] = '.';
-      // chords['5432'] = '.'; //duplicate for convenience
+      function debounceResize(e) {
+        resizeKeyboard();
 
-      // chords['2'] = 'E';
-      // chords['3'] = 'T';
-      // chords['4'] = 'A';
-      // chords['5'] = 'O';
-      // chords['32'] = 'I';
-      // chords['43'] = 'N';
-      // chords['42'] = 'S';
-      // chords['41'] = 'H';
-      // chords['31'] = 'R';
-      // chords['21'] = 'D';
-      // chords['23'] = 'L';
-      // chords['51'] = 'C';
-      // chords['52'] = 'U';
-      // chords['53'] = 'M';
-      // chords['24'] = 'F';
-      // chords['34'] = 'P';
-      // chords['13'] = 'G';
-      // chords['12'] = 'W';
-      // chords['14'] = 'Y';
-      // chords['54'] = 'B';
-      // chords['15'] = 'V';
-      // chords['25'] = 'K';
-      // chords['431'] = 'X';
-      // chords['321'] = 'J';
-      // chords['35'] = 'Q';
-      // chords['45'] = 'Z';
+        const newPaperWidth = $('paper').clientWidth;
+        if (newPaperWidth != paperWidth) {
+          //only runs if width of writing area has changed
+          window.clearTimeout(resizeTimeout);
+          resizeTimeout = window.setTimeout(reflowText, 200);
+          paperWidth = newPaperWidth;
+          //keep for debugging of resize function
+          //$('paper').style.backgroundColor = 'red';
+        }
+      }
 
-      //BIGRAMS & TRIGRAMS
-      // chords['341'] = '<u>TH</u>';
-      // chords['412'] = '<u>HE</u>';
-      // chords['3412'] = '<u>THE</u>';
-      // chords['423'] = '<u>ST</u>';
+      function resizeKeyboard() {
+        const w = document.body.clientWidth;
+        const h = document.body.clientHeight;
+        const s = (w < h) ? w-50 : h-200
 
-      //NUMERALS
-      // chords['1'] = ' ';
-      // chords['432'] = ',';
-      // chords['543'] = '.';
-      // chords['5432'] = '.';
+        const limit = (w < h) ? 480 : 320;
+        var size = (s > limit) ? 5.4 : (5.4 / limit) * s;
+        var suffix = 'rem';
+        document.documentElement.style.setProperty('--key', size+suffix);
+        // $('chordak').innerHTML = size;
+        var w0 = document.body.clientWidth;
+        var h0 = document.body.clientHeight;
+        $('chordak').innerHTML = w0 + ', ' + h0 + ', ' + size;
+        // o(w);
+        // alert(w);
+      }
 
-      // chords['2'] = '0';
-      // chords['3'] = '1';
-      // chords['4'] = '2';
-      // chords['5'] = '3';
-      // chords['54'] = '4';
-      // chords['43'] = '5';
-      // chords['32'] = '6';
-      // chords['53'] = '7';
-      // chords['42'] = '8';
-      // chords['52'] = '9';
+      /* reflow text ---------------------------------------------- */
 
-      //BARS & BRACKETS
-      // chords['5'] = '/';
-      // chords['4'] = '\\'; // escaped with extra backslash
-      // chords['54'] = '|';
-      // chords['3'] = '(';
-      // chords['2'] = ')';
-      // chords['32'] = '[';
-      // chords['23'] = ']';
-      // chords['21'] = '{';
-      // chords['12'] = '}';
-      // chords['31'] = '<';
-      // chords['13'] = '>';
+      function reflowText() {
+        var wordNumber = 0;
+        var lineNumber = 0;
+        var lineUsage = 0;
+        const lineCapacity = measureLineCapacity();
 
-      //SYMBOLS & PUNCTUATION
-      // chords['1'] = "'";
-      // chords['5'] = '"';
-      // chords['4'] = ';';
-      // chords['3'] = '?';
-      // chords['2'] = '!';
-      // chords['51'] = '_';
-      // chords['41'] = '-';
-      // chords['31'] = '+';
-      // chords['21'] = '=';
-      // chords['43'] = ':';
-      // chords['54'] = '@';
-      // chords['53'] = '&';
-      // chords['52'] = '#';
-      // chords['32'] = '*';
-      // chords['34'] = '%';
-      // chords['24'] = '$';
-      // chords['23'] = '^';
-      // chords['25'] = '~';
-      // chords['35'] = '`';
+        lineStartsAt = []; //resets
+        lineStartsAt[0] = 0;
+        for (var g = 0; g < glyphs.length; g++) {
+          var carriageReturn = false;
+          lineUsage++;
+          if (lineUsage == lineCapacity) { 
+            // sets flag if the line is full
+            carriageReturn = true; 
+          } else if (glyphs[g] == '⏎') { 
+            // sets flag if the glyph is a carriage return
+            carriageReturn = true; 
+          } else if (glyphs[g] == '&nbsp;') {
+            // sets flag if next word won't fit on line
+            // (but only if the word can fit on a line)
+            wordNumber++;
+            var nextWordLength = wordLengths[wordNumber];
+            var fit = nextWordLength <= (lineCapacity - lineUsage);
+            var fitsOnNextLine = nextWordLength <= lineCapacity;
+            // alert(nextWordLength + ", " + fit + ", " + fitsOnNextLine);
+            if (!fit && fitsOnNextLine) { carriageReturn = true }
+          }
+
+          if (carriageReturn == true) {
+            lineStartsAt.push(g+1);
+            lineNumber++;
+            lineUsage = 0;
+          }
+        }
+
+        renderLines();
+        //keep for debugging of resize function
+        //$('paper').style.backgroundColor = 'green';
+      }
+
+
+      function renderLines() {
+        //NOTE currentLine SHOULD BE COMPUTED FROM CARET
+        var currentLine = 0;
+        var start = (currentLine == 0) ? 0 : (currentLine - 1);
+        //var limit = (currentLine == 0) ? (currentLine + 3) : (currentLine + 2);
+        start = 0;
+        var limit = 3;
+
+        $('paper').children[0].innerHTML = '';
+        $('paper').children[1].innerHTML = '';
+        $('paper').children[2].innerHTML = '';
+        // $('chordak').innerHTML += ', ' + lineStartsAt[0] + ' ' + lineStartsAt[1] + ' ' + lineStartsAt[2];
+        
+        //concatenate the spans and replace lines on paper
+        for (var i = start; i < limit; i++) {
+          var innerHTML = '';
+
+          if (g >= glyphs.length) {
+            innerHTML = 'empty line';
+          } else {
+            var g = lineStartsAt[i]
+            var max = (lineStartsAt.length > i+1) ? lineStartsAt[i+1] : (glyphs.length);
+            while(g < max) {
+              if (htmlSpans[g] == '') { alert('span fail'); }
+              innerHTML += htmlSpans[g];
+              g++;
+            }
+          }
+
+          $('paper').children[i].innerHTML = innerHTML;
+        }
+      }
+
+
+      function measureLineCapacity() {
+        const lineWidth = $('paper').children[0].clientWidth;
+        const fontSizeString = window.getComputedStyle($('paper')).getPropertyValue("font-size");
+        const fontSize = Number(fontSizeString.slice(0,fontSizeString.length-2));
+        const capacity = Math.floor(lineWidth / (10.25 * fontSize/17));
+        // $('chordak').innerHTML = lineWidth + ' ' + capacity;
+        return capacity
+      }
 
       /* lessons ---------------------------------------------- */
 
       var lessons = []; 
-      lessons[0] = "-===10===--===20===--===30===--===40===-" +
-      "-===50===--===60===--===70===--===80===--===90===-";
+      lessons[0] = "-===10===--===20===--===30===--===40===--===50===--===60===--===70===--===80===--===90===-";
 
       lessons[1] = 'The quick brown fox jumps over the lazy dog.⏎' +
                    'Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789';
@@ -1657,7 +1513,7 @@
 
       lessons[3] = 'you might be one of those people that perform';
 
-      lessons[4] = 'the quick brown fox jumps over the lazy dog... at least that\'s what it looked like to me.';
+      lessons[4] = 'the quick brown fox jumps over the lazy dog';
 
       var caret;
       var glyphs = [];
@@ -1700,96 +1556,6 @@
         reflowText();
       }
 
-      /* reflow text ---------------------------------------------- */
-
-      function reflowText() {
-        var wordNumber = 0;
-        var lineNumber = 0;
-        var lineUsage = 0;
-        const lineCapacity = measureLineCapacity();
-
-        lineStartsAt = []; //resets
-        lineStartsAt[0] = 0;
-        for (var g = 0; g < glyphs.length; g++) {
-          var carriageReturn = false;
-          lineUsage++;
-          if (lineUsage == lineCapacity) { 
-            // sets flag if the line is full
-            carriageReturn = true; 
-          } else if (glyphs[g] == '⏎') { 
-            // sets flag if the glyph is a carriage return
-            carriageReturn = true; 
-          } else if (glyphs[g] == '&nbsp;') {
-            // sets flag if next word won't fit on line
-            // (but only if the word can fit on a line)
-            wordNumber++;
-            var nextWordLength = wordLengths[wordNumber];
-            var fit = nextWordLength <= (lineCapacity - lineUsage);
-            var fitsOnNextLine = nextWordLength <= lineCapacity;
-            // alert(nextWordLength + ", " + fit + ", " + fitsOnNextLine);
-            if (!fit && fitsOnNextLine) { carriageReturn = true }
-          }
-
-          if (carriageReturn == true) {
-            lineStartsAt.push(g+1);
-            lineNumber++;
-            lineUsage = 0;
-          }
-        }
-
-        renderLines();
-        $('paper').style.backgroundColor = 'green';
-      }
-
-      function renderLines() {
-        //NOTE currentLine SHOULD BE COMPUTED FROM CARET
-        var currentLine = 0;
-        var start = (currentLine == 0) ? 0 : (currentLine - 1);
-        //var limit = (currentLine == 0) ? (currentLine + 3) : (currentLine + 2);
-        start = 0;
-        var limit = 3;
-
-        $('paper').children[0].innerHTML = '';
-        $('paper').children[1].innerHTML = '';
-        $('paper').children[2].innerHTML = '';
-        // $('chordak').innerHTML += ', ' + lineStartsAt[0] + ' ' + lineStartsAt[1] + ' ' + lineStartsAt[2];
-        
-        //concatenate the spans and replace lines on paper
-        for (var i = start; i < limit; i++) {
-          var innerHTML = '';
-
-          if (g >= glyphs.length) {
-            innerHTML = 'empty line';
-          } else {
-            var g = lineStartsAt[i]
-            var max = (lineStartsAt.length > i+1) ? lineStartsAt[i+1] : 
-                                                    (glyphs.length);
-            while(g < max) {
-              if (htmlSpans[g] == '') { alert('span fail'); }
-              innerHTML += htmlSpans[g];
-              g++;
-            }
-          }
-
-          $('paper').children[i].innerHTML = innerHTML;
-        }
-
-
-        // var lineCount = (lineIndex > 2) ? 3 : lineIndex +1;
-
-        // for (var i = 0; i < lineCount; i++) {
-        //  $('paper').children[i].innerHTML = lines[i];
-        // }
-      }
-
-      function measureLineCapacity() {
-        const lineWidth = $('paper').children[0].clientWidth;
-        const fontSizeString = window.getComputedStyle($('paper')).getPropertyValue("font-size");
-        const fontSize = Number(fontSizeString.slice(0,fontSizeString.length-2));
-        const capacity = Math.floor(lineWidth / (10.25 * fontSize/17));
-        // $('chordak').innerHTML = lineWidth + ' ' + capacity;
-        return capacity
-      }
 
       function changeState() {
                 /*
@@ -1815,10 +1581,6 @@
 
 
       /* asides ----------------------------------------------- */
-
-      var asideOpen = null;
-      $('aside-left').addEventListener('click', toggleAside);
-      $('aside-right').addEventListener('click', toggleAside);
       
       function toggleAside(e) {
         // if no aside is open, go ahead and open one now
@@ -1827,58 +1589,62 @@
           asideOpen.classList.add('open');
           e.stopPropagation(); // may be unnecessay
           document.body.style.cursor = 'pointer';
-          document.body.addEventListener('click', toggleAside);
-
+          //add a click listener to the window to close the aside
+          window.addEventListener('click', toggleAside);
+          if (asideOpen.id == 'aside-left') { 
+            disableKeyboard();
+          }
         // if an aside is open, closes on click out of aside
         } else if (!asideOpen.contains(e.target)) {
-          document.body.style.cursor = 'auto';
-          document.body.removeEventListener('click', toggleAside);
-          asideOpen.classList.remove('open');
-          asideOpen = null;
+          close(e);
         }
-        // otherwise, ignore the event
       }
 
-      /* switch typing hand ----------------------------------- */
-
-      $('typing-hand').addEventListener("change", switchHand);
-
-      function switchHand(e) {
-        var keyboard = $('keyboard');
-        var overlay = $('overlay');
-        let [remove, add, text] = e.currentTarget.checked ? 
-            ['left', 'right', 'R'] : ['right', 'left', 'L'];
+      function close(e) {
+        e.stopPropagation();
+        if (asideOpen.id == 'aside-left') { 
+          enableKeyboard();
+        }
+        document.body.style.cursor = 'auto';
+        asideOpen.classList.remove('open');
         
-        keyboard.classList.remove(remove);
-        overlay.classList.remove(remove);
-
-        keyboard.classList.add(add);          
-        overlay.classList.add(add);
-        $('typing-hand-text').innerHTML = text;
+        asideOpen = null;
+        //aside is closed so remove the listener from the window
+        window.removeEventListener('click', toggleAside);
       }
 
-      /* standard keyboard layout ----------------------------- */
-      
-      //var home = [' ', 'F', 'D', 'S', 'A']; //qwerty
-      //var home = [' ', 'T', 'S', 'R', 'A']; //colemak left
-      //var home = [' ', 'N', 'E', 'I', 'O']; //colemak right
-      
-      /* reflow lesson text on resize ------------------------- */
-      
-      window.addEventListener('resize', debounceResize);
+      function tester(argument) {
+        alert('works');
+      }
 
-      // var textarea = document.getElementById("text");
-      var w0 = $('paper').clientWidth; //no counting border
-      var resizeTimeout;
-      function debounceResize(event) {
-        let w = $('paper').clientWidth;
-        if (w != w0) {
-          //only runs if width of writing area has changed
-          window.clearTimeout(resizeTimeout);
-          resizeTimeout = window.setTimeout(reflowText, 200);
-          $('paper').style.backgroundColor = 'red';
-          w0 = w;
-        }
+      function enableKeyboard() {
+        window.addEventListener("keydown", keydown);
+        window.addEventListener("keyup", keyup);
+      }
+
+      function disableKeyboard() {
+        window.removeEventListener("keydown", keydown);
+        window.removeEventListener("keyup", keyup);
+      }
+
+      /* settings ----------------------------------- */
+
+      function setHand(e) {
+        const checked = $('typing-hand').checked;
+        const keyboard = $('keyboard');
+        const customLayout = $('custom-layout');
+
+        const [remove, add] = checked ? ['L', 'R'] : ['R', 'L'];
+        keyboard.classList.remove(remove);
+        keyboard.classList.add(add);
+        customLayout.classList.remove(remove);
+        customLayout.classList.add(add);
+
+        hand = checked ? 'R' : 'L';
+        localStorage.hand = hand;
+        $('typing-hand-label').innerHTML = hand;
+
+        setLayout();
       }
 
       /* typing analysis  ------------------------------------- */
@@ -1888,52 +1654,151 @@
 
       /* keyboard input --------------------------------------- */
 
-      window.addEventListener("keydown", keydownHandler);
-      window.addEventListener("keyup", keyupHandler);
+      var chordsRaw = {};
+      //for any chord that isn't defined below, send the modifier keys first then the letter, numeral, or symbol afterwards
 
-      var chords = {};      
+      // layout keys
+      chordsRaw['escape'] = 'escape';         //p0
+      chordsRaw['pinkie'] = 'o';              //p1
+      chordsRaw['return'] = 'return';         //p2
+      
+      chordsRaw['alt'] = 'alt';               //r0
+      chordsRaw['ring'] = 'a';                //r1
+      chordsRaw['tab'] = 'tab';               //r2
 
-      //LETTERS
-      chords['t'] = '&nbsp;';
-      chords['rmi'] = ',';
-      chords['prm'] = '.';
+      chordsRaw['meta'] = 'meta';             //m0
+      chordsRaw['middle'] = 't';              //m1
+      chordsRaw['delete'] = 'delete';         //m2
 
-      chords['i'] = 'e';
-      chords['m'] = 't';
-      chords['r'] = 'a';
-      chords['p'] = 'o';
-      chords['mi'] = 'i';
-      chords['rm'] = 'n';
-      chords['ri'] = 's';
-      chords['rt'] = 'h';
-      chords['mt'] = 'r';
-      chords['it'] = 'd';
-      chords['im'] = 'l';
-      chords['pt'] = 'c';
-      chords['pi'] = 'u';
-      chords['pm'] = 'm';
-      chords['ir'] = 'f';
-      chords['mr'] = 'p';
-      chords['tm'] = 'g';
-      chords['ti'] = 'w';
-      chords['tr'] = 'y';
-      chords['pr'] = 'b';
-      chords['tp'] = 'v';
-      chords['ip'] = 'k';
-      chords['rmt'] = 'x';
-      chords['mit'] = 'j';
-      chords['mp'] = 'q';
-      chords['rp'] = 'z';
+      chordsRaw['control'] = 'control';       //i0
+      chordsRaw['index'] = 'e';               //i1
+      chordsRaw['shift'] = 'shift';           //i2
+
+      chordsRaw['navigation'] = 'navigation'; //t0
+      chordsRaw['thumb'] = 'space';           //t1
+      chordsRaw['symbol'] = 'symbol';         //t2
+      chordsRaw['numeral'] = 'numeral';       //t3
+
+      // home key chords
+        // 'a' is above in layout keys
+      chordsRaw['pinkie ring'] = 'b';
+      chordsRaw['pinkie thumb'] = 'c';
+      chordsRaw['index thumb'] = 'd';
+        // 'e' is above in layout keys
+      chordsRaw['index ring'] = 'f';
+      chordsRaw['thumb middle'] = 'g';
+      chordsRaw['ring thumb'] = 'h';
+      chordsRaw['middle index'] = 'i';
+      chordsRaw['middle index thumb'] = 'j';
+      chordsRaw['index pinkie'] = 'k';
+      chordsRaw['index middle'] = 'l';
+      chordsRaw['pinkie middle'] = 'm';
+      chordsRaw['ring middle'] = 'n';
+        // 'o' is above in layout keys
+      chordsRaw['middle ring'] = 'p';
+      chordsRaw['middle pinkie'] = 'q';
+      chordsRaw['middle thumb'] = 'r';
+      chordsRaw['ring index'] = 's';
+        // 't' is above in layout keys
+      chordsRaw['pinkie index'] = 'u';
+      chordsRaw['thumb pinkie'] = 'v';
+      chordsRaw['thumb index'] = 'w';
+      chordsRaw['ring middle thumb'] = 'x';
+      chordsRaw['thumb ring'] = 'y';
+      chordsRaw['ring pinkie'] = 'z';
+
+      chordsRaw['pinkie ring middle'] = ',';
+      chordsRaw['ring middle index'] = '.';
+      chordsRaw['pinkie ring middle index'] = 'return';
+      
+      //shifted keys
+      chordsRaw['shift pinkie'] = 'O';
+      chordsRaw['shift ring'] = 'A';
+      chordsRaw['shift middle'] = 'T';
+      chordsRaw['shift index'] = 'E';
+
+      chordsRaw['shift pinkie middle'] = 'M';
 
 
+      var tree = [];
+      var node = 0;
+      // var ccc = 0;
+      function buildTree() {
+        var countCreated = 0;
+        var countTotal = 0;
+        
+        //create a node for each chord
+        tree.push({ chord:'root', children:[] });
 
-      var errorSound = $('mistake-sound');
-      errorSound.preload = true;
+        for (var chord in chordsRaw) {
+          if (chordsRaw.hasOwnProperty(chord)) {
+            var child = undefined;
+            //loop through each partial chord to create
+            //nodes and add children indicies as needed
+            var notes = chord.split(' ');
+            var partialLength = notes.length;
+            while(partialLength >= 0) {
+              //assembles the partial chord name
+              var partialChord = '';
+              var j = partialLength;
+              while(j > 0) {
+                j--;
+                partialChord = ' ' + notes[j] + partialChord;
+              }
+              partialChord = 'root' + partialChord;
+              partialLength--;
 
-      var undefinedSound = $('mistake-sound');
-      // $('undefined-sound');
-      undefinedSound.preload = true;
+              //checkes if the node already exists
+              var k = tree.length;
+              while(k > -1) {
+                k--;
+                //break loop if index falls below 0
+                if (k < 0) { break; }
+                //break loop if partial chord is already in tree
+                if(tree[k].chord == partialChord) { break; }
+              }
 
+              //creates a node if it doesn't exist
+              countTotal++;
+              if (k == -1) {
+                countCreated++;
+                node++;
+                tree.push({ chord:partialChord, 
+                            children:[] });
+                var rawChord = partialChord.substr(5);
+                if (chordsRaw[rawChord] != undefined) {
+                  tree[node].output = chordsRaw[rawChord];
+                }
+                k = node;
+              }
+
+              //assigns child node
+              if (child != undefined) {
+                if(tree[k].children.indexOf(child) == -1) {
+                  tree[k].children.push(child);
+                }
+              }
+              child = k;
+            }
+          }
+        }
+
+        // $('output').innerHTML = '';
+        // for (var n in tree) {
+        //  if (tree.hasOwnProperty(n)) {
+        //    $('output').innerHTML +=
+        //    n + ', ' +
+        //    tree[n].chord + ', ' +
+        //    tree[n].output + ', ' +
+        //    tree[n].children + '<br>';
+        //  }
+        // }
+
+        //reset the node index to the root node
+        node = 0;
+      }
+
+      
       var raw = '';
       var pressed = [];
       var count = 0;
@@ -1944,7 +1809,7 @@
       var repeatCount = 0;
       var keydownCount = 0;
 
-      var enabled = true;
+      var keyboardEnabled = true;
 
       var startTime = 0;
       var speedTimeout;
@@ -1958,88 +1823,111 @@
           speedTimeout = window.setTimeout(timeoutHandler, 1000-error);
         }
       }
+      
+      function traverse(keyCode) {
+        const chord = tree[node].chord + ' ' + keyCodeToName[keyCode];
 
-      //  9, 81, 87, 70, 80 
-      //  8, 65, 82, 83, 84
-      // 16, 90, 88, 67, 86
-      //       18, 91, 32
+        var i = tree[node].children.length;
+        var moved = false;
+        var recur = true;
+        // checks if the pressed chord is a child of the node
+        while(i > 0) {
+          i--;
+          const child = tree[node].children[i];
+          if (tree[child].chord == chord) {
+            node = child;
+            moved = true;
+            break;
+          }
+          // chord isn't defined, but key is in the layout
+            // treat the preceeding chord as a good entry
+            // (possibly) show an error message to the user
+          if(i == 0 && moved == false) {
+            recur = false;
+          }
+        }
 
-      //  8 backspace
-      //  9 tab
-      // 16 shift
-      // 20 capslock
-      // 18 option/alt
-      // 91 command
-      // 32 space
+        if (moved) {
+          //no further branches in tree
+            //output the current node value immediately
+          if(tree[node].children.length == 0) {
+            $('output').innerHTML += tree[node].output; //temp
+            node = 0;
+          }
+        } else {
+          //didn't move in the tree so output at the current node
+          $('output').innerHTML += tree[node].output; //temp
+          node = 0;
 
-        var keys = {};
+          // traverse again from root if final key is in layout
+          if (recur) { traverse(keyCode); }
+        }
+      }
 
-        keys[65]  = 'p'; //A
-        keys[82] = 'r'; //R
-        keys[83] = 'm'; //S
-        keys[84] = 'i'; //T
-        keys[32] = 't'; //space
+      var pressed = [];
+      var released = [];
 
-      //since the keyboard behavior should be essentially the same during
-      //the different modes, one function will handle typing for all the
-      //modes with conditionals for any added or removed functionality
-      function keydownHandler(e) {
-        if (!enabled) { return; }
+      /* Since the keyboard behavior is mostly the same during the different modes, one pair of keyup/keydown functions will handle typing for each mode with conditionals as needed. */
+      function keydown(e) {
+        if (!keyboardEnabled) { return; }
+        hideKeyCaps(); //consider adding setting to disable autohide
         e.preventDefault();
 
-        //
-        if(caret == 0) { timer('start'); }
+        // ignore the keypress if the key is being held down
+        if(e.repeat == true) { return; }
 
-        var key = e.which;
-        var letter = String.fromCharCode(key);
-        //$('chordak').innerHTML = (letter == ' ') ? '&#9251;' : letter;
-        if(e.repeat == true) { 
-          //$('chordak').innerHTML = (letter == ' ') ? ' held &#9251;' : 'held ' + letter;
+        // start the timer if...
+        // if(caret == 0) { timer('start'); }
+
+        const keyCode = e.which;
+
+        // if the key pressed isn't part of the layout,
+        // show a warning message and ignore the keypress
+        if(!keyCodeToName[keyCode]) {
+          window.clearTimeout(warningTimeout);
+          $('warning').innerHTML = 'the ' + keyCodeToLabel(keyCode) + ' key isn\'t part of the layout';
+          $('warning').style.transition = 'none';
+          $('warning').style.opacity = 1;
+          warningTimeout = window.setTimeout(hideWarning, 1000);
+           // + keyCodeToLabel(keyCode) + ' isn\'t part of the layout');
           return;
-        }     
-        
-        if (keys[key]) {
-          raw += keys[key];
-          count++;
         }
-        $('chordak').innerHTML = count;
 
-        //prevents scrolling when pressing spacebar
-        // if (key == 32) {
-        //  e.preventDefault();
-        // }
-        //if (key == 9) {
-        //  e.preventDefault();
-        //}
+        // tracks the sequence and # of key pressed
+        pressed.push(keyCode);
 
-        //alert(key);
+        traverse(keyCode);
+      }
 
-        // if (key == 8 || key == 20) {
-        //  e.preventDefault();
-        //  writing = writing.slice(0, writing.length-1);
-        //  practice.innerHTML = writing;
-        // }
-        // if (start == 0 && count != 0) {
-        //  start = Date.now();
-        //  speedTimeout = window.setTimeout(timeoutHandler, 1000);
-        //  timer.innerHTML = '0';
-        //  speed.innerHTML = '-';
-        // }
+      var warningTimeout;
+      function hideWarning() {
+        $('warning').style.transition = 'opacity 400ms ease';
+        $('warning').style.opacity = 0;
+        // $('warning').innerHTML = '';
       }
 
 
-      function keyupHandler(e) {
-        if (!enabled) { return; }
+      function keyup(e) {
+        if (!keyboardEnabled) { return; }
         e.preventDefault();
 
-        var key = e.which;
-        if (keys[key]) {
-          count--;
-        }
-        $('chordak').innerHTML = count;
+        const keyCode = e.which;
 
+        //released key wasn't counted as pressed so don't count it as released and return immediately 
+        if(pressed.indexOf(keyCode) == -1) { return; }
+        released.push(keyCode);
+
+        // all the pressed keys have been released
+          // simple case where all keys were released
+          // NOTE: will also eventually need to handle cmd key and other interruptions like changing tabs while pressed
+        if(node != 0 && pressed.length == released.length) {
+          $('output').innerHTML += tree[node].output; //temp
+          node = 0;
+        }
+
+        /*
         if (count == 0) {
-          if (chords[raw]) {
+          if (chords[raw]) qv{
             var glyph = glyphs[caret];
 
             var letter = chords[raw];
@@ -2051,13 +1939,12 @@
                 glyph = '␣';
               }
               
-              errorSound.pause();
-              errorSound.currentTime = 0;
-              errorSound.play();
+              mistakeSound.pause();
+              mistakeSound.currentTime = 0;
+              mistakeSound.play();
             }
 
             var open = '<span class="' + cssClasses[caret] + '">';
-            
             var close = '</span>';
             htmlSpans[caret] = open + glyph + close;
 
@@ -2072,14 +1959,14 @@
               htmlSpans[caret] = open + glyph + close;
             } else {
               timer('stop');
-              enabled = false;
+              keyboardEnabled = false;
             }
           } else {
             //take action here if undefined keys are pressed
             //perhaps show the incorrect chord below in yellow
-            undefinedSound.pause();
-            undefinedSound.currentTime = 0;
-            undefinedSound.play();
+            //undefinedSound.pause();
+            //undefinedSound.currentTime = 0;
+            //undefinedSound.play();
 
             cssClasses[caret] = 'undefined';
               var open = '<span class="' + cssClasses[caret] + '">';
@@ -2090,7 +1977,9 @@
           renderLines();
           raw = '';
         }
+        */
 
+        /*
         // if (count == 0) {
         //  var letter = chords[raw];
         //  $('chordak').innerHTML += (' = ' + letter);
@@ -2135,7 +2024,7 @@
         //    start = 0;
         //    writing = "";
         //  }
-        // }
+        */
       }
 
       function timer(action) {
@@ -2156,21 +2045,520 @@
         }
       }
 
-      /* audio ----------------------------------------- */
+      /* keyboard layout -------------------------------------- */
 
-      /* setup ----------------------------------------- */
+      // letter: pinkie, ring, middle, index, thumb
+      // number: amount of finger flexion, 0 is minimum flexion
 
-      // loadLesson(0);
+      var p0 = {
+        name:'escape',
+        keycap: {chordak:'ESC', physical:'?'}
+      };
+      var p1 = {
+        name:'pinkie',
+        keycap: {chordak:'PINKIE', physical:'?'}
+      };
+      var p2 = {
+        name:'return',
+        keycap: {chordak:'RETURN', physical:'?'}
+      };
 
-      //create the context for the web audio
-      // var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      // //create, tune, start and connect each oscillator sinea, sineb and sinec
-      // var sinea = audioCtx.createOscillator();
-      // sinea.frequency.value = 16500;
-      // sinea.type = "sine";
-      // sinea.start();
-      // sinea.connect(audioCtx.destination);
+      var r0 = {
+        name:'alt',
+        keycap: {chordak:'ALT', physical:'?'},
+        dead_key:true
+      };
+      var r1 = {
+        name:'ring',
+        keycap: {chordak:'RING', physical:'?'}
+      };
+      var r2 = {
+        name:'tab',
+        keycap: {chordak:'TAB', physical:'?'}
+      };
 
+      var m0 = {
+        name:'meta',
+        keycap: {chordak:'META', physical:'?'},
+        dead_key:true
+      };
+      var m1 = {
+        name:'middle',
+        keycap: {chordak:'MIDDLE', physical:'?'}
+      };
+      var m2 = {
+        name:'delete',
+        keycap: {chordak:'DELETE', physical:'?'}
+      };
+
+      var i0 = {
+        name:'control',
+        keycap: {chordak:'CTRL', physical:'?'},
+        dead_key:true
+      };
+      var i1 = {
+        name:'index',
+        keycap: {chordak:'INDEX', physical:'?'}
+      };
+      var i2 = {
+        name:'shift',
+        keycap: {chordak:'SHIFT', physical:'?'},
+        dead_key:true,
+        locks:true
+      };
+
+      var t0 = {
+        name:'navigation',
+        keycap: {chordak:'NAV', physical:'?'},
+        dead_key:true,
+        locks:true
+      };
+      var t1 = {
+        name:'thumb',
+        keycap: {chordak:'THUMB', physical:'?'}
+      };
+      var t2 = {
+        name:'symbol',
+        keycap: {chordak:'SYM', physical:'?'},
+        dead_key:true
+      };
+      var t3 = {
+        name:'numeral',
+        keycap: {chordak:'FN<br>NUM', physical:'?'},
+        dead_key:true,
+        locks:true
+      };
+
+      var keyCodeToName = [];
+
+      var keyboard = { p0:p0, p1:p1, p2:p2,
+                       r0:r0, r1:r1, r2:r2,
+                       m0:m0, m1:m1, m2:m2,
+                       i0:i0, i1:i1, i2:i2,
+                       t0:t0, t1:t1, t2:t2, t3:t3 };
+
+      var layouts = { qwerty:{}, colemak:{}, dvorak:{}, custom:{} };
+
+      layouts.qwerty = { L:{ p0:00, p1:08, p2:00,
+                             r0:00, r1:00, r2:00,
+                             m0:00, m1:00, m2:00,
+                             i0:00, i1:00, i2:00,
+                             t0:00, t1:00, t2:00, t3:00 },
+                         R:{ p0:00, p1:00, p2:00,
+                             r0:00, r1:00, r2:00,
+                             m0:00, m1:00, m2:00,
+                             i0:00, i1:00, i2:00,
+                             t0:00, t1:00, t2:00, t3:00 } };
+
+      layouts.colemak = {L:{ p0:09, p1:08, p2:16,
+                             r0:49, r1:81, r2:65,
+                             m0:50, m1:87, m2:82,
+                             i0:51, i1:70, i2:83,
+                             t0:66, t1:86, t2:67, t3:88 },
+                         R:{ p0:189,p1:219,p2:222,
+                             r0:48, r1:186,r2:79,
+                             m0:57, m1:89, m2:73,
+                             i0:56, i1:85, i2:69,
+                             t0:66, t1:75, t2:77, t3:188 } };
+
+      layouts.dvorak = { L:{ p0:00, p1:00, p2:00,
+                             r0:00, r1:00, r2:00,
+                             m0:00, m1:00, m2:00,
+                             i0:00, i1:00, i2:00,
+                             t0:00, t1:00, t2:00, t3:00 },
+                         R:{ p0:00, p1:00, p2:00,
+                             r0:00, r1:00, r2:00,
+                             m0:00, m1:00, m2:00,
+                             i0:00, i1:00, i2:00,
+                             t0:00, t1:00, t2:00, t3:00 } };
+
+      layouts.custom = { L:{ p0: 9, p1:20, p2:16,
+                             r0:49, r1:81, r2:65,
+                             m0:50, m1:87, m2:83,
+                             i0:51, i1:69, i2:68,
+                             t0:66, t1:86, t2:67, t3:88 },
+                         R:{ p0:-1, p1:-1, p2:-1,
+                             r0:-1, r1:-1, r2:-1,
+                             m0:-1, m1:-1, m2:-1,
+                             i0:-1, i1:-1, i2:-1,
+                             t0:-1, t1:-1, t2:-1, t3:-1 } };
+
+
+      function setLayout() {
+        const layout = $('layout').value
+        localStorage.layout = layout;
+        var hand = $('typing-hand').checked ? 'R' : 'L';
+
+        //special handling for a custom keyboard layout
+        var display = (layout == 'custom') ? 'block' : 'none';
+        $('custom-layout').style.display = display;
+
+        //loop through the chosen layout and assign it to the keys map
+        for (var key in keyboard) {
+            if (keyboard.hasOwnProperty(key)) {
+                const keyCode = layouts[layout][hand][key];
+                keyCodeToName[keyCode] = keyboard[key].name;
+                keyboard[key].keycap.physical = keyCodeToLabel(keyCode,'keycap');
+            }
+        }
+      }
+
+      var selectedKey;
+      var editTimeout;
+      var editFlag = false;
+
+      function editLayoutCheck(e) {
+        editFlag = false;
+
+        if(localStorage.layout != 'custom') { return; }
+        if(keycaps != 'physical') { return; }
+
+        //return early if the click wasn't on a key
+        o(e.target.id);
+        if(!e.target.classList.contains('key')) { 
+          selectedKey = undefined;
+          return; 
+        }
+        // e.stopPropagation(); //may not be needed
+
+        // o('editing: waiting for timeout');
+        window.clearTimeout(editTimeout);
+        editTimeout = window.setTimeout(editStartListening, 160);
+        selectedKey = e.target;
+      }
+
+      function editStartListening() {
+        editFlag = true;
+        // o('editing: listening for keypress');
+        window.addEventListener("keydown", editLayout);
+        keyboardEnabled = false;
+        selectedKey.classList.add('editing');
+      }
+
+      function printCustomLayout() {
+        var hand = $('typing-hand').checked ? 'R' : 'L';
+        var str = hand + ':{ ';
+        var n = 0;
+        for (var key in layouts.custom[hand]) {
+          if (layouts.custom[hand].hasOwnProperty(key)) {
+            str += key + ':'
+            str += layouts.custom[hand][key];
+            if (n != 15) {
+              str += ', ';
+            }
+            if (n == 2 || n == 5 || n == 8 || n == 11) {
+              str += '<br>';
+            }
+          }
+          n++;
+        }
+        str += ' }';
+        o(str);
+      }
+
+      function editLayout(e) {
+        e.preventDefault();
+        var keyCode = e.which;
+        var key = selectedKey.id;
+        localStorage.setItem(key+'-'+hand, keyCode);
+
+        loadCustomLayout();
+        setLayout();
+        updateKeyCaps();
+
+        printCustomLayout();
+        return;
+      }
+
+      function keyCodeToLabel(keyCode, type = 'name') {
+        var kctl = [];
+        kctl[8] = { name:'DELETE' };
+        kctl[9] = { name:'TAB' };
+        kctl[13] = { name:'RETURN' };
+        kctl[16] = { name:'SHIFT' };;
+        kctl[17] = { name:'CONTROL', keycap:'CTRL' };
+        kctl[18] = { name:'ALT' };
+        kctl[27] = { name:'ESCAPE', keycap:'ESC' };     
+        kctl[91] = { name:'COMMAND/WINDOWS', keycap:'CMD' };
+        kctl[93] = { name:'COMMAND RIGHT', keycap:'CMD' }
+        kctl[32] = { name:'SPACE' };
+        kctl[20] = { name:'CAPS LOCK', keycap:'CAPS<BR>LOCK' };
+        kctl[37] = { name:'LEFT ARROW', keycap:'◀' };
+        kctl[38] = { name:'UP ARROW', keycap:'▲' };
+        kctl[39] = { name:'RIGHT ARROW', keycap:'▶' };
+        kctl[40] = { name:'DOWN ARROW', keycap:'◀' };
+        kctl[46] = { name:'FORWARD DELETE', keycap:'FWD<BR>DEL' };
+        kctl[112] = { name:'F1' };
+        kctl[113] = { name:'F2' };
+        kctl[114] = { name:'F3' };
+        kctl[115] = { name:'F4' };
+        kctl[116] = { name:'F5' };
+        kctl[117] = { name:'F6' };
+        kctl[118] = { name:'F7' };
+        kctl[119] = { name:'F8' };
+        kctl[120] = { name:'F9' };
+        kctl[121] = { name:'F10' };
+        kctl[122] = { name:'F11' };
+        kctl[123] = { name:'F12' };
+        kctl[186] = { name:';',
+        keycap:'<span class="stack">:<br>;</span>' };
+        kctl[187] = { name:'=',
+        keycap:'<span class="stack">+<br>=</span>' };
+        kctl[188] = { name:',',
+        keycap:'<span class="stack"><<br>,</span>' };
+        kctl[189] = { name:'-',
+        keycap:'<span class="stack">_<br>-</span>' };
+        kctl[190] = { name:'.',
+        keycap:'<span class="stack">><br>.</span>' };
+        kctl[191] = { name:'/',
+        keycap:'<span class="stack">?<br>/</span>' };
+        kctl[192] = { name:'`',
+        keycap:'<span class="stack">~<br>`</span>' };
+        kctl[219] = { name:'[',
+        keycap:'<span class="stack">{<br>[</span>' };
+        kctl[220] = { name:'\\',
+        keycap:'<span class="stack">|<br>\\</span>' };
+        kctl[221] = { name:']',
+        keycap:'<span class="stack">}<br>]</span>' };
+        kctl[222] = { name:'\'',
+        keycap:'<span class="stack">"<br>\'</span>' };
+
+        if (kctl[keyCode]) {
+          if (kctl[keyCode][type]) {
+            return kctl[keyCode][type];
+          } else {
+            return kctl[keyCode]['name'];
+          }
+        } else if(keyCode >= 48 && keyCode <= 57) { // numerals
+          return '<span>'+String.fromCharCode(keyCode)+'</span>';
+        } else if(keyCode >= 65 && keyCode <= 90) { // letters
+          return '<span>'+String.fromCharCode(keyCode)+'</span>';
+        } else if(keyCode == -1) { // for custom layout
+          return '';
+        }
+        return '<span>⧄</span>';
+      }
+
+      /* setup ------------------------------------------------ */
+
+      //global state
+      const mistakeSound = $('mistake-sound');
+      mistakeSound.preload = true;
+      var resizeTimeout;
+      var paperWidth = $('paper').clientWidth;
+      var asideOpen = null;
+      var keycaps = 'off';
+
+      function setup() {
+        resizeKeyboard();
+        initializeLocalStorage();
+        loadCustomLayout();
+        enableKeyboard();
+
+        window.addEventListener('resize', debounceResize);
+
+        $('aside-left').addEventListener('click', toggleAside);
+        $('aside-right').addEventListener('click', toggleAside);
+
+        $('keyboard').addEventListener('mousedown', editLayoutCheck);
+        $('keyboard').addEventListener('mouseup', incrementKeycaps);
+        
+        //load settings from local storage or set to default
+        const modeQuery = '#mode [value="' + 
+        localStorage.mode + '"]';
+        document.querySelector(modeQuery).selected = true;
+        $('mode').addEventListener('change', setMode);
+
+        const lessonQuery = '#lesson [value="' + 
+        localStorage.lesson + '"]';
+        document.querySelector(lessonQuery).selected = true;
+        $('lesson').addEventListener('change', tester);
+        
+        $('typing-hand').checked = (localStorage.hand == 'R');
+        $('typing-hand').addEventListener("change", setHand);
+
+        const layoutQuery = '#layout [value="' + 
+        localStorage.layout + '"]';
+        document.querySelector(layoutQuery).selected = true;
+        $('layout').addEventListener('change', setLayout);
+
+        $('simulate').checked = localStorage.simulate;
+        $('simulate').addEventListener('change', tester);
+
+        $('show-keyboard').checked = localStorage.showKeyboard;
+        $('show-keyboard').addEventListener('change', tester);
+
+        $('preview-keys').checked = localStorage.previewKeys;
+        $('preview-keys').addEventListener('change', tester);
+
+        $('sound').checked = localStorage.sound;
+        $('sound').addEventListener('change', tester);
+
+        // font size
+        $('minus-button').addEventListener('click', tester);
+        $('plus-button').addEventListener('click', tester);
+
+        $('close-button').addEventListener('click', close);
+        $('reset-button').addEventListener('click', reset);
+
+        setMode();
+        setHand();
+
+        buildTree();
+      }
+
+      setup();
+
+      function initializeLocalStorage() {
+        if(localStorage.mode == undefined) {
+          localStorage.mode = 'training';
+          localStorage.lesson = 0;
+          localStorage.hand = 'L';
+          localStorage.layout = 'qwerty';
+
+          localStorage.simulate = true;
+          localStorage.showKeyboard = true;
+          localStorage.previewKeys = true;
+          localStorage.sound = true;
+          localStorage.fontSize = 17;
+        }
+      }
+
+      function loadCustomLayout() {
+        var hand = $('typing-hand').checked ? 'R' : 'L';
+
+        for (var key in keyboard) {
+          if (keyboard.hasOwnProperty(key)) {
+            const keyCode = localStorage.getItem(key+'-'+hand);
+            if(keyCode != undefined) {
+              layouts.custom[hand][key] = keyCode;
+            }
+          }
+        }
+      }
+      
+
+      /* reset ------------------------------------------------ */
+      function reset() {
+        localStorage.clear();
+        location.reload();
+      }
+
+      function setMode() {
+        $('keyboard').classList.add('hidden');
+        $('paper').classList.add('hidden');
+        $('blank').classList.add('hidden');
+
+        mode = $('mode').value;
+        localStorage.mode = mode;
+        switch (mode) {
+          case 'training':
+            $('keyboard').classList.remove('hidden');
+            $('paper').classList.remove('hidden');
+            break;
+          case 'speed':
+            $('paper').classList.remove('hidden');
+            break;
+          case 'blank':
+            $('blank').classList.remove('hidden');
+            break;
+        }
+      }
+
+      // function keydownHandlerBlank(e) {
+      //  if (!enabled) { return; }
+      //  e.preventDefault();
+      //  //ignore the event if the key is being held down
+      //  if(e.repeat == true) { return; }
+      //  var keyCode = e.which;
+
+      //  if (keys[keyCode]) {
+      //    raw += keys[keyCode];
+      //    count++;
+      //  }
+      // }
+
+
+      // function keyupHandlerBlank(e) {
+      //  if (!enabled) { return; }
+      //  e.preventDefault();
+      //  var keyCode = e.which;
+      //  if (keys[keyCode]) {
+      //    count--;
+      //  }
+      //  if (count == 0) {
+      //    if (chords[raw]) {
+      //      var letter = chords[raw];
+      //      if (letter == '&nbsp;') letter = ' ';
+      //      insertAtCaret(letter);
+      //    }
+      //    raw = '';
+      //  }
+      // }
+      // '\r\n'
+      
+      function insertAtCaret(letter) {
+        var blank = $('blank');
+        //var scrollSaved = blank.scrollTop;
+        var caret = blank.selectionStart;
+
+        var ante = blank.value.substr(0, blank.selectionStart);
+        var post = blank.value.substr(blank.selectionEnd, blank.value.length);
+        blank.value = ante + letter + post;
+        
+        blank.selectionStart = caret + 1;
+        blank.selectionEnd = caret + 1;
+        //blank.scrollTop = scrollSaved;
+      }
+
+      //var eCount = 0;
+      function incrementKeycaps(e) {
+        //eCount++;
+        //o('editing: not editing ' + eCount);
+        window.clearTimeout(editTimeout);
+        //if(e.target != e.currentTarget) { return; }
+        if (editFlag) {
+          selectedKey.classList.remove('editing');
+          window.removeEventListener("keydown", editLayout);
+          editFlag = false;
+          return;
+        }
+
+        switch (keycaps) {
+          case 'off':      keycaps = 'chordak';  break;
+          case 'chordak':  keycaps = 'physical'; break;
+          case 'physical': keycaps = 'off';      break;
+        }
+        updateKeyCaps();
+      }
+
+      function hideKeyCaps() {
+        if (keycaps != 'off') {
+          keycaps = 'off';
+          updateKeyCaps();
+        }
+      }
+
+      function updateKeyCaps() {
+        for (var key in keyboard) {
+          if (keyboard.hasOwnProperty(key)) {
+            $(key).innerHTML = (function () {
+              switch (keycaps) {
+                case 'off':      return '';
+                case 'chordak':  return keyboard[key].keycap.chordak;
+                case 'physical': return keyboard[key].keycap.physical;
+              }
+            })();
+          }
+        }
+        $('keyboard-title').innerHTML = (function () {
+          switch (keycaps) {
+            case 'off':      return '';
+            case 'chordak':  return 'chordak layout';
+            case 'physical': return 'physical keys';
+          }
+        })();
+      }
     </script>
   </body>
 </html>
