@@ -2355,6 +2355,7 @@
         enableKeyboard();
 
         window.addEventListener('resize', debounceResize);
+        window.addEventListener('orientationchange', debounceResize);
 
         $('aside-left').addEventListener('click', toggleAside);
         $('aside-right').addEventListener('click', toggleAside);
